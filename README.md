@@ -1,1 +1,1 @@
-<h1>Spectrum-2025</h1>
+# Spectrum-2025
