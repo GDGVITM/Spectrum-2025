@@ -1,4 +1,5 @@
 // Create carousel component
+// Create carousel component
 
 
 // Create carousel component with Tailwind CSS
