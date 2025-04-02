@@ -5,7 +5,7 @@ npm i bun -g
 ```
 > To install bun globally 
 ```bash
-npm i 
+bun i 
 ```
 > To install node_modules
 ```bash
