@@ -9,8 +9,23 @@
   font-family: 'Audiowide' ;
   src: url('./assets/Audiowide-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Good-Timing';
+  src: url('./assets/good-timing-bd.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Wadik';
+  src: url('./assets/Wadik.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Audiowide' ;
+  src: url('./assets/Audiowide-Regular.ttf') format('truetype');
+}
 body {
- font-family: 'Minecraft', sans-serif; 
+ font-family: 'Minecraft', 'Audiowide', 'Good-Timing', sans-serif; 
 }
 .bg {
   background-image: url('../src/Events/posters/techfeud.png');
