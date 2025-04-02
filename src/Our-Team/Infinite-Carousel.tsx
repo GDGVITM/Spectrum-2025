@@ -1,6 +1,4 @@
-// Create carousel component
-// Create carousel component
-
+//Create carousel component
 
 // Create carousel component with Tailwind CSS
 import React, { useEffect, useState } from 'react';
