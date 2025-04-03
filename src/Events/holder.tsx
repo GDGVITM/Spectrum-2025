@@ -157,5 +157,3 @@ export default function Holder() {
         </div>
       </div>
     </div>
-  )
-}

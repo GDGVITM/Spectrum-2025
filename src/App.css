@@ -1,13 +1,8 @@
 /* @import url('./assets/Minecrafter-MA3Dw.ttf'); */
-
-@font-face {
-  font-family: 'Minecraft';
-  src: url('./assets/Minecrafter-MA3Dw.ttf') format('truetype');
-}
-
 body {
- font-family: 'Minecraft', sans-serif; 
+ font-family: 'Minecraft', 'Audiowide', 'GoodTiming', 'Wadik', sans-serif; 
 }
+
 .bg {
   background-image: url('../src/Events/posters/techfeud.png');
   background-size: contain;
