@@ -1,20 +1,30 @@
-// Integrate the navbar abd footer and create the main body for page
-import bg from '../assets/Union.png'
+import bg from '../assets/Union.png';
+import creeper from '../assets/Our-team-assets/Creeper.png'
+import player from '../assets/Our-team-assets/Player.png'
+import InfiniteCarousel from './Infinite-Carousel';
+import '../font.css'
 
-export default function Our_Team(){
-    return(
-        <div className='  h-screen w-screen bg-black overflow-hidden flex'>
-            <div style={{ backgroundImage: `url(${bg})` }}
-            className='bg-cover w-full h-full relative shrink'>
-                <div className="absolute top-32 left-0 right-0 flex flex-col items-center text-center px-4">
-                    <p className="text-[#A1E9A5] mb-2 text-6xl">07 // ABOUT TEAM</p>
-                    <h1 className="text-white text-4xl md:text-5xl font-bold mb-6 max-w-4xl">
-                        MEET THE TEAM THAT MAKES THE MAGIC HAPPEN
-                    </h1>
-                    <p className="text-white max-w-2xl">Our talented team brings together expertise from diverse backgrounds to create exceptional experiences.
-                    </p>
-                </div>
-            </div>
+export default function Our_Team() {
+  return (
+    <div className='relative h-screen w-screen bg-black  '>
+      <div style={{ backgroundImage: `url(${bg})` }}
+        className='absolute inset-0 bg-cover h-auto'>
+        <div className='relative z-10 h-screen'>
+          <div className="mt-65 flex flex-col items-center text-center ">
+              <p className="text-[#A1E9A5] mb-38 text-[52px]" style={{fontFamily: 'Audiowide'}}>
+              07 // ABOUT TEAM
+              </p>
+              <p className="text-white text-[120px] mb-40 w-[75%] leading-[1.25] tracking-wide" style={{fontFamily: 'GoodTiming'}}>
+              MEET THE TEAM THAT MAKES THE MAGIC HAPPEN
+              </p>
+              <InfiniteCarousel/>
+          </div>
         </div>
-    )
+      </div>
+
+      
+      
+      
+    </div>
+  );
 }
