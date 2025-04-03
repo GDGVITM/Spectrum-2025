@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Minecraft';
+    src: url('./assets/Minecrafter-MA3Dw.ttf') format('truetype');
+    font-display: swap;
+}
+  
+@font-face {
+    font-family: 'Audiowide' ;
+    src: url('./assets/Audiowide-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+  
+@font-face {
+    font-family: 'GoodTiming';
+    src: url('./assets/good-timing-bd.otf') format('opentype');  
+    font-display: swap;
+}
+  
+@font-face {
+    font-family: 'Wadik';
+    src: url('./assets/Wadik.otf') format('opentype');
+    font-display: swap;
+}
+  

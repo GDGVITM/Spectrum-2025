@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        minecraft: ['Minecraft', 'sans-serif'],
+        audiowide: ['Audiowide', 'sans-serif'],
+        goodTiming: ['GoodTiming', 'sans-serif'],
+        wadik: ['Wadik', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 } 
