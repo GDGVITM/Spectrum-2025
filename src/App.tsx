@@ -8,8 +8,7 @@ function App() {
 
   return (
     <>
-    {/* <Event/> */}
-    <Our_Team/>
+    <Event/>
     </>
   )
 }
