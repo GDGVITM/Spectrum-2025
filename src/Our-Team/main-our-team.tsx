@@ -1,0 +1,1 @@
+// Integrate the navbar abd footer and create the main body for page
