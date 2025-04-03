@@ -5,7 +5,6 @@ export default function Event() {
   return (
     <>
     <Holder/>
-    <Techfeud/>
     </>
   )
 }

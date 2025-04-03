@@ -56,6 +56,25 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.image-blur {
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 2), rgba(0, 0, 0, 0));
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 2), rgba(0, 0, 0, 0));
+}
+.register {
+  background-color: #15803d; 
+  color: white;
+  font-size: 1.25rem; 
+  font-weight: bold; 
+  padding: 12px 24px; 
+  border-radius: 0.5rem; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  border-top: 6px solid #16a34a; 
+  border-bottom: 7px solid #0c5326;
+  letter-spacing: 0.05em; 
+  font-family: 'Press Start 2P', sans-serif; 
+}
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

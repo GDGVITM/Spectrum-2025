@@ -1,47 +1,44 @@
-import React from 'react'
-import bgimage from './posters/common_bg.png'
-import techfeudImage from './posters/techfeud.png'  // Add this import
-import '../App.css'
-import { Arrow, Eventtitle, Techfeudprize } from './svg'
+import React from "react";
+import bgimage from "./posters/common_bg.png";
+import techfeudImage from "./posters/techfeud.png"; // Add this import
+import hackbuildCr from "./posters/hackbuildCr.png";
+import Union from "../assets/Union.png";
+import { Arrow, Eventtitle, hackBuildPrize } from "./svg";
 
 export default function Holder() {
   return (
     <>
-    <div className='min-h-screen w-full p-6'>
-      <div className="relative">
-        {/* Trapezoid shape at top */}
-        <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-[300px] filter drop-shadow-[0_-13px_29.7px_rgba(0,0,0,0.70)]">
-          <div className="h-12 bg-(--minecraft-grey) relative shadow-[inset_0_1px_0_0_#D9D9D9]"> 
-            <div className="absolute top-0 rounded-bl-lg rounded-tl-lg -left-6 h-full w-12 bg-(--minecraft-grey) origin-top-right -skew-x-[20deg] shadow-[inset_0_1px_0_0_#FFF]"></div>
-            <div className="absolute top-0 rounded-br-lg rounded-tr-lg -right-6 h-full w-12 bg-(--minecraft-grey) origin-top-left skew-x-[20deg] shadow-[inset_0_1px_0_0_#FFF]"></div>
-            <span className='pl-18'> <Eventtitle/> </span>
+      <div className="min-h-screen">
+        <img className="w-[100vw]" src={Union} />
+        <div className="absolute top-30 left-0">
+          <div className="p-4 mb-15 ml-155">
+            <Eventtitle />
           </div>
-        </div>
-
-        {/* Main container */}
-        <div className='bg-(--minecraft-grey) min-h-[calc(100vh-4rem)] w-[90vw] max-w-7xl shadow-[inset_0_1px_0_0_#D9D9D9] mx-auto rounded-2xl'>
-          <div className='h-20 bg-(--minecraft-grey) w-full'> 
-            {/* nothing but for blur effect on the image */}
-          </div>
-          <div className="relative h-[560px] w-full mx-auto overflow-hidden">
-            <div 
-              style={{ backgroundImage: `url(${techfeudImage})` }}
-              className="absolute inset-0 bg-contain bg-center bg-no-repeat w-full h-full"
+          <div>
+            <img
+              src={hackbuildCr}
+              className="w-[100%] h-[50%] object-cover object-top p-1 image-blur"
             />
-            <div className="relative z-10 h-full w-full p-6 text-white">
-              {/* Your content goes here */}
-              <h1 className="text-4xl font-bold flex flex-row"> <p>Tech Feud</p> <Arrow width={80} height={80}/> </h1>
-              <p className="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe sapiente omnis exercitationem ex voluptatum ipsam voluptas mollitia voluptatem! Labore iusto nam pariatur itaque esse mollitia eaque cupiditate doloribus tempore minima. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab tempore mollitia dicta magnam molestias delectus aspernatur unde ipsum quisquam laudantium?</p>
-              <p>DATE 45 AND 21 APRIL '45</p>
-              <button type="button"></button>
-              <div className='flex flex-row'>
-              <Techfeudprize/>
-              </div>
+            <div className="absolute top-50 left-30 text-2xl flex ">
+              <h1 className="mr-6">HACKBUILD</h1>
+              <Arrow width={80} height={80} />
             </div>
+            <div className="w-[85%] absolute top-75 left-30 text-2xl">
+              HackBuild is an exciting 8-hour event where students dive into the
+              world of AI & ML, solving real-world challenges with cutting-edge
+              technology. This event provides hands-on experience in AI/ML, and
+              problem-solving, fostering innovation and creativity.
+            </div>
+            <div className="w-[85%] absolute top-110 left-30 flex flex-col">
+              <span className="mb-10 text-6xl">Date: 12th April '25</span>
+              <button className="w-[20%] register">
+                REGISTER
+              </button>
+            </div>
+              <hackBuildPrize/>
           </div>
         </div>
       </div>
-    </div>
     </>
-  )
+  );
 }
