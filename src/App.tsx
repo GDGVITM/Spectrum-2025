@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-import Event from './Events/main-event'
-import InfiniteCarousel from './Our-Team/Infinite-Carousel'
+// import Event from './Events/main-event'
+import Our_Team from './Our-Team/main-our-team'
 
 
 function App() {
 
   return (
     <>
-    <Event/>
-    <InfiniteCarousel/>
+    {/* <Event/> */}
+    <Our_Team/>
     </>
   )
 }
