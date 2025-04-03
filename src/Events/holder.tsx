@@ -6,7 +6,13 @@ import hackbuild from './posters/hackbuild.png'
 import ai4startup from './posters/ai4startup.png'
 import ctf from './posters/ctf.png'
 import '../App.css'
-import { Arrow, Eventtitle, LaunchPadPrize, Techfeudprize, RegisterButton } from './svg'
+import { Arrow, Eventtitle, LaunchPadPrize, Techfeudprize, RegisterButton, Hackbuildprize,
+  Ctfprize } from './svg'
+import TechFeudComponent from './EventComponents/TechFeudComponent'
+import LaunchPadComponent from './EventComponents/LaunchPadComponent'
+import HackBuildComponent from './EventComponents/HackBuildComponent'
+import AIStartupComponent from './EventComponents/AIStartupComponent'
+import CTFComponent from './EventComponents/CTFComponent'
 
 //deven's Version
 
@@ -17,42 +23,47 @@ export default function Holder() {
   const events = [
     {
       image: techfeudImage,
-      title: "Tech Feud",
+      title: "Tech\nFeud",
       description: "Tech Feud is a dynamic three-round competition designed to sharpen placement-relevant skills through a mix of aptitude, creativity, and technical knowledge. Each round is crafted to challenge participants in different areas.",
       date: "15th & 16th April '25",
-      prizeComponent: <Techfeudprize />
+      prizeComponent: <Techfeudprize />,
+      component: <TechFeudComponent />
     },
     {
       image: launchpad,
       title: "Launch Pad",
       description: "Welcome to LaunchPad, a high-stakes business strategy competition that challenges participants to think beyond conventional startup ideation. Instead of creating new startups, participants must analyze failed real-world businesses and devise innovative revival strategies.",
       date: "16th & 17th April '25",
-      prizeComponent: <LaunchPadPrize />
+      prizeComponent: <LaunchPadPrize />,
+      component: <LaunchPadComponent />
     },
     {
       image: hackbuild,
       title: "Hack & Build",
       description: "need to be filed yet",
       date: "22nd-23rd April 2024",
-      prizeComponent: null
+      prizeComponent: <Hackbuildprize/> ,
+      component: <HackBuildComponent />
     },
     {
       image: ai4startup,
       title: "AI for Startups",
       description: "need to be filed yet",
       date: "18th April 2024",
-      prizeComponent: null
+      prizeComponent: null ,
+      component: <AIStartupComponent />
     },
     {
       image: ctf,
       title: "Capture The Flag",
       description: "need to be filed yet",
       date: "25th April 2024",
-      prizeComponent: null
+      prizeComponent: <Ctfprize/>,
+      component: <CTFComponent />
     }
   ];
 
-  const handleImageClick = (index) => {
+  const handleImageClick = (index:any) => {
     if (index === activeEvent) return;
     setTransitioning(true);
     setTimeout(() => {
@@ -95,15 +106,8 @@ export default function Holder() {
             className={`relative h-[600px] w-full mx-auto transition-opacity duration-300 ${transitioning ? 'opacity-0' : 'opacity-100'}`}
           >
             <div className="relative z-10 h-full w-full p-6 text-white">
-              <h1 className="text-4xl font-bold flex flex-row items-center">
-                {events[activeEvent].title} 
-                <Arrow width={80} height={80}/>
-              </h1>
-              <p className="mt-4 max-w-full">{events[activeEvent].description}</p>
-              <p className="mt-2 font-bold">DATE: {events[activeEvent].date}</p>
-              <button type="button" className='ml-10 mt-4'>
-                <RegisterButton/>
-              </button>
+              {/* Render the active event component */}
+              {events[activeEvent].component}
               
               {/* Prize component and image scroller */}
               <div className='flex flex-row items-start mt-8'>
@@ -111,25 +115,37 @@ export default function Holder() {
                   {events[activeEvent].prizeComponent}
                 </div>
                 
-                {/* Horizontal scroll container */}
-                <div className="relative flex-1 h-65 overflow-hidden ml-15"> {/* height issue */}
-                  <div className="absolute right-0 h-full w-[calc(100%-1rem)] overflow-x-auto hide-scrollbar pl-4">
-                    <div className="flex space-x-6 h-full items-center"> {/* Centered vertically */}
+                {/* Horizontal scroll container with scroll snap - limited to 3 visible images */}
+                <div className="relative flex-1 h-[320px] overflow-hidden"> 
+                  <div className="absolute right-0 h-full w-[calc(200px+160px*2+1.5rem*2)] overflow-x-auto scrollbar-hide">
+                    <div className="flex space-x-6 h-full items-center px-4 snap-x snap-mandatory scroll-smooth" style={{ width: 'max-content' }}> 
                       {orderedEvents.map((event, index) => (
                         <div 
                           key={index} 
-                          className={`flex-shrink-0 transition-all duration-300 ${
+                          className={`flex-shrink-0 transition-all duration-300 snap-center relative ${
                             index === 0 ? 
-                              'h-[300px] w-[200px] brightness-100' : // Larger size for selected , need to be imporoved 
-                              'h-[220px] w-[160px] brightness-75 hover:brightness-100' // Smaller for others, this is better
+                              'h-[300px] w-[200px] brightness-100' : 
+                              'h-[220px] w-[160px] brightness-75 hover:brightness-100'
                           }`}
                           onClick={() => handleImageClick(events.indexOf(event))}
-                        >
+                        > 
                           <img 
                             src={event.image} 
-                            alt={event.title}
+                            alt={event.title} 
                             className="w-full h-full object-cover rounded-lg transition-all duration-300"
                           />
+                          {/* Title at the top */}
+                          <div className="absolute top-0 left-0 right-0 p-2 text-center">
+                            <h3 className="text-white font-bold text-3xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">{event.title}</h3>
+                          </div>
+                          
+                          {/* Other details at the bottom */}
+                          <div className="absolute bottom-0  p-2 text-center">
+                            <p className="text-white text-xs drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">{event.date}</p>
+                            <p className="text-white text-xs drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Location: Auditorium</p>
+                            <p className="text-white text-xs drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">10:00 AM - 4:00 PM</p>  
+                            <Arrow height={40} width={40}/> 
+                          </div>
                         </div>
                       ))}
                     </div>
