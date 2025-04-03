@@ -155,13 +155,13 @@ const InfiniteCarousel: React.FC = () => {
       <style>{scrollAnimation}</style>
       
       {/* Main container */}
-      <div className="relative w-full max-w-full mx-auto overflow-hidden py-3 sm:py-5 bg-transparent">
+      <div className="relative w-full max-w-full mx-auto overflow-hidden py-3 sm:py-5 bg-transparent z-1">
         <div className="w-full overflow-hidden bg-transparent">
           {/* Carousel content with custom animation */}
-          <div className="flex w-fit animate-scroll will-change-transform transform translate-3d-0 backface-hidden perspective-1000 gap-[2px] sm:gap-[5px]">
+          <div className="flex w-fit animate-scroll will-change-transform transform translate-3d-0 backface-hidden perspective-1000 ">
             {duplicatedMembers.map((member, index) => (
-              <div key={`${member.id}-${index}`} className="min-w-[240px] sm:min-w-[280px] p-1.5 sm:p-2.5 box-border flex flex-col items-center bg-transparent mx-[5px] sm:mx-[15px] flex-shrink-0 transform translate-3d-0 transition-all duration-400 relative z-[1]">
-                <div className="w-[240px] h-[240px] sm:w-[327px] sm:h-[330px] overflow-hidden relative bg-black border-0 border-solid border-[rgba(51,51,51,0.3)] transform translate-3d-0 transition-all duration-400 rounded-b-[16px]">
+              <div key={`${member.id}-${index}`} className="min-w-[240px] sm:min-w-[280px] p-1.5 sm:p-2.5 box-border flex flex-col items-center bg-transparent  sm:mx-[36px] flex-shrink-0 transform translate-3d-0 transition-all duration-400 relative z-[1]">
+                <div className="w-[657px] h-[660px] overflow-hidden relative bg-black border-0 border-solid border-[rgba(51,51,51,0.3)] transform translate-3d-0 transition-all duration-400 rounded-b-[16px]">
                   <div className="absolute top-0 left-0 right-0 h-[80px] sm:h-[100px] bg-gradient-to-b from-[rgba(15,15,15,0.7)] to-transparent z-[1] pointer-events-none"></div>
                   <img 
                     src={member.image} 
