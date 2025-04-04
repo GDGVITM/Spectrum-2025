@@ -26,20 +26,20 @@ export default function Our_Team() {
         </div>
 
         {/* Player Image (Bottom Left inside the Union background) */}
-        {/* <div className="absolute  left-[150px] h-[200px] w-[200px] z-10 rotate-9">
+        <div className="absolute  left-[150px] h-[200px] w-[200px] z-10 rotate-9">
           <div
             style={{ backgroundImage: `url(${player})` }}
             className="bg-contain bg-no-repeat h-full w-full"
           ></div>
-        </div> */}
+        </div>
 
         {/* creeper Image (Bottom right inside the Union background) */}
-        {/* <div className="absolute bottom-[35px] right-[45px] h-[300px] w-[300px]  -rotate-18">
+        <div className="absolute bottom-[35px] right-[45px] h-[300px] w-[300px]  -rotate-18">
           <div
             style={{ backgroundImage: `url(${creeper})` }}
             className="bg-contain bg-no-repeat h-full w-full "
           ></div>
-        </div> */}
+        </div>
         
       </div>
     </div>
