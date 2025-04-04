@@ -115,10 +115,11 @@ const InfiniteCarousel: React.FC = () => {
   ];
 
   // Create multiple duplicates for seamless infinite scroll
-  const duplicatedMembers = [...teamMembers, ...teamMembers, ...teamMembers, ...teamMembers];
+  const duplicatedMembers = [...teamMembers, ...teamMembers, ...teamMembers];
 
   // Calculate card width and animation distance based on screen size
-  const cardWidth = windowWidth < 640 ? 300 : 400;
+  const isMobile = windowWidth < 768;
+  const cardWidth = isMobile ? 320 : 657;
   const animationDistance = cardWidth * 10;
 
   // Custom animation class for infinite scroll
@@ -132,7 +133,7 @@ const InfiniteCarousel: React.FC = () => {
       }
     }
     .animate-scroll {
-      animation: scroll ${windowWidth < 640 ? 40 : 60}s linear infinite;
+      animation: scroll ${isMobile ? 40 : 60}s linear infinite;
     }
     .animate-scroll:hover {
       animation-play-state: paused;
@@ -155,14 +156,14 @@ const InfiniteCarousel: React.FC = () => {
       <style>{scrollAnimation}</style>
       
       {/* Main container */}
-      <div className="relative w-full max-w-full mx-auto overflow-hidden py-3 sm:py-5 bg-black">
-        <div className="w-full overflow-hidden bg-black">
+      <div className="relative w-full max-w-full mx-auto overflow-hidden py-3 sm:py-5 bg-transparent z-1">
+        <div className="w-full overflow-hidden bg-transparent">
           {/* Carousel content with custom animation */}
-          <div className="flex w-fit animate-scroll will-change-transform transform translate-3d-0 backface-hidden perspective-1000 gap-[5px] sm:gap-[10px]">
+          <div className="flex w-fit animate-scroll will-change-transform transform translate-3d-0 backface-hidden perspective-1000">
             {duplicatedMembers.map((member, index) => (
-              <div key={`${member.id}-${index}`} className="min-w-[300px] sm:min-w-[400px] p-2 sm:p-3 box-border flex flex-col items-center bg-transparent mx-[10px] sm:mx-[20px] flex-shrink-0 transform translate-3d-0 transition-all duration-400 relative z-[1]">
-                <div className="w-[300px] h-[380px] sm:w-[400px] sm:h-[450px] overflow-hidden relative bg-black border-0 border-solid border-[rgba(51,51,51,0.3)] transform translate-3d-0 transition-all duration-400 rounded-b-[16px]">
-                  <div className="absolute top-0 left-0 right-0 h-[30px]  bg-[linear-gradient(180deg,#0F0F0F_0%,rgba(15,15,15,0.7)_50%,rgba(15,15,15,0)_100%)] z-[1] pointer-events-none"></div>
+              <div key={`${member.id}-${index}`} className="min-w-[280px] md:min-w-[657px] p-1.5 md:p-2.5 box-border flex flex-col items-center bg-transparent mx-[15px] md:mx-[36px] flex-shrink-0 transform translate-3d-0 transition-all duration-400 relative z-[1]">
+                <div className="w-[320px] h-[320px] md:w-[657px] md:h-[660px] overflow-hidden relative bg-black border-0 border-solid border-[rgba(51,51,51,0.3)] transform translate-3d-0 transition-all duration-400 rounded-b-[16px]">
+                  <div className="absolute top-0 left-0 right-0 h-[40px] md:h-[100px] bg-gradient-to-b from-[rgba(15,15,15,0.7)] to-transparent z-[1] pointer-events-none"></div>
                   <img 
                     src={member.image} 
                     alt={member.name} 
@@ -174,11 +175,11 @@ const InfiniteCarousel: React.FC = () => {
                       transform: member.transform || 'none'
                     }}
                   />
-                  <div className="absolute left-2 sm:left-4 bottom-[20px] w-[280px] sm:w-[370px] h-[70px] sm:h-[80px] bg-[#FFFFFF1A] text-white p-[10px] sm:p-[15px] box-border text-center transform translate-3d-0 transition-all duration-400 rounded-[10px] border border-solid border-[#FFFFFF1A] backdrop-blur-[10px] shadow-[0_4px_12px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.05)] flex flex-col leading-none justify-center z-[2]">
-                    <h3 className="font-['Audiowide',sans-serif] m-0 mb-[3px] sm:mb-[5px] text-base sm:text-lg text-white font-semibold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left truncate">
+                  <div className="absolute left-3 md:left-6 bottom-[20px] md:bottom-[40px] w-[290px] md:w-[600px] h-[70px] md:h-[120px] bg-[#FFFFFF1A] text-white p-[12px] md:p-[25px] box-border text-center transform translate-3d-0 transition-all duration-400 rounded-[10px] border border-solid border-[#FFFFFF1A] backdrop-blur-[10px] shadow-[0_4px_12px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.05)] flex flex-col leading-none justify-center z-[2]">
+                    <h3 className="font-['Audiowide',sans-serif] m-0 mb-[3px] md:mb-[8px] text-sm md:text-2xl text-white font-semibold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left truncate">
                       {member.name}
                     </h3>
-                    <p className="text-left font-['Audiowide',sans-serif] text-[rgba(255,255,255,0.7)] text-[0.6rem] sm:text-[0.8rem] m-0 uppercase tracking-wider transition-[transform_0.3s_ease,color_0.3s_ease] truncate">
+                    <p className="text-left font-['Audiowide',sans-serif] text-[rgba(255,255,255,0.7)] text-xs md:text-lg m-0 uppercase tracking-wider transition-[transform_0.3s_ease,color_0.3s_ease] truncate">
                       {member.role}
                     </p>
                   </div>
