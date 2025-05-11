@@ -1,6 +1,5 @@
-import React from 'react';
+
 import { Arrow, RegisterButton } from '../svg';
-import techfeudImage from '../posters/techfeud.png';
 
 const TechFeudComponent = () => {
   return (
