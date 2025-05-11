@@ -1,17 +1,24 @@
-import { useState } from 'react'
-import './App.css'
-import Event from './Events/main-event'
-import Our_Team from './Our-Team/main-our-team'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import UnderProgress from './UnderProgress';
+import Our_Team from './Our-Team/main-our-team';
+import './index.css';
 
-
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-    {/* <Event/> */}
-    <Our_Team/>
-    </>
-  )
-}
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<UnderProgress />} />
+        <Route path="/events" element={<UnderProgress />} />
+        <Route path="/timeline" element={<UnderProgress />} />
+        <Route path="/about" element={<UnderProgress />} />
+        <Route path="/our-team" element={<Our_Team />} />
+        <Route path="/sponsors" element={<UnderProgress />} />
+      </Routes>
+    </div>
+  );
+};
 
-export default App
+export default App;

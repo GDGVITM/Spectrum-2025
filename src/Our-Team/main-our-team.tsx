@@ -6,6 +6,7 @@ import '../font.css';
 
 export default function Our_Team() {
   return (
+    <>
     <div 
       className="relative h-screen w-screen bg-black overflow-y-auto" style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}>      
       <style>{`div.relative::-webkit-scrollbar {display: none;}`}</style>
@@ -43,5 +44,6 @@ export default function Our_Team() {
         
       </div>
     </div>
+    </>
   );
 }

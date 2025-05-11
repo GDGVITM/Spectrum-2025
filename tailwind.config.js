@@ -2,17 +2,17 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}", 
   ],
   theme: {
     extend: {
       fontFamily: {
-        minecraft: ['Minecraft', 'sans-serif'],
-        audiowide: ['Audiowide', 'sans-serif'],
-        goodTiming: ['GoodTiming', 'sans-serif'],
-        wadik: ['Wadik', 'sans-serif'],
+        minecraft: ['"Minecraft"', 'sans-serif'],
+        audiowide: ['"Audiowide"', 'sans-serif'],
+        goodTiming: ['"GoodTiming"', 'sans-serif'],
+        wadik: ['"Wadik"', 'sans-serif'],
       },
     },
   },
   plugins: [],
-} 
+};
