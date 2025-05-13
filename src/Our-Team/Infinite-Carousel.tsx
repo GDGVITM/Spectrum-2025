@@ -1,8 +1,7 @@
-// Create carousel component
+"use client";
 import React, { useEffect, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
-// Import team member images
 import BhumiImg from '../assets/Our-team-assets/Bhumi.jpg';
 import OmImg from '../assets/Our-team-assets/Om.jpeg';
 import SameerImg from '../assets/Our-team-assets/Sameer.jpg';
@@ -137,15 +136,14 @@ const InfiniteCarousel: React.FC = () => {
     }
   ];
 
-  // Create multiple duplicates for seamless infinite scroll
+
   const duplicatedMembers = [...teamMembers, ...teamMembers, ...teamMembers];
 
-  // Calculate card width and animation distance based on screen size
+
   const isMobile = windowWidth < 768;
   const cardWidth = isMobile ? 320 : 357;
   const animationDistance = cardWidth * 10;
 
-  // Custom animation class for infinite scroll
   const scrollAnimation = `
     @keyframes scroll {
       0% {

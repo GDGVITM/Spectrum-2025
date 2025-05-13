@@ -27,12 +27,12 @@ const Navbar: React.FC = () => {
           />
         </div>
 
-        <nav className="hidden md:flex gap-6 text-base font-bold tracking-widest font-[Pixelify Sans, sans-serif] text-white">
+        <nav className="hidden md:flex gap-6 text-base text-white font-bold tracking-widest font-[Pixelify Sans, sans-serif]">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               to={link.to}
-              className="text-white transition-colors hover:text-white/80"
+              className="text-white no-underline transition-colors hover:text-white/80"
             >
               {link.label}
             </Link>
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
             <Link
               key={link.label}
               to={link.to}
-              className="text-white transition-colors hover:text-white/80"
+              className="text-white no-underline transition-colors hover:text-white/80"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}

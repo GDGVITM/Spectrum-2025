@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "./components/Footer";
 
 const UnderProgress: React.FC = () => {
   return (
@@ -24,7 +23,6 @@ const UnderProgress: React.FC = () => {
 
       </div>
     </div>
-    <Footer />
     </>
   );
 };
