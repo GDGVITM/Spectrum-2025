@@ -1,4 +1,4 @@
-interface ArrowProps {
+/*interface ArrowProps {
     width: number;
     height: number;
     colour?: string;
@@ -116,4 +116,4 @@ export {
 // Example usage:
 {/* <Arrow width={200} height={200} /> // Smaller arrow
 <Arrow width={400} height={400} /> // Larger arrow
-<Arrow /> // Default size (314x314) */}
+<Arrow /> // Default size (314x314) */
