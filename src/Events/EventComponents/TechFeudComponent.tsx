@@ -1,4 +1,4 @@
-
+/*import React from 'react';
 import { Arrow, RegisterButton } from '../svg';
 
 const TechFeudComponent = () => {
@@ -22,9 +22,8 @@ const TechFeudComponent = () => {
           <RegisterButton/>
         </button>
       </div>
-    {/* </div> */}
     </>
   );
 };
 
-export default TechFeudComponent;
+export default TechFeudComponent;*/

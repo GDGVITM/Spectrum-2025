@@ -1,4 +1,4 @@
-
+/*import React from 'react';
 import { Arrow, RegisterButton } from '../svg';
 
 const HackBuildComponent = () => {
@@ -23,4 +23,4 @@ const HackBuildComponent = () => {
   );
 };
 
-export default HackBuildComponent;
+export default HackBuildComponent;*/

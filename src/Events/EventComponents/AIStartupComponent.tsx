@@ -1,4 +1,4 @@
-
+/*import React from 'react';
 import { Arrow, RegisterButton } from '../svg';
 
 const AIStartupComponent = () => {
@@ -23,4 +23,4 @@ const AIStartupComponent = () => {
   );
 };
 
-export default AIStartupComponent;
+export default AIStartupComponent;*/

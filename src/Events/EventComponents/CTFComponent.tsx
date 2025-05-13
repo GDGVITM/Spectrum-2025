@@ -1,4 +1,4 @@
-
+/*import React from 'react';
 import { Arrow, RegisterButton } from '../svg';
 
 const CTFComponent = () => {
@@ -23,4 +23,4 @@ const CTFComponent = () => {
   );
 };
 
-export default CTFComponent;
+export default CTFComponent;*/
