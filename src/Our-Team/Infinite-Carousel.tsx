@@ -1,5 +1,6 @@
 // Create carousel component
 import React, { useEffect, useState } from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 // Import team member images
 import BhumiImg from '../assets/Our-team-assets/Bhumi.jpg';
@@ -12,9 +13,6 @@ import SamarthImg from '../assets/Our-team-assets/Samarth.jpg';
 import NiranjanImg from '../assets/Our-team-assets/Niranjan.jpg';
 import MaitriImg from '../assets/Our-team-assets/Matri.jpg';
 import ShwetaImg from '../assets/Our-team-assets/Shweta.jpg';
-import githubImg from '../assets/Our-team-assets/github-mark.png';
-import linkedinImg from '../assets/Our-team-assets/inBug-Black.png';
-
 
 interface TeamMember {
   id: number;
@@ -24,7 +22,7 @@ interface TeamMember {
   objectPosition?: string;
   transform?: string;
   githubUrl?: string;
-  linkedinnUrl?: string;
+  linkedinUrl?: string;
 }
 
 const InfiniteCarousel: React.FC = () => {
@@ -49,7 +47,7 @@ const InfiniteCarousel: React.FC = () => {
       image: BhumiImg,
       objectPosition: "center -10px",
       githubUrl: "",
-      linkedinnUrl:"",
+      linkedinUrl:"",
     },
     {
       id: 2,
@@ -58,7 +56,7 @@ const InfiniteCarousel: React.FC = () => {
       image: OmImg,
       objectPosition: "center -50px",
       githubUrl: "https://github.com/OmSantoshBadade",
-      linkedinnUrl:"http://www.linkedin.com/in/ombadade234",
+      linkedinUrl:"http://www.linkedin.com/in/ombadade234",
     },
     {
       id: 3,
@@ -67,7 +65,7 @@ const InfiniteCarousel: React.FC = () => {
       image: SameerImg,
       objectPosition: "center 25%",
       githubUrl: "https://github.com/shelarsameer",
-      linkedinnUrl:"https://www.linkedin.com/in/sameer-shelar-72a750267",
+      linkedinUrl:"https://www.linkedin.com/in/sameer-shelar-72a750267",
     },
     {
       id: 4,
@@ -76,7 +74,7 @@ const InfiniteCarousel: React.FC = () => {
       image: TanayImg,
       objectPosition: "center -20px",
       githubUrl: "https://github.com/TanayBhirud",
-      linkedinnUrl:"https://www.linkedin.com/in/tanay-bhirud/",
+      linkedinUrl:"https://www.linkedin.com/in/tanay-bhirud/",
     },
     {
       id: 5,
@@ -86,7 +84,7 @@ const InfiniteCarousel: React.FC = () => {
       objectPosition: "center 20%",
       transform:"scale(1)",
       githubUrl: "https://github.com/RashmiSahu2005",
-      linkedinnUrl:"https://www.linkedin.com/in/rashmi-sahu-69269b257/",
+      linkedinUrl:"https://www.linkedin.com/in/rashmi-sahu-69269b257/",
     },
     {
       id: 6,
@@ -96,7 +94,7 @@ const InfiniteCarousel: React.FC = () => {
       objectPosition: "center -50px",
       transform:"scale(1.4)",
       githubUrl: "https://github.com/apuProgramz",
-      linkedinnUrl:"https://in.linkedin.com/in/apurva-ghare-7bb94029a",
+      linkedinUrl:"https://in.linkedin.com/in/apurva-ghare-7bb94029a",
       
     },
     {
@@ -107,7 +105,7 @@ const InfiniteCarousel: React.FC = () => {
       objectPosition: "center -45px",
       transform:"scale(1)",
       githubUrl: "https://github.com/sambhandavale",
-      linkedinnUrl:"https://www.linkedin.com/in/samarth-bhandavale",
+      linkedinUrl:"https://www.linkedin.com/in/samarth-bhandavale",
     },
     {
       id: 8,
@@ -116,7 +114,7 @@ const InfiniteCarousel: React.FC = () => {
       image: NiranjanImg,
       objectPosition: "center 15%",
       githubUrl: "#",
-      linkedinnUrl:"#",
+      linkedinUrl:"#",
     },
     {
       id: 9,
@@ -126,16 +124,16 @@ const InfiniteCarousel: React.FC = () => {
       objectPosition: "center 0px",
       transform:"scale(1)",
       githubUrl: "https://github.com/maitri-dalvi",
-      linkedinnUrl:"https://www.linkedin.com/in/maitridalvi13/",
+      linkedinUrl:"https://www.linkedin.com/in/maitridalvi13/",
     },
     {
       id: 10,
-      name: "SHWETA BAHERA",
+      name: "SHWETA BEHERA",
       role: "TECHNICAL LEAD",
       image: ShwetaImg,
       objectPosition: "center -55px",
       githubUrl: "https://github.com/shwet46",
-      linkedinnUrl:"https://www.linkedin.com/in/shweta-behera/",
+      linkedinUrl:"https://www.linkedin.com/in/shweta-behera/",
     }
   ];
 
@@ -181,11 +179,11 @@ const InfiniteCarousel: React.FC = () => {
       <style>{scrollAnimation}</style>
       
       {/* Main container */}
-      <div className="relative w-full max-w-full overflow-hidden bg-transparent z-1 ">
+      <div className="relative w-full max-w-full overflow-hidden bg-transparent z-1">
           {/* Carousel content with custom animation */}
           <div className="flex w-full animate-scroll backface-hidden perspective-1000">
             {duplicatedMembers.map((member, index) => (
-              <div key={`${member.id}-${index}`} className="min-w-[280px] inset-shadow[] box-border flex flex-col items-center bg-transparent m-[15px] flex-shrink-0 relative z-[1]">
+              <div key={`${member.id}-${index}`} className="min-w-[280px] box-border flex flex-col items-center bg-transparent m-[15px] flex-shrink-0 relative z-[1]">
                 <div className="w-[327px] h-[330px] overflow-hidden relative bg-black border-0 border-solid rounded-b-[16px]">
                   <img 
                     src={member.image} 
@@ -200,49 +198,40 @@ const InfiniteCarousel: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F0F0F]">
                   </div>
-                  <div className="absolute bottom-[15px] left-[15px] right-[15px] h-18 px-4 bg-[#FFFFFF1A] text-white box-border text-center rounded-[10px] border border-[#FFFFFF1A] backdrop-blur-[10px] flex flex-col justify-center z-[2]">
-                    <div className="flex items-center mb-1">
-                      <h3 className="font-[Audiowide] m-0 text-md text-white font-bold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left truncate">
-                        {member.name}
-                      </h3>
-                      {member.githubUrl && (
+                  <div className="absolute bottom-[15px] left-[15px] right-[15px] h-24 px-4 bg-[#FFFFFF1A] text-white box-border text-center rounded-[10px] border border-[#FFFFFF1A] backdrop-blur-[10px] flex flex-col justify-center z-[2]">
+                    <h3 className="font-[Audiowide] m-0 text-md text-white font-bold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left truncate">
+                      {member.name}
+                    </h3>
+                    <p className="text-left font-[Audiowide] text-[rgba(255,255,255,0.7)] text-sm uppercase tracking-wider transition-[transform_0.3s_ease,color_0.3s_ease] truncate">
+                      {member.role}
+                    </p>
+                    <div className="flex space-x-3 mt-1">
+                      {member.githubUrl && member.githubUrl !== "#" && (
                         <a 
                           href={member.githubUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="ml-2 flex-shrink-0"
+                          className="text-white hover:text-white/80 transition-colors"
                         >
-                          <img 
-                            src={githubImg}
-                            alt="GitHub"
-                            className="h-4 w-4 filter invert"
-                          />
+                          <FaGithub size={18} className="text-white" />
                         </a>
                       )}
-                      {member.linkedinnUrl && (
+                      {member.linkedinUrl && member.linkedinUrl !== "#" && (
                         <a 
-                          href={member.linkedinnUrl} 
+                          href={member.linkedinUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="ml-2 flex-shrink-0"
+                          className="text-white hover:text-white/80 transition-colors"
                         >
-                          <img 
-                            src={linkedinImg}
-                            alt="Linedinn"
-                            className="h-4 w-4 filter invert"
-                          />
+                          <FaLinkedin size={18} className="text-white" />
                         </a>
                       )}
                     </div>
-                    <p className="text-left font-[Audiowide] text-[rgba(255,255,255,0.7)] text-sm uppercase tracking-wider transition-[transform_0.3s_ease,color_0.3s_ease] truncate">
-                      {member.role}
-                    </p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        
       </div>
     </>
   );
