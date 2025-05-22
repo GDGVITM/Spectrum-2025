@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "./components/Footer";
 
 const UnderProgress: React.FC = () => {
   return (
@@ -20,9 +21,9 @@ const UnderProgress: React.FC = () => {
           alt="Under Development"
           className="w-full max-w-4xl"
         />
-
       </div>
     </div>
+    <Footer />
     </>
   );
 };
