@@ -26,14 +26,14 @@ interface TeamMember {
 
 const InfiniteCarousel: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1200);
-  
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -46,7 +46,7 @@ const InfiniteCarousel: React.FC = () => {
       image: BhumiImg,
       objectPosition: "center -10px",
       githubUrl: "",
-      linkedinUrl:"",
+      linkedinUrl: "",
     },
     {
       id: 2,
@@ -55,7 +55,7 @@ const InfiniteCarousel: React.FC = () => {
       image: OmImg,
       objectPosition: "center -50px",
       githubUrl: "https://github.com/OmSantoshBadade",
-      linkedinUrl:"http://www.linkedin.com/in/ombadade234",
+      linkedinUrl: "http://www.linkedin.com/in/ombadade234",
     },
     {
       id: 3,
@@ -64,7 +64,7 @@ const InfiniteCarousel: React.FC = () => {
       image: SameerImg,
       objectPosition: "center 25%",
       githubUrl: "https://github.com/shelarsameer",
-      linkedinUrl:"https://www.linkedin.com/in/sameer-shelar-72a750267",
+      linkedinUrl: "https://www.linkedin.com/in/sameer-shelar-72a750267",
     },
     {
       id: 4,
@@ -73,7 +73,7 @@ const InfiniteCarousel: React.FC = () => {
       image: TanayImg,
       objectPosition: "center -20px",
       githubUrl: "https://github.com/TanayBhirud",
-      linkedinUrl:"https://www.linkedin.com/in/tanay-bhirud/",
+      linkedinUrl: "https://www.linkedin.com/in/tanay-bhirud/",
     },
     {
       id: 5,
@@ -81,9 +81,9 @@ const InfiniteCarousel: React.FC = () => {
       role: "EVENTS & OUTREACH LEAD",
       image: RashmiImg,
       objectPosition: "center 20%",
-      transform:"scale(1)",
+      transform: "scale(1)",
       githubUrl: "https://github.com/RashmiSahu2005",
-      linkedinUrl:"https://www.linkedin.com/in/rashmi-sahu-69269b257/",
+      linkedinUrl: "https://www.linkedin.com/in/rashmi-sahu-69269b257/",
     },
     {
       id: 6,
@@ -91,10 +91,9 @@ const InfiniteCarousel: React.FC = () => {
       role: "MEDIA LEAD",
       image: ApurvaImg,
       objectPosition: "center -50px",
-      transform:"scale(1.4)",
+      transform: "scale(1.4)",
       githubUrl: "https://github.com/apuProgramz",
-      linkedinUrl:"https://in.linkedin.com/in/apurva-ghare-7bb94029a",
-      
+      linkedinUrl: "https://in.linkedin.com/in/apurva-ghare-7bb94029a",
     },
     {
       id: 7,
@@ -102,9 +101,9 @@ const InfiniteCarousel: React.FC = () => {
       role: "DESIGN LEAD",
       image: SamarthImg,
       objectPosition: "center -45px",
-      transform:"scale(1)",
+      transform: "scale(1)",
       githubUrl: "https://github.com/sambhandavale",
-      linkedinUrl:"https://www.linkedin.com/in/samarth-bhandavale",
+      linkedinUrl: "https://www.linkedin.com/in/samarth-bhandavale",
     },
     {
       id: 8,
@@ -113,7 +112,7 @@ const InfiniteCarousel: React.FC = () => {
       image: NiranjanImg,
       objectPosition: "center 15%",
       githubUrl: "#",
-      linkedinUrl:"#",
+      linkedinUrl: "#",
     },
     {
       id: 9,
@@ -121,9 +120,9 @@ const InfiniteCarousel: React.FC = () => {
       role: "GDG ORGANIZER",
       image: MaitriImg,
       objectPosition: "center 0px",
-      transform:"scale(1)",
+      transform: "scale(1)",
       githubUrl: "https://github.com/maitri-dalvi",
-      linkedinUrl:"https://www.linkedin.com/in/maitridalvi13/",
+      linkedinUrl: "https://www.linkedin.com/in/maitridalvi13/",
     },
     {
       id: 10,
@@ -132,16 +131,18 @@ const InfiniteCarousel: React.FC = () => {
       image: ShwetaImg,
       objectPosition: "center -55px",
       githubUrl: "https://github.com/shwet46",
-      linkedinUrl:"https://www.linkedin.com/in/shweta-behera/",
+      linkedinUrl: "https://www.linkedin.com/in/shweta-behera/",
     }
   ];
 
-
   const duplicatedMembers = [...teamMembers, ...teamMembers, ...teamMembers];
 
+  // Responsive card width and animation distance
+  let cardWidth = 327;
+  if (windowWidth < 640) cardWidth = 240;
+  else if (windowWidth < 768) cardWidth = 280;
+  else if (windowWidth < 1024) cardWidth = 300;
 
-  const isMobile = windowWidth < 768;
-  const cardWidth = isMobile ? 320 : 357;
   const animationDistance = cardWidth * 10;
 
   const scrollAnimation = `
@@ -154,20 +155,10 @@ const InfiniteCarousel: React.FC = () => {
       }
     }
     .animate-scroll {
-      animation: scroll ${isMobile ? 40 : 60}s linear infinite;
+      animation: scroll ${windowWidth < 640 ? 30 : windowWidth < 1024 ? 45 : 60}s linear infinite;
     }
     .animate-scroll:hover {
       animation-play-state: paused;
-    }
-    
-    /* Prevent page scrolling - fix the page */
-    html, body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      position: fixed;
     }
   `;
 
@@ -175,61 +166,79 @@ const InfiniteCarousel: React.FC = () => {
     <>
       {/* Add style tag for custom animation that can't be done with just Tailwind */}
       <style>{scrollAnimation}</style>
-      
+
       {/* Main container */}
-      <div className="relative w-full max-w-full overflow-hidden bg-transparent z-1">
-          {/* Carousel content with custom animation */}
-          <div className="flex w-full animate-scroll backface-hidden perspective-1000">
-            {duplicatedMembers.map((member, index) => (
-              <div key={`${member.id}-${index}`} className="min-w-[280px] box-border flex flex-col items-center bg-transparent m-[15px] flex-shrink-0 relative z-[1]">
-                <div className="w-[327px] h-[330px] overflow-hidden relative bg-black border-0 border-solid rounded-b-[16px]">
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    loading="eager" 
-                    decoding="sync"
-                    className="w-full h-full object-cover block backface-hidden"
-                    style={{ 
-                      objectPosition: member.objectPosition || 'center top',
-                      transform: member.transform || 'none'
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F0F0F]">
-                  </div>
-                  <div className="absolute bottom-[15px] left-[15px] right-[15px] h-24 px-4 bg-[#FFFFFF1A] text-white box-border text-center rounded-[10px] border border-[#FFFFFF1A] backdrop-blur-[10px] flex flex-col justify-center z-[2]">
-                    <h3 className="font-[Audiowide] m-0 text-md text-white font-bold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left truncate">
-                      {member.name}
-                    </h3>
-                    <p className="text-left font-[Audiowide] text-[rgba(255,255,255,0.7)] text-sm uppercase tracking-wider transition-[transform_0.3s_ease,color_0.3s_ease] truncate">
-                      {member.role}
-                    </p>
-                    <div className="flex space-x-3 mt-1">
-                      {member.githubUrl && member.githubUrl !== "#" && (
-                        <a 
-                          href={member.githubUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-white/80 transition-colors"
-                        >
-                          <FaGithub size={18} className="text-white" />
-                        </a>
-                      )}
-                      {member.linkedinUrl && member.linkedinUrl !== "#" && (
-                        <a 
-                          href={member.linkedinUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-white hover:text-white/80 transition-colors"
-                        >
-                          <FaLinkedin size={18} className="text-white" />
-                        </a>
-                      )}
-                    </div>
+      <div className="relative w-full max-w-full overflow-x-hidden bg-transparent z-1">
+        {/* Carousel content with custom animation */}
+        <div className="flex w-full animate-scroll backface-hidden perspective-1000">
+          {duplicatedMembers.map((member, index) => (
+            <div
+              key={`${member.id}-${index}`}
+              className={`
+                min-w-[200px]
+                sm:min-w-[240px]
+                md:min-w-[280px]
+                lg:min-w-[327px]
+                box-border flex flex-col items-center bg-transparent
+                mx-2 sm:mx-3 md:mx-4 lg:mx-[15px]
+                flex-shrink-0 relative z-[1]
+              `}
+            >
+              <div
+                className={`
+                  w-[200px] h-[220px]
+                  sm:w-[240px] sm:h-[250px]
+                  md:w-[280px] md:h-[290px]
+                  lg:w-[327px] lg:h-[330px]
+                  overflow-hidden relative bg-black border-0 border-solid rounded-b-[16px]
+                `}
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  loading="eager"
+                  decoding="sync"
+                  className="w-full h-full object-cover block backface-hidden"
+                  style={{
+                    objectPosition: member.objectPosition || 'center top',
+                    transform: member.transform || 'none'
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F0F0F]"></div>
+                <div className="absolute bottom-[10px] left-[10px] right-[10px] h-20 sm:h-24 px-2 sm:px-4 bg-[#FFFFFF1A] text-white box-border text-center rounded-[10px] border border-[#FFFFFF1A] backdrop-blur-[10px] flex flex-col justify-center z-[2]">
+                  <h3 className="font-[Audiowide] m-0 text-sm sm:text-md md:text-lg text-white font-bold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left truncate">
+                    {member.name}
+                  </h3>
+                  <p className="text-left font-[Audiowide] text-[rgba(255,255,255,0.7)] text-xs sm:text-sm md:text-base uppercase tracking-wider transition-[transform_0.3s_ease,color_0.3s_ease] truncate">
+                    {member.role}
+                  </p>
+                  <div className="flex space-x-3 mt-1">
+                    {member.githubUrl && member.githubUrl !== "#" && (
+                      <a
+                        href={member.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white hover:text-white/80 transition-colors"
+                      >
+                        <FaGithub size={18} className="text-white" />
+                      </a>
+                    )}
+                    {member.linkedinUrl && member.linkedinUrl !== "#" && (
+                      <a
+                        href={member.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white hover:text-white/80 transition-colors"
+                      >
+                        <FaLinkedin size={18} className="text-white" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
