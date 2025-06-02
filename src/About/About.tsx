@@ -26,12 +26,15 @@ function About() {
         `}</style>
 
         <div
-          style={{ backgroundImage: `url(${bg})`, backgroundSize: '100% auto', backgroundPosition: 'top center' }}
-          className="absolute inset-0 bg-no-repeat min-h-[150vh] w-full"
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: '100% auto',
+            backgroundPosition: 'top center',
+          }}
+          className="absolute inset-0 bg-no-repeat min-h-[100vh] w-full"
         >
           <div className="absolute inset-0 gradient-overlay"></div>
-          
-          <div className="relative pt-20 sm:pt-24 md:pt-32 pb-20 sm:pb-24 md:pb-32 flex flex-col items-center text-center z-10">
+          <div className="relative mt-24 sm:mt-0 pt-20 sm:pt-24 md:pt-32 pb-20 sm:pb-24 md:pb-32 flex flex-col items-center text-center z-10">
             <p
               className="text-[#A1E9A5] mb-16 sm:mb-20 md:mb-24 text-xl sm:text-2xl md:text-3xl lg:text-4xl"
               style={{ fontFamily: 'Audiowide' }}
@@ -47,11 +50,7 @@ function About() {
             </h1>
 
             <div className="relative w-[90%] sm:w-[80%] max-w-4xl mb-20 flex justify-center items-center">
-              <img
-                src={textbox1}
-                alt="Text Box 1"
-                className="w-full"
-              />
+              <img src={textbox1} alt="Text Box 1" className="w-full" />
               <img
                 src={pig}
                 alt="Pig"
@@ -72,11 +71,7 @@ function About() {
             </div>
 
             <div className="relative w-[90%] sm:w-[80%] max-w-4xl mb-0 flex justify-center items-center">
-              <img
-                src={textbox2}
-                alt="Text Box 2"
-                className="w-full"
-              />
+              <img src={textbox2} alt="Text Box 2" className="w-full" />
               <img
                 src={llama}
                 alt="Llama"

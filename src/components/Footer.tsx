@@ -2,50 +2,53 @@ import React from "react";
 
 const Footer = () => {
   const IconWrapper = ({ children }: { children: React.ReactNode }) => (
-    <div className="p-2 md:p-3 rounded-full shadow-lg flex items-center justify-center bg-transparent">
+    <div className="p-2 md:p-3 rounded-full shadow-lg flex items-center justify-center bg-gradient-to-br from-[#222] to-[#333] hover:from-[#333] hover:to-[#222] transition">
       {children}
     </div>
   );
 
   return (
-    <footer className="w-full text-white bg-[#1B1B1B] py-10 px-4 md:py-16 md:px-10 font-[Wadik] relative">
-      {/* Top Label */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 md:-top-8 px-4 py-1.5 md:px-6 md:py-2 rounded-2xl bg-[#1B1B1B] z-20">
-        <span className="text-green-400 text-base md:text-xl tracking-widest font-[GoodTiming]">
-          08 // CONTACT US
-        </span>
-      </div>
+    <footer className="w-full text-white bg-gradient-to-b from-[#232526] to-[#1B1B1B] py-10 px-4 md:py-16 md:px-10 font-[Wadik] relative overflow-hidden">
+      {/* Decorative blurred circle */}
+      <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#A1E9A5]/20 rounded-full blur-3xl z-0 pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#A1E9A5]/10 rounded-full blur-3xl z-0 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Contact Info */}
         <div>
-          <h2 className="hidden md:block text-2xl md:text-3xl lg:text-4xl font-bold mb-6">
+          <h2 className="hidden md:block text-2xl md:text-3xl lg:text-4xl font-bold mb-6 tracking-tight text-[#A1E9A5]">
             Contact us
           </h2>
           <div className="space-y-5">
             <div>
-              <p className="text-base md:text-lg font-bold uppercase tracking-widest mb-1">
+              <p className="text-base md:text-lg font-bold uppercase tracking-widest mb-1 text-[#A1E9A5]">
                 Maitri Dalvi
               </p>
               <p className="text-gray-300 text-xs font-light md:text-sm">
-                <a href="mailto:maitrid.@gmail.com" className="hover:underline">
+                <a
+                  href="mailto:maitrid.@gmail.com"
+                  className="hover:underline hover:text-[#A1E9A5] transition"
+                >
                   maitrid.@gmail.com
                 </a>
               </p>
-              <p className="text-gray-300 text-xs md:text-sm">
+              <p className="text-gray-400 text-xs md:text-sm">
                 +91 6546453675
               </p>
             </div>
             <div>
-              <p className="text-base md:text-lg font-bold uppercase tracking-widest mb-1">
+              <p className="text-base md:text-lg font-bold uppercase tracking-widest mb-1 text-[#A1E9A5]">
                 Sameer Shelar
               </p>
               <p className="text-gray-300 text-xs md:text-sm">
-                <a href="mailto:mairtid.@gmail.com" className="hover:underline">
-                  mairtid.@gmail.com
+                <a
+                  href="mailto:mairtid.@gmail.com"
+                  className="hover:underline hover:text-[#A1E9A5] transition"
+                >
+                  sameers.@gmail.com
                 </a>
               </p>
-              <p className="text-gray-300 text-xs md:text-sm">
+              <p className="text-gray-400 text-xs md:text-sm">
                 +91 6546453675
               </p>
             </div>
@@ -103,13 +106,13 @@ const Footer = () => {
           </div>
 
           <div className="text-right">
-            <h3 className="text-xl md:text-2xl lg:text-4xl font-bold uppercase tracking-wide">
+            <h3 className="text-xl md:text-2xl lg:text-4xl font-bold uppercase tracking-wide text-[#A1E9A5] drop-shadow-lg">
               Converting
             </h3>
-            <h3 className="text-xl md:text-2xl lg:text-4xl font-bold uppercase tracking-wide">
+            <h3 className="text-xl md:text-2xl lg:text-4xl font-bold uppercase tracking-wide text-[#A1E9A5] drop-shadow-lg">
               Ideas
             </h3>
-            <h3 className="text-xl md:text-2xl lg:text-4xl font-bold uppercase tracking-wide">
+            <h3 className="text-xl md:text-2xl lg:text-4xl font-bold uppercase tracking-wide text-[#A1E9A5] drop-shadow-lg">
               Into Reality
             </h3>
           </div>
@@ -117,7 +120,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright Notice */}
-      <div className="mt-10 pt-4 font-[GoodTiming] text-center text-xs md:text-sm text-gray-400">
+      <div className="mt-10 pt-4 font-[GoodTiming] text-center lg:text-right text-xs md:text-sm text-gray-400 border-t border-[#333]">
         &copy; {new Date().getFullYear()} GDG VIT Mumbai. All rights reserved.
       </div>
     </footer>

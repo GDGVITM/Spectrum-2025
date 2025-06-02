@@ -7,7 +7,6 @@ import "../font.css";
 const navLinks = [
   { label: "HOME", to: "/" },
   { label: "EVENTS", to: "/events" },
-  { label: "TIMELINE", to: "/" },
   { label: "ABOUT US", to: "/about" },
   { label: "OUR TEAM", to: "/Our-team" },
   { label: "SPONSORS", to: "/" },
