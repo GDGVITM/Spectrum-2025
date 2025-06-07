@@ -103,18 +103,7 @@ function Sponsor() {
                       </span>
                     </span>
                   </div>
-                  <div className="line-separator" />
-                  <div className="line">
-                    <span className="text-[#FFFFFF] text-lg sm:text-xl">
-                      We will soon update our sponsors
-                    </span>
-                  </div>
-                  <div className="line">
-                    <span className="text-[#FFFFFF] text-lg sm:text-xl">
-                     Stay tuned for updates!
-                    </span>
-                  </div>
-                </div>
+                    </div>
               </div>
             </div>
 
