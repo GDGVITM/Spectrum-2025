@@ -1,3 +1,4 @@
+import "../font.css";
 import React, { useState, useEffect } from "react";
 
 const Footer = () => {
@@ -37,20 +38,14 @@ const Footer = () => {
            }}>
         {/* Single Folder Tab with curved edges */}
         <div className="flex justify-center">
-          {/* Use max-w-sm for small screens, md:max-w-md for medium, etc. */}
-          {/* This controls the overall width of the polygon for responsiveness */}
           <div className="relative z-20 w-fit max-w-[calc(100%-40px)] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-            {/* Main Contact Us Tab with folder-like curved shape and rounded top */}
             <div className="bg-gradient-to-b from-[#444] to-[#333] relative py-3 px-8 md:px-16 md:py-5"
                  style={{
-                   // Responsive border-radius for rounded top corners
-                   borderTopLeftRadius: 'clamp(8px, 2vw, 16px)', // Min 8px, scales, max 16px
-                   borderTopRightRadius: 'clamp(8px, 2vw, 16px)', // Min 8px, scales, max 16px
-                   // Responsive clipPath using percentages for a consistent slant
-                   // The 15% and 85% remain constant relative to the element's width
+                   borderTopLeftRadius: 'clamp(8px, 2vw, 16px)', 
+                   borderTopRightRadius: 'clamp(8px, 2vw, 16px)',
                    clipPath: 'polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%)'
                  }}>
-              <div className="text-lg md:text-xl font-bold text-[#A1E9A5] tracking-wide text-center whitespace-nowrap">
+              <div className="text-lg md:text-xl font-[Audiowide] font-bold text-[#A1E9A5] tracking-wide text-center whitespace-nowrap">
                 08 // Contact us
               </div>
               {/* Tab glow effect */}
@@ -65,7 +60,7 @@ const Footer = () => {
         </div>
 
         {/* Folder Body - Main Content Area with smooth curved connection */}
-        <div className="bg-gradient-to-b from-[#333] to-[#111] relative rounded-t-3xl">
+        <div className="bg-gradient-to-b font-[Wadik] from-[#333] to-[#111] relative rounded-t-3xl">
           {/* Folder Interior Shadow */}
           <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/40 to-transparent rounded-t-3xl"></div>
 
@@ -147,6 +142,21 @@ const Footer = () => {
                 isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
               }`}>
                 <div className="flex space-x-4 md:space-x-6">
+                   <a
+                    href="https://github.com/GDGVITM"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Github"
+                    className="transform transition-all duration-300 hover:-translate-y-2"
+                  >
+                    <IconWrapper>
+                      <img
+                        src="/git.png"
+                        alt="Github"
+                        className="w-8 h-8 md:w-12 md:h-12 object-cover filter transition-all duration-300 group-hover:brightness-110"
+                      />
+                    </IconWrapper>
+                  </a>
                   <a
                     href="https://www.instagram.com/gdg_vit/"
                     target="_blank"

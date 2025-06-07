@@ -48,27 +48,26 @@ export default function Our_Team() {
           </div>
 
           {/* Player Image (Bottom Left inside the Union background) */}
-          {/* Adjusted bottom positioning to be closer to the footer. z-index 10 to stay above background. */}
-          <div className="absolute left-0 sm:left-10 md:left-16 lg:left-24 bottom-0 h-auto w-24 sm:w-32 md:w-40 lg:w-48 z-10 rotate-9">
+          {/* Added 'hidden sm:block' to hide on phone screens and show on sm screens and up */}
+          <div className="hidden sm:block absolute left-0 sm:left-10 md:left-16 lg:left-24 bottom-0 h-auto w-24 sm:w-32 md:w-40 lg:w-48 z-10 rotate-9">
             <img
               src={player}
               alt="Player Character"
               className="w-full h-full object-contain"
             />
           </div>
-
-          {/* Creeper Image (Bottom right inside the Union background) */}
-          {/* Adjusted bottom and right positioning. Removed z-index to place it behind the main content (carousel). */}
-          <div className="absolute right-0 sm:right-10 md:right-16 lg:right-24 bottom-10 sm:bottom-16 md:bottom-24 h-auto w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 -rotate-18">
+          <div className="hidden sm:block absolute right-0 sm:right-10 md:right-16 lg:right-24 bottom-10 sm:bottom-16 md:bottom-24 h-auto w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 -rotate-18">
             <img
               src={creeper}
               alt="Creeper Character"
               className="w-full h-full object-contain"
             />
           </div>
+                
+          <Footer />
         </div>
+               
       </div>
-      <Footer />
     </>
   );
 }

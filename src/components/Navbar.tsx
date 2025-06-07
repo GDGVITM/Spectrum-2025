@@ -9,7 +9,7 @@ const navLinks = [
   { label: "EVENTS", to: "/events" },
   { label: "ABOUT US", to: "/about" },
   { label: "OUR TEAM", to: "/Our-team" },
-  { label: "SPONSORS", to: "/" },
+  { label: "SPONSORS", to: "/Sponsor" },
 ];
 
 const Navbar: React.FC = () => {
