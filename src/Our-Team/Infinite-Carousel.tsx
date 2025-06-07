@@ -45,8 +45,8 @@ const InfiniteCarousel: React.FC = () => {
       role: "EVENTS & OUTREACH LEAD",
       image: BhumiImg,
       objectPosition: "center -10px",
-      githubUrl: "",
-      linkedinUrl: "",
+      githubUrl: "#",
+      linkedinUrl: "https://www.linkedin.com/in/bhumi-padaya-706596316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     },
     {
       id: 2,
@@ -112,7 +112,7 @@ const InfiniteCarousel: React.FC = () => {
       image: NiranjanImg,
       objectPosition: "center 15%",
       githubUrl: "#",
-      linkedinUrl: "#",
+      linkedinUrl: "https://www.linkedin.com/in/niranjanjadhav1106?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     },
     {
       id: 9,
@@ -158,24 +158,21 @@ const InfiniteCarousel: React.FC = () => {
       animation: scroll ${windowWidth < 640 ? 30 : windowWidth < 1024 ? 45 : 60}s linear infinite;
     }
     .animate-scroll:hover {
-      animation-play-state: paused;
+      animation-play-state: continue;
     }
   `;
 
   return (
     <>
-      {/* Add style tag for custom animation that can't be done with just Tailwind */}
       <style>{scrollAnimation}</style>
 
-      {/* Main container */}
-      <div className="relative w-full max-w-full overflow-x-hidden bg-transparent z-1">
-        {/* Carousel content with custom animation */}
+      <div className="relative max-w-full overflow-x-hidden bg-transparent z-10 bottom-10 sm:bottom-5 md:bottom-5 lg:bottom-3 xl:bottom-0 2xl:bottom-0">
         <div className="flex w-full animate-scroll backface-hidden perspective-1000">
           {duplicatedMembers.map((member, index) => (
             <div
               key={`${member.id}-${index}`}
               className={`
-                min-w-[200px]
+                w-[200px]
                 sm:min-w-[240px]
                 md:min-w-[280px]
                 lg:min-w-[327px]
