@@ -106,7 +106,7 @@ function Sponsor() {
                   <div className="line-separator" />
                   <div className="line">
                     <span className="text-[#FFFFFF] text-lg sm:text-xl">
-                      We have really good sponsors lined up
+                      We will soon update our sponsors
                     </span>
                   </div>
                   <div className="line">
