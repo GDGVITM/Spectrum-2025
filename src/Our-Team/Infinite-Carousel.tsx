@@ -46,8 +46,8 @@ const InfiniteCarousel: React.FC = () => {
       role: "EVENTS & OUTREACH LEAD",
       image: BhumiImg,
       objectPosition: "center -10px",
-      githubUrl: "",
-      linkedinUrl: "",
+      githubUrl: "#",
+      linkedinUrl: "https://www.linkedin.com/in/bhumi-padaya-706596316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     },
     {
       id: 2,
@@ -119,7 +119,7 @@ const InfiniteCarousel: React.FC = () => {
       image: NiranjanImg,
       objectPosition: "center 15%",
       githubUrl: "#",
-      linkedinUrl: "#",
+      linkedinUrl: "https://www.linkedin.com/in/niranjanjadhav1106?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     },
     {
       id: 9,

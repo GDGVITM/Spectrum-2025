@@ -9,10 +9,9 @@ import '../font.css';
 export default function Our_Team() {
   return (
     <>
-      {/* Main container for the Our Team page, setting black background and scroll behavior */}
       <div
-        className="relative min-h-screen w-screen overflow-y-auto"
-        style={{ backgroundColor: '#000000', msOverflowStyle: 'none', scrollbarWidth: 'none' }}
+        className="relative min-h-screen w-screen overflow-y-auto h-full object-cover object-bottom hide-scrollbar"
+        style={{ backgroundColor: '#000000', msOverflowStyle: 'none' }}
       >
         {/* Hide scrollbar for Webkit browsers */}
         <style>{`
@@ -34,15 +33,6 @@ export default function Our_Team() {
           {/* Gradient Overlay: Sits on top of the background image to create a smooth blend into the black page background */}
           <div className="absolute inset-0 gradient-overlay"></div>
 
-          {/* Creeper Image (Bottom Right) - Moved behind carousel by reducing z-index, smaller on small screens and positioned lower */}
-          <div className="absolute right-5 -bottom-10 z-5 h-auto w-28 sm:w-32 sm:-bottom-25 sm:right-15 md:w-48 md:-bottom-15 md:right-5 lg:w-45 lg:-bottom-40 lg:right-20 xl:w-50 -rotate-20 xl:-bottom-55 xl:right-25 2xl:-bottom-5">
-            <img
-              src={creeper}
-              alt="Creeper Character"
-              className="w-full h-full object-contain"
-            />
-          </div>
-
           {/* Content Container: Holds all the text and carousel elements, ensuring they are above the gradient and centered */}
           {/* Added responsive top padding (pt-20 for small, pt-32 for medium and larger screens) */}
           {/* Added responsive bottom padding (pb-40 for small, pb-48 for medium, pb-56 for large and larger screens) to create space before the footer and images */}
@@ -56,23 +46,28 @@ export default function Our_Team() {
             >
               MEET THE TEAM THAT MAKES <br /> THE MAGIC HAPPEN
             </p>
-            {/* InfiniteCarousel component - added autoScroll prop */}
-            <InfiniteCarousel/>
+            <InfiniteCarousel />
           </div>
 
-          {/* Player Image (Bottom Left - moved closer to footer) */}
+          {/* Player Image (Bottom Left inside the Union background) */}
           {/* Added 'hidden sm:block' to hide on phone screens and show on sm screens and up */}
-          <div className="hidden sm:block absolute left-0 sm:left-10 md:left-16 lg:left-24 -bottom-10 sm:-bottom-8 md:-bottom-6 lg:-bottom-4 h-auto w-24 sm:w-32 md:w-40 lg:w-48 z-10 rotate-9">
+          <div className="hidden sm:block absolute left-0 sm:left-10 md:left-16 lg:left-24 bottom-0 h-auto w-24 sm:w-32 md:w-40 lg:w-48 z-10 rotate-9">
             <img
               src={player}
               alt="Player Character"
               className="w-full h-full object-contain"
             />
           </div>
-                
+          <div className="hidden sm:block absolute right-0 sm:right-10 md:right-16 lg:right-24 bottom-10 sm:bottom-16 md:bottom-24 h-auto w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 -rotate-18">
+            <img
+              src={creeper}
+              alt="Creeper Character"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
           <Footer />
         </div>
-               
       </div>
     </>
   );
