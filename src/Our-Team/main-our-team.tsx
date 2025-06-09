@@ -13,7 +13,7 @@ export default function Our_Team() {
         className="relative min-h-screen w-screen overflow-y-auto h-full object-cover object-bottom hide-scrollbar"
         style={{ backgroundColor: '#000000', msOverflowStyle: 'none' }}
       >
-        {/* Hide scrollbar for Webkit browsers */}
+
         <style>{`
           div.relative::-webkit-scrollbar {
             display: none;
@@ -23,19 +23,14 @@ export default function Our_Team() {
             background: linear-gradient(to bottom, transparent 70%, #000000 100%);
           }
         `}</style>
-
-        {/* Background Image Container: Holds the Union.png image */}
-        {/* min-h-[150vh] ensures the background image extends sufficiently on all screens, especially mobile */}
         <div
           style={{ backgroundImage: `url(${bg})`, backgroundSize: '100% auto', backgroundPosition: 'top center' }}
           className="absolute inset-0 bg-no-repeat min-h-[150vh] w-full"
         >
-          {/* Gradient Overlay: Sits on top of the background image to create a smooth blend into the black page background */}
+    
           <div className="absolute inset-0 gradient-overlay"></div>
 
-          {/* Content Container: Holds all the text and carousel elements, ensuring they are above the gradient and centered */}
-          {/* Added responsive top padding (pt-20 for small, pt-32 for medium and larger screens) */}
-          {/* Added responsive bottom padding (pb-40 for small, pb-48 for medium, pb-56 for large and larger screens) to create space before the footer and images */}
+    
           <div className="relative pt-20 sm:pt-24 md:pt-32 pb-40 sm:pb-48 md:pb-56 flex flex-col items-center text-center z-10">
             <p className="text-[#A1E9A5] mb-16 sm:mb-20 md:mb-24 text-xl sm:text-2xl md:text-3xl lg:text-4xl" style={{ fontFamily: 'Audiowide' }}>
               07 // ABOUT TEAM
@@ -49,8 +44,6 @@ export default function Our_Team() {
             <InfiniteCarousel />
           </div>
 
-          {/* Player Image (Bottom Left inside the Union background) */}
-          {/* Added 'hidden sm:block' to hide on phone screens and show on sm screens and up */}
           <div className="hidden sm:block absolute left-0 sm:left-10 md:left-16 lg:left-24 bottom-0 h-auto w-24 sm:w-32 md:w-40 lg:w-48 z-10 rotate-9">
             <img
               src={player}
