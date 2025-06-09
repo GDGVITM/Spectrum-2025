@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 import BhumiImg from '../assets/Our-team-assets/Bhumi.jpg';
 import OmImg from '../assets/Our-team-assets/Om.jpeg';
@@ -22,6 +22,7 @@ interface TeamMember {
   transform?: string;
   githubUrl?: string;
   linkedinUrl?: string;
+  instagramUrl?: string;
 }
 
 const InfiniteCarousel: React.FC = () => {
@@ -54,8 +55,9 @@ const InfiniteCarousel: React.FC = () => {
       role: "TECHNICAL LEAD",
       image: OmImg,
       objectPosition: "center -50px",
-      githubUrl: "https://github.com/OmSantoshBadade",
+      githubUrl: "",
       linkedinUrl: "http://www.linkedin.com/in/ombadade234",
+      instagramUrl: "https://www.instagram.com/gdg_vit/",
     },
     {
       id: 3,
@@ -65,6 +67,7 @@ const InfiniteCarousel: React.FC = () => {
       objectPosition: "center 25%",
       githubUrl: "https://github.com/shelarsameer",
       linkedinUrl: "https://www.linkedin.com/in/sameer-shelar-72a750267",
+      instagramUrl: "https://www.instagram.com/gdg_vit/",
     },
     {
       id: 4,
@@ -72,8 +75,9 @@ const InfiniteCarousel: React.FC = () => {
       role: "DESIGN LEAD",
       image: TanayImg,
       objectPosition: "center -20px",
-      githubUrl: "https://github.com/TanayBhirud",
+      githubUrl: "",
       linkedinUrl: "https://www.linkedin.com/in/tanay-bhirud/",
+      instagramUrl: "https://www.instagram.com/gdg_vit/",
     },
     {
       id: 5,
@@ -82,8 +86,9 @@ const InfiniteCarousel: React.FC = () => {
       image: RashmiImg,
       objectPosition: "center 20%",
       transform: "scale(1)",
-      githubUrl: "https://github.com/RashmiSahu2005",
+      githubUrl: "",
       linkedinUrl: "https://www.linkedin.com/in/rashmi-sahu-69269b257/",
+      instagramUrl: "https://www.instagram.com/gdg_vit/",
     },
     {
       id: 6,
@@ -92,8 +97,9 @@ const InfiniteCarousel: React.FC = () => {
       image: ApurvaImg,
       objectPosition: "center -50px",
       transform: "scale(1.4)",
-      githubUrl: "https://github.com/apuProgramz",
+      githubUrl: "",
       linkedinUrl: "https://in.linkedin.com/in/apurva-ghare-7bb94029a",
+      instagramUrl: "https://www.instagram.com/gdg_vit/",
     },
     {
       id: 7,
@@ -104,6 +110,7 @@ const InfiniteCarousel: React.FC = () => {
       transform: "scale(1)",
       githubUrl: "https://github.com/sambhandavale",
       linkedinUrl: "https://www.linkedin.com/in/samarth-bhandavale",
+      instagramUrl: "https://www.instagram.com/gdg_vit/",
     },
     {
       id: 8,
@@ -123,6 +130,7 @@ const InfiniteCarousel: React.FC = () => {
       transform: "scale(1)",
       githubUrl: "https://github.com/maitri-dalvi",
       linkedinUrl: "https://www.linkedin.com/in/maitridalvi13/",
+      instagramUrl: "",
     },
     {
       id: 10,
@@ -132,12 +140,12 @@ const InfiniteCarousel: React.FC = () => {
       objectPosition: "center -55px",
       githubUrl: "https://github.com/shwet46",
       linkedinUrl: "https://www.linkedin.com/in/shweta-behera/",
+      instagramUrl: "",
     }
   ];
 
   const duplicatedMembers = [...teamMembers, ...teamMembers, ...teamMembers];
 
-  // Responsive card width and animation distance
   let cardWidth = 327;
   if (windowWidth < 640) cardWidth = 240;
   else if (windowWidth < 768) cardWidth = 280;
@@ -203,10 +211,10 @@ const InfiniteCarousel: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F0F0F]"></div>
                 <div className="absolute bottom-[10px] left-[10px] right-[10px] h-20 sm:h-24 px-2 sm:px-4 bg-[#FFFFFF1A] text-white box-border text-center rounded-[10px] border border-[#FFFFFF1A] backdrop-blur-[10px] flex flex-col justify-center z-[2]">
-                  <h3 className="font-[Audiowide] m-0 text-sm sm:text-md md:text-lg text-white font-bold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left truncate">
+                  <h3 className="font-[Audiowide] m-0 text-sm sm:text-md md:text-lg text-white font-bold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left break-words leading-tight">
                     {member.name}
                   </h3>
-                  <p className="text-left font-[Audiowide] text-[rgba(255,255,255,0.7)] text-xs sm:text-sm md:text-base uppercase tracking-wider transition-[transform_0.3s_ease,color_0.3s_ease] truncate">
+                  <p className="text-left font-[Audiowide] text-[rgba(255,255,255,0.7)] text-xs sm:text-sm md:text-base uppercase tracking-wider transition-[transform_0.3s_ease,color_0.3s_ease] break-words leading-tight">
                     {member.role}
                   </p>
                   <div className="flex space-x-3 mt-1">
@@ -228,6 +236,16 @@ const InfiniteCarousel: React.FC = () => {
                         className="text-white hover:text-white/80 transition-colors"
                       >
                         <FaLinkedin size={18} className="text-white" />
+                      </a>
+                    )}
+                    {member.instagramUrl && member.instagramUrl !== "#" && (
+                      <a
+                        href={member.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white hover:text-white/80 transition-colors"
+                      >
+                        <FaInstagram size={18} className="text-white" />
                       </a>
                     )}
                   </div>

@@ -4,6 +4,7 @@ import llama from '../assets/abouthorse.png';
 import gdgLogoText from '../assets/gdgwhite.png';
 import Footer from '../components/Footer';
 import '../App.css';
+import '../font.css';
 
 function About() {
   const linesBox1 = [
@@ -140,7 +141,7 @@ function About() {
             </div>
 
             {/* Textbox 2 with llama */}
-            <div className="relative w-[90%] sm:w-[80%] max-w-4xl mb-0 flex justify-center items-center">
+            <div className="relative w-[90%] sm:w-[80%] max-w-4xl mb-0  flex justify-center items-center">
               <div className="textbox-container">
                 <div className="content-area">
                   <div className="connecting-vertical-line left"></div>

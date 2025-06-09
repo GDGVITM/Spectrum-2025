@@ -1,7 +1,4 @@
-/* @import url('./assets/Minecrafter-MA3Dw.ttf'); */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
 body {
  font-family: 'Minecraft', 'Audiowide', 'GoodTiming', 'Wadik', sans-serif; 
@@ -192,7 +189,6 @@ body {
   animation: pulse-halo-erratic 7s ease-in-out infinite;
 }
 
-/* Additional atmospheric halos - reduced intensity */
 .random-halo-6 {
   position: absolute;
   top: 40%;
@@ -614,7 +610,7 @@ body {
   border-bottom-color: rgba(95, 255, 175, 0.4);
 }
 
-/* Animal image styles */
+
 .animal-image {
   z-index: 10;
   filter: drop-shadow(0 0 10px rgba(95, 255, 175, 0.15));

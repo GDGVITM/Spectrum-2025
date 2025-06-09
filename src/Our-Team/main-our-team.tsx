@@ -2,7 +2,8 @@ import bg from '../assets/Union.png';
 import creeper from '../assets/Our-team-assets/Creeper.png';
 import player from '../assets/Our-team-assets/Player.png';
 import InfiniteCarousel from './Infinite-Carousel';
-import Footer from '../components/Footer'; // Assuming Footer is in components folder
+import Footer from '../components/Footer';
+
 import '../font.css';
 
 export default function Our_Team() {
@@ -12,19 +13,26 @@ export default function Our_Team() {
         className="relative min-h-screen w-screen overflow-y-auto h-full object-cover object-bottom hide-scrollbar"
         style={{ backgroundColor: '#000000', msOverflowStyle: 'none' }}
       >
+
+        <style>{`
+          div.relative::-webkit-scrollbar {
+            display: none;
+          }
+          /* This class applies a linear gradient from transparent to black at the bottom */
+          .gradient-overlay {
+            background: linear-gradient(to bottom, transparent 70%, #000000 100%);
+          }
+        `}</style>
         <div
-          style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: '100% auto',
-            backgroundPosition: 'top center',
-          }}
-          className="absolute inset-0 bg-no-repeat min-h-[150vh] w-full top-20 sm:top-20 md:top-20 lg:top-20 xl:top-10 2xl:top-10"
+          style={{ backgroundImage: `url(${bg})`, backgroundSize: '100% auto', backgroundPosition: 'top center' }}
+          className="absolute inset-0 bg-no-repeat min-h-[150vh] w-full"
         >
-          <div className="relative pt-20 pb-0 sm:pt-24 sm:pb-10 md:pt-32 md:pb-15 lg:pb-20 xl:pb-25 2xl:pb-30 flex flex-col items-center text-center z-10">
-            <p
-              className="absolute text-[#A1E9A5] mb-16 sm:mb-20 md:mb-24 text-[10px] top-12 sm:text-[15px] sm:top-15 md:text-xl md:top-20 lg:text-2xl lg:top-25 xl:text-3xl xl:top-30 2xl:text-3xl 2xl:top-35"
-              style={{ fontFamily: 'Audiowide' }}
-            >
+    
+          <div className="absolute inset-0 gradient-overlay"></div>
+
+    
+          <div className="relative pt-20 sm:pt-24 md:pt-32 pb-40 sm:pb-48 md:pb-56 flex flex-col items-center text-center z-10">
+            <p className="text-[#A1E9A5] mb-16 sm:mb-20 md:mb-24 text-xl sm:text-2xl md:text-3xl lg:text-4xl" style={{ fontFamily: 'Audiowide' }}>
               07 // ABOUT TEAM
             </p>
             <p
@@ -36,17 +44,14 @@ export default function Our_Team() {
             <InfiniteCarousel />
           </div>
 
-          {/* Player Image (Bottom Left) */}
-          <div className="absolute w-35 -bottom-50 left-15 h-auto sm:w-40 sm:left-20 sm:-bottom-80 md:w-35 md:-bottom-10 md:left-15 lg:w-35 lg:left-25 lg:-bottom-40 z-10 rotate-9 xl:w-40 xl:-bottom-55 xl:left-30 2xl:bottom-5">
+          <div className="hidden sm:block absolute left-0 sm:left-10 md:left-16 lg:left-24 bottom-0 h-auto w-24 sm:w-32 md:w-40 lg:w-48 z-10 rotate-9">
             <img
               src={player}
               alt="Player Character"
               className="w-full h-full object-contain"
             />
           </div>
-
-          {/* Creeper Image (Bottom Right) */}
-          <div className="absolute right-5 bottom-0 z-10 h-auto w-40 sm:w-45 sm:-bottom-20 sm:right-15 md:w-48 md:-bottom-10 md:right-5 lg:w-45 lg:-bottom-35 lg:right-20 xl:w-50 -rotate-20 xl:-bottom-50 xl:right-25 2xl:bottom-10">
+          <div className="hidden sm:block absolute right-0 sm:right-10 md:right-16 lg:right-24 bottom-10 sm:bottom-16 md:bottom-24 h-auto w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 -rotate-18">
             <img
               src={creeper}
               alt="Creeper Character"
