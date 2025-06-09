@@ -10,6 +10,7 @@ const navLinks = [
   { label: "ABOUT US", to: "/about" },
   { label: "OUR TEAM", to: "/Our-team" },
   { label: "SPONSORS", to: "/Sponsor" },
+  { label: "HACKBUILD", to: "/Hackbuild", highlighted: true },
 ];
 
 const Navbar: React.FC = () => {
@@ -31,7 +32,11 @@ const Navbar: React.FC = () => {
             <Link
               key={link.label}
               to={link.to}
-              className="text-white no-underline transition-colors hover:text-white/80"
+              className={`no-underline transition-all duration-300 ${
+                link.highlighted
+                  ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_12px_rgba(34,197,94,1)] hover:scale-105"
+                  : "text-white hover:text-white/80"
+              }`}
             >
               {link.label}
             </Link>
@@ -52,7 +57,11 @@ const Navbar: React.FC = () => {
             <Link
               key={link.label}
               to={link.to}
-              className="text-white no-underline transition-colors hover:text-white/80"
+              className={`no-underline transition-all duration-300 ${
+                link.highlighted
+                  ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_12px_rgba(34,197,94,1)] hover:scale-105"
+                  : "text-white hover:text-white/80"
+              }`}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
