@@ -51,7 +51,7 @@ export default function Our_Team() {
               className="w-full h-full object-contain"
             />
           </div>
-          <div className="hidden sm:block absolute right-0 sm:right-10 md:right-16 lg:right-24 bottom-10 sm:bottom-16 md:bottom-24 h-auto w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 -rotate-18">
+          <div className="hidden sm:block absolute right-0 sm:right-10 md:right-16 lg:right-24 bottom-0 h-auto w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 -rotate-18">
             <img
               src={creeper}
               alt="Creeper Character"

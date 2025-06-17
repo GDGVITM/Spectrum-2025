@@ -628,3 +628,87 @@ body {
   }
 }
 
+.home-con{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Positioning */
+.sun-moon {
+  width: 100px;
+  top: 10%;
+  right: 10%;
+  z-index: 3;
+}
+.mountain-left {
+  width: 50%;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+.mountain-right {
+  width: 50%;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+}
+
+/* Spectrum animation */
+.spectrum-text {
+  top: 30%;
+  left: 50%;
+  width: 60%;
+  transform: translateX(-50%) scale(0.2);
+  opacity: 0;
+  animation: fadeInZoom 1s ease-in-out forwards;
+  z-index: 4;
+}
+@keyframes fadeInZoom {
+  to {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Button styles */
+.explore-button {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+  transition: background 0.5s;
+}
+.explore-button.light {
+  background: orange;
+  color: #fff;
+}
+.explore-button.dark {
+  background: #222;
+  color: #fff;
+}
+

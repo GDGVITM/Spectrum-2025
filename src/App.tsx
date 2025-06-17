@@ -15,7 +15,6 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<UnderProgress />} />
         <Route path="/events" element={<UnderProgress />} />
-        <Route path="/timeline" element={<UnderProgress />} />
         <Route path="/about" element={<About />} />
         <Route path="/our-team" element={<Our_Team />} />
         <Route path="/sponsor" element={<Sponsor/>} />
