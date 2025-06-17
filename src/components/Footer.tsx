@@ -232,6 +232,10 @@ const Footer = () => {
               }`}
             >
               © {new Date().getFullYear()} GDG VIT Mumbai. All rights reserved.
+              <br />
+              <span className="block mt-1 text-[10px] md:text-xs text-gray-500">
+                Crafted with <span className="text-[#A1E9A5]">passion</span> and <span className="text-[#A1E9A5]">dedication</span> by our <span className="font-bold text-white">Tech Team</span> &amp; <span className="font-bold text-white">Design Team</span>.
+              </span>
             </div>
           </div>
         </div>

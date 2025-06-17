@@ -46,8 +46,8 @@ const InfiniteCarousel: React.FC = () => {
       role: "EVENTS & OUTREACH LEAD",
       image: BhumiImg,
       objectPosition: "center -10px",
-      githubUrl: "#",
-      linkedinUrl: "https://www.linkedin.com/in/bhumi-padaya-706596316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      linkedinUrl: "https://www.linkedin.com/in/bhumi-padaya-706596316",
+      instagramUrl: "https://www.instagram.com/bhumi_padaya/",
     },
     {
       id: 2,
@@ -55,9 +55,8 @@ const InfiniteCarousel: React.FC = () => {
       role: "TECHNICAL LEAD",
       image: OmImg,
       objectPosition: "center -50px",
-      githubUrl: "",
       linkedinUrl: "http://www.linkedin.com/in/ombadade234",
-      instagramUrl: "https://www.instagram.com/gdg_vit/",
+      instagramUrl: "https://www.instagram.com/ombadade/",
     },
     {
       id: 3,
@@ -67,7 +66,6 @@ const InfiniteCarousel: React.FC = () => {
       objectPosition: "center 25%",
       githubUrl: "https://github.com/shelarsameer",
       linkedinUrl: "https://www.linkedin.com/in/sameer-shelar-72a750267",
-      instagramUrl: "https://www.instagram.com/gdg_vit/",
     },
     {
       id: 4,
@@ -75,9 +73,8 @@ const InfiniteCarousel: React.FC = () => {
       role: "DESIGN LEAD",
       image: TanayImg,
       objectPosition: "center -20px",
-      githubUrl: "",
       linkedinUrl: "https://www.linkedin.com/in/tanay-bhirud/",
-      instagramUrl: "https://www.instagram.com/gdg_vit/",
+      instagramUrl: "https://www.instagram.com/tanay_bhirud1204/",
     },
     {
       id: 5,
@@ -86,9 +83,8 @@ const InfiniteCarousel: React.FC = () => {
       image: RashmiImg,
       objectPosition: "center 20%",
       transform: "scale(1)",
-      githubUrl: "",
       linkedinUrl: "https://www.linkedin.com/in/rashmi-sahu-69269b257/",
-      instagramUrl: "https://www.instagram.com/gdg_vit/",
+      instagramUrl: "https://www.instagram.com/rushtricted",
     },
     {
       id: 6,
@@ -97,9 +93,8 @@ const InfiniteCarousel: React.FC = () => {
       image: ApurvaImg,
       objectPosition: "center -50px",
       transform: "scale(1.4)",
-      githubUrl: "",
       linkedinUrl: "https://in.linkedin.com/in/apurva-ghare-7bb94029a",
-      instagramUrl: "https://www.instagram.com/gdg_vit/",
+      instagramUrl: "https://www.instagram.com/_apurvvva._/",
     },
     {
       id: 7,
@@ -110,7 +105,6 @@ const InfiniteCarousel: React.FC = () => {
       transform: "scale(1)",
       githubUrl: "https://github.com/sambhandavale",
       linkedinUrl: "https://www.linkedin.com/in/samarth-bhandavale",
-      instagramUrl: "https://www.instagram.com/gdg_vit/",
     },
     {
       id: 8,
@@ -119,7 +113,8 @@ const InfiniteCarousel: React.FC = () => {
       image: NiranjanImg,
       objectPosition: "center 15%",
       githubUrl: "#",
-      linkedinUrl: "https://www.linkedin.com/in/niranjanjadhav1106?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      linkedinUrl: "https://www.linkedin.com/in/niranjanjadhav1106/",
+      instagramUrl: "https://www.instagram.com/niranjan_1106/",
     },
     {
       id: 9,
@@ -130,7 +125,6 @@ const InfiniteCarousel: React.FC = () => {
       transform: "scale(1)",
       githubUrl: "https://github.com/maitri-dalvi",
       linkedinUrl: "https://www.linkedin.com/in/maitridalvi13/",
-      instagramUrl: "",
     },
     {
       id: 10,
@@ -140,7 +134,6 @@ const InfiniteCarousel: React.FC = () => {
       objectPosition: "center -55px",
       githubUrl: "https://github.com/shwet46",
       linkedinUrl: "https://www.linkedin.com/in/shweta-behera/",
-      instagramUrl: "",
     }
   ];
 
@@ -164,9 +157,11 @@ const InfiniteCarousel: React.FC = () => {
     }
     .animate-scroll {
       animation: scroll ${windowWidth < 640 ? 30 : windowWidth < 1024 ? 45 : 60}s linear infinite;
+      animation-play-state: running;
     }
-    .animate-scroll:hover {
-      animation-play-state: continue;
+    .animate-scroll:hover,
+    .animate-scroll:focus {
+      animation-play-state: paused;
     }
   `;
 
@@ -210,7 +205,7 @@ const InfiniteCarousel: React.FC = () => {
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F0F0F]"></div>
-                <div className="absolute bottom-[10px] left-[10px] right-[10px] h-20 sm:h-24 px-2 sm:px-4 bg-[#FFFFFF1A] text-white box-border text-center rounded-[10px] border border-[#FFFFFF1A] backdrop-blur-[10px] flex flex-col justify-center z-[2]">
+                <div className="absolute bottom-[10px] left-[10px] right-[10px] px-4 py-3 sm:py-4 bg-[#FFFFFF1A] text-white box-border text-center rounded-[10px] border border-[#FFFFFF1A] backdrop-blur-[10px] flex flex-col justify-center z-[2]">
                   <h3 className="font-[Audiowide] m-0 text-sm sm:text-md md:text-lg text-white font-bold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left break-words leading-tight">
                     {member.name}
                   </h3>
