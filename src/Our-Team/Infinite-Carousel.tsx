@@ -190,7 +190,7 @@ const InfiniteCarousel: React.FC = () => {
                   sm:w-[240px] sm:h-[250px]
                   md:w-[280px] md:h-[290px]
                   lg:w-[327px] lg:h-[330px]
-                  overflow-hidden relative bg-black border-0 border-solid rounded-b-[16px]
+                  overflow-hidden relative bg-black border-0 border-solid rounded-[16px]
                 `}
               >
                 <img
@@ -204,7 +204,6 @@ const InfiniteCarousel: React.FC = () => {
                     transform: member.transform || 'none'
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[#0F0F0F]"></div>
                 <div className="absolute bottom-[10px] left-[10px] right-[10px] px-4 py-3 sm:py-4 bg-[#FFFFFF1A] text-white box-border text-center rounded-[10px] border border-[#FFFFFF1A] backdrop-blur-[10px] flex flex-col justify-center z-[2]">
                   <h3 className="font-[Audiowide] m-0 text-sm sm:text-md md:text-lg text-white font-bold tracking-wider uppercase transition-[transform_0.3s_ease,font-size_0.3s_ease] text-left break-words leading-tight">
                     {member.name}
