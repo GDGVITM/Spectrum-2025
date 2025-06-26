@@ -6,19 +6,19 @@ import Our_Team from './Our-Team/main-our-team';
 import './index.css';
 import About from './About/About';
 import Sponsor from './Sponsor/Sponsor';
-import Hackbuild from './Hackbuild/Hackbuild';
+import Home from './components/Home'; // <-- Import the new Parallax Home page
 
 const App: React.FC = () => {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<UnderProgress />} />
+        <Route path="/" element={<Home />} />
         <Route path="/events" element={<UnderProgress />} />
         <Route path="/about" element={<About />} />
         <Route path="/our-team" element={<Our_Team />} />
-        <Route path="/sponsor" element={<Sponsor/>} />
-        <Route path="/hackbuild" element={<Hackbuild />} />
+        <Route path="/sponsor" element={<Sponsor />} />
+        <Route path="/hackbuild" element={<UnderProgress />} />
       </Routes>
     </div>
   );

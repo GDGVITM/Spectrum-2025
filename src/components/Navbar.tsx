@@ -5,7 +5,7 @@ import "../App.css";
 import "../font.css";
 
 const navLinks = [
-  { label: "HOME", to: "/home" },
+  { label: "HOME", to: "/" },
   { label: "EVENTS", to: "/events" },
   { label: "ABOUT US", to: "/about" },
   { label: "OUR TEAM", to: "/Our-team" },
