@@ -31,8 +31,8 @@ const Home = () => {
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
             backgroundImage: `url(${isNight
-              ? 'src/assets/home-assets/Night/bg.png'
-              : 'src/assets/home-assets/Sunset/bg.png'})`,
+              ? 'assets/home-assets/Night/bg.png'
+              : 'assets/home-assets/Sunset/bg.png'})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
@@ -40,12 +40,11 @@ const Home = () => {
           }}
         />
 
-        {/* Sun/Moon Circle - Position changes with theme */}
         <div
           className="absolute w-20 h-20 rounded-full transition-all duration-1000 ease-in-out"
           style={{
             left: `${sunMoonPosition}%`,
-            top: `${isNight ? '20%' : '15%'}`, // Moon slightly lower than sun
+            top: `${isNight ? '20%' : '15%'}`, 
             backgroundColor: isNight ? '#E6E6FA' : '#FFD700',
             boxShadow: isNight 
               ? '0 0 30px rgba(230, 230, 250, 0.6), inset -8px -8px 0 rgba(200, 200, 220, 0.3)'
@@ -54,7 +53,6 @@ const Home = () => {
             zIndex: 1,
           }}
         >
-          {/* Moon craters (only visible during night) */}
           {isNight && (
             <>
               <div 
@@ -80,8 +78,8 @@ const Home = () => {
             className="absolute inset-0 w-full h-full transition-all duration-1000"
             style={{
               backgroundImage: `url(${isNight
-                ? `src/assets/home-assets/Night/cloud${n}.png`
-                : `src/assets/home-assets/Sunset/cloud${n}.png`})`,
+                ? `assets/home-assets/Night/cloud${n}.png`
+                : `assets/home-assets/Sunset/cloud${n}.png`})`,
               backgroundSize: `${9 - n}%`,
               top: `${10 + 15 * i}%`,
               left: `${49 - 24 * i}%`,
@@ -100,8 +98,8 @@ const Home = () => {
             className="absolute inset-0 w-full h-full transition-all duration-1000"
             style={{
               backgroundImage: `url(${isNight
-                ? `src/assets/home-assets/Night/cloud${n}.png`
-                : `src/assets/home-assets/Sunset/cloud${n}.png`})`,
+                ? `assets/home-assets/Night/cloud${n}.png`
+                : `assets/home-assets/Sunset/cloud${n}.png`})`,
               backgroundSize: `${6 + i * 2}%`,
               top: `${15 + i * 20}%`,
               right: `${29 + i * 26}%`,
@@ -112,14 +110,12 @@ const Home = () => {
             }}
           />
         ))}
-
-        {/* Mountain - Static */}
         <div
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
             backgroundImage: `url(${isNight
-              ? 'src/assets/home-assets/Night/mountain4.png'
-              : 'src/assets/home-assets/Sunset/mountain4.png'})`,
+              ? 'assets/home-assets/Night/mountain4.png'
+              : 'assets/home-assets/Sunset/mountain4.png'})`,
             backgroundSize: 'contain',
             top: '35%',
             backgroundRepeat: 'no-repeat',
@@ -128,47 +124,46 @@ const Home = () => {
           }}
         />
 
-        {/* Spectrum Logo - Enhanced with button effect and opposite scroll behavior */}
         <div
           className="absolute inset-0 flex items-center justify-center h-screen transition-all duration-1000 ease-in-out"
           style={{
             transform: spectrumTransform,
-            zIndex: 2.5, // Behind pixelcut images but above mountain
+            zIndex: 2.5,
           }}
         >
           <img
-            src="src/assets/home-assets/Sunset/spectrum.png"
+            src="assets/home-assets/Sunset/spectrum.png"
             alt="Spectrum Logo"
             className="w-[600px] max-w-[90%] object-contain drop-shadow-xl opacity-80"
           />
         </div>
 
-        {/* Pixelcut Layers - Static (now in front of spectrum logo) */}
+        {/* Pixelcut Layers*/}
         {[2, 1, 3].map((n, i) => (
           <div
             key={`pixelcut-${n}`}
             className="absolute inset-0 w-full h-full transition-all duration-1000"
             style={{
               backgroundImage: `url(${isNight
-                ? `src/assets/home-assets/Night/pixelcut${n}.png`
-                : `src/assets/home-assets/Sunset/pixelcut${n}.png`})`,
+                ? `assets/home-assets/Night/pixelcut${n}.png`
+                : `assets/home-assets/Sunset/pixelcut${n}.png`})`,
               backgroundSize: n === 3 ? 'auto' : `${n === 2 ? '55%' : '50%'}`,
               top: n === 1 ? '2%' : '0%',
               left: n === 1 ? '12%' : 'auto',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: n === 3 ? 'right bottom' : 'left bottom',
-              zIndex: 3 + i, // Higher z-index to be in front of spectrum logo
+              zIndex: 3 + i,
             }}
           />
         ))}
 
-        {/* Ground - Static */}
+        {/* Ground*/}
         <div
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
             backgroundImage: `url(${isNight
-              ? 'src/assets/home-assets/Night/ground.png'
-              : 'src/assets/home-assets/Sunset/ground.png'})`,
+              ? 'assets/home-assets/Night/ground.png'
+              : 'assets/home-assets/Sunset/ground.png'})`,
             backgroundSize: '100%',
             top: '15%',
             backgroundRepeat: 'no-repeat',
