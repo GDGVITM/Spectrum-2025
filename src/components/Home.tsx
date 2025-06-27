@@ -31,8 +31,8 @@ const Home = () => {
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
             backgroundImage: `url(${isNight
-              ? 'assets/home-assets/Night/bg.png'
-              : 'assets/home-assets/Sunset/bg.png'})`,
+              ? '/assets/home-assets/Night/bg.png'
+              : '/assets/home-assets/Sunset/bg.png'})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
@@ -78,8 +78,8 @@ const Home = () => {
             className="absolute inset-0 w-full h-full transition-all duration-1000"
             style={{
               backgroundImage: `url(${isNight
-                ? `assets/home-assets/Night/cloud${n}.png`
-                : `assets/home-assets/Sunset/cloud${n}.png`})`,
+                ? `/assets/home-assets/Night/cloud${n}.png`
+                : `/assets/home-assets/Sunset/cloud${n}.png`})`,
               backgroundSize: `${9 - n}%`,
               top: `${10 + 15 * i}%`,
               left: `${49 - 24 * i}%`,
@@ -98,8 +98,8 @@ const Home = () => {
             className="absolute inset-0 w-full h-full transition-all duration-1000"
             style={{
               backgroundImage: `url(${isNight
-                ? `assets/home-assets/Night/cloud${n}.png`
-                : `assets/home-assets/Sunset/cloud${n}.png`})`,
+                ? `/assets/home-assets/Night/cloud${n}.png`
+                : `/assets/home-assets/Sunset/cloud${n}.png`})`,
               backgroundSize: `${6 + i * 2}%`,
               top: `${15 + i * 20}%`,
               right: `${29 + i * 26}%`,
@@ -114,8 +114,8 @@ const Home = () => {
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
             backgroundImage: `url(${isNight
-              ? 'assets/home-assets/Night/mountain4.png'
-              : 'assets/home-assets/Sunset/mountain4.png'})`,
+              ? '/assets/home-assets/Night/mountain4.png'
+              : '/assets/home-assets/Sunset/mountain4.png'})`,
             backgroundSize: 'contain',
             top: '35%',
             backgroundRepeat: 'no-repeat',
@@ -145,8 +145,8 @@ const Home = () => {
             className="absolute inset-0 w-full h-full transition-all duration-1000"
             style={{
               backgroundImage: `url(${isNight
-                ? `assets/home-assets/Night/pixelcut${n}.png`
-                : `assets/home-assets/Sunset/pixelcut${n}.png`})`,
+                ? `/assets/home-assets/Night/pixelcut${n}.png`
+                : `/assets/home-assets/Sunset/pixelcut${n}.png`})`,
               backgroundSize: n === 3 ? 'auto' : `${n === 2 ? '55%' : '50%'}`,
               top: n === 1 ? '2%' : '0%',
               left: n === 1 ? '12%' : 'auto',
@@ -162,8 +162,8 @@ const Home = () => {
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
             backgroundImage: `url(${isNight
-              ? 'assets/home-assets/Night/ground.png'
-              : 'assets/home-assets/Sunset/ground.png'})`,
+              ? '/assets/home-assets/Night/ground.png'
+              : '/assets/home-assets/Sunset/ground.png'})`,
             backgroundSize: '100%',
             top: '15%',
             backgroundRepeat: 'no-repeat',
