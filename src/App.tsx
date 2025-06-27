@@ -6,14 +6,14 @@ import Our_Team from './Our-Team/main-our-team';
 import './index.css';
 import About from './About/About';
 import Sponsor from './Sponsor/Sponsor';
-//import Home from './components/Home'; 
+import Home from './components/Home'; 
 
 const App: React.FC = () => {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<UnderProgress />} />
+        <Route path="/" element={<Home />} />
         <Route path="/events" element={<UnderProgress />} />
         <Route path="/about" element={<About />} />
         <Route path="/our-team" element={<Our_Team />} />
