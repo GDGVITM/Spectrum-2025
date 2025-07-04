@@ -1,6 +1,27 @@
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 
+// Import only the assets that exist - adjust these imports based on your actual file structure
+import nightBg from '../assets/home-assets/Night/bg.png';
+import sunsetBg from '../assets/home-assets/Sunset/bg.png';
+import nightCloud1 from '../assets/home-assets/Night/cloud1.png';
+import nightCloud2 from '../assets/home-assets/Night/cloud2.png';
+import nightCloud3 from '../assets/home-assets/Night/cloud3.png';
+import sunsetCloud1 from '../assets/home-assets/Sunset/cloud1.png';
+import sunsetCloud2 from '../assets/home-assets/Sunset/cloud2.png';
+import sunsetCloud3 from '../assets/home-assets/Sunset/cloud3.png';
+import nightMountain4 from '../assets/home-assets/Night/mountain4.png';
+import sunsetMountain4 from '../assets/home-assets/Sunset/mountain4.png';
+import spectrumLogo from '../assets/home-assets/Sunset/spectrum.png';
+import nightPixelcut1 from '../assets/home-assets/Night/pixelcut1.png';
+import nightPixelcut2 from '../assets/home-assets/Night/pixelcut2.png';
+import nightPixelcut3 from '../assets/home-assets/Night/pixelcut3.png';
+import sunsetPixelcut1 from '../assets/home-assets/Sunset/pixelcut1.png';
+import sunsetPixelcut2 from '../assets/home-assets/Sunset/pixelcut2.png';
+import sunsetPixelcut3 from '../assets/home-assets/Sunset/pixelcut3.png';
+import nightGround from '../assets/home-assets/Night/ground.png';
+import sunsetGround from '../assets/home-assets/Sunset/ground.png';
+
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isNight, setIsNight] = useState(false);
@@ -10,6 +31,17 @@ const Home = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Get screen size for responsive calculations
+  const getScreenSize = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 640) return 'sm';
+      if (window.innerWidth < 768) return 'md';
+      if (window.innerWidth < 1024) return 'lg';
+      return 'xl';
+    }
+    return 'xl';
+  };
 
   const sunMoonPosition = isNight ? 85 : 15;
 
@@ -21,8 +53,32 @@ const Home = () => {
     setIsNight(!isNight);
   };
 
+  // Asset mapping objects - only include assets that exist
+  const cloudAssets = {
+    night: [nightCloud1, nightCloud2, nightCloud3],
+    sunset: [sunsetCloud1, sunsetCloud2, sunsetCloud3]
+  };
+
+  const pixelcutAssets = {
+    night: [nightPixelcut1, nightPixelcut2, nightPixelcut3],
+    sunset: [sunsetPixelcut1, sunsetPixelcut2, sunsetPixelcut3]
+  };
+
+  // Responsive size multipliers
+  const getSizeMultiplier = () => {
+    const screenSize = getScreenSize();
+    switch (screenSize) {
+      case 'sm': return 0.4;  // 40% of original size
+      case 'md': return 0.6;  // 60% of original size
+      case 'lg': return 0.8;  // 80% of original size
+      default: return 1;      // 100% original size
+    }
+  };
+
+  const sizeMultiplier = getSizeMultiplier();
+
   return (
-    <div className="w-screen font-[Audiowide]  overflow-x-hidden">
+    <div className="w-screen font-[Audiowide] overflow-x-hidden">
       {/* ----------- Frame 1: Parallax Section ----------- */}
       <div className="relative w-full h-[110vh] overflow-hidden">
 
@@ -30,9 +86,7 @@ const Home = () => {
         <div
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
-            backgroundImage: `url(${isNight
-              ? '/assets/home-assets/Night/bg.png'
-              : '/assets/home-assets/Sunset/bg.png'})`,
+            backgroundImage: `url(${isNight ? nightBg : sunsetBg})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
@@ -40,8 +94,9 @@ const Home = () => {
           }}
         />
 
+        {/* Sun/Moon */}
         <div
-          className="absolute w-20 h-20 rounded-full transition-all duration-1000 ease-in-out"
+          className="absolute w-16 h-16 md:w-20 md:h-20 rounded-full transition-all duration-1000 ease-in-out"
           style={{
             left: `${sunMoonPosition}%`,
             top: `${isNight ? '20%' : '15%'}`, 
@@ -72,51 +127,57 @@ const Home = () => {
         </div>
 
         {/* Left Clouds */}
-        {[1, 2, 3].map((n, i) => (
-          <div
-            key={`left-cloud-${n}`}
-            className="absolute inset-0 w-full h-full transition-all duration-1000"
-            style={{
-              backgroundImage: `url(${isNight
-                ? `/assets/home-assets/Night/cloud${n}.png`
-                : `/assets/home-assets/Sunset/cloud${n}.png`})`,
-              backgroundSize: `${9 - n}%`,
-              top: `${10 + 15 * i}%`,
-              left: `${49 - 24 * i}%`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'left top',
-              transform: `translateY(${scrollY * -0.1 * (n + 1)}px)`,
-              zIndex: 1,
-            }}
-          />
-        ))}
+        {[1, 2, 3].map((n, i) => {
+          const cloudAsset = cloudAssets[isNight ? 'night' : 'sunset'][n - 1];
+          if (!cloudAsset) return null;
+          
+          return (
+            <div
+              key={`left-cloud-${n}`}
+              className="absolute inset-0 w-full h-full transition-all duration-1000"
+              style={{
+                backgroundImage: `url(${cloudAsset})`,
+                backgroundSize: `${(9 - n) * sizeMultiplier}%`,
+                top: `${10 + 15 * i}%`,
+                left: `${49 - 24 * i}%`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'left top',
+                transform: `translateY(${scrollY * -0.1 * (n + 1)}px)`,
+                zIndex: 1,
+              }}
+            />
+          );
+        })}
 
-        {/* Right Clouds */}
-        {[4, 5].map((n, i) => (
-          <div
-            key={`right-cloud-${n}`}
-            className="absolute inset-0 w-full h-full transition-all duration-1000"
-            style={{
-              backgroundImage: `url(${isNight
-                ? `/assets/home-assets/Night/cloud${n}.png`
-                : `/assets/home-assets/Sunset/cloud${n}.png`})`,
-              backgroundSize: `${6 + i * 2}%`,
-              top: `${15 + i * 20}%`,
-              right: `${29 + i * 26}%`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'right top',
-              transform: `translateY(${scrollY * -0.08 * (i + 1.5)}px)`,
-              zIndex: 1,
-            }}
-          />
-        ))}
+        {/* Right Clouds - Only show if we have enough cloud assets */}
+        {[1, 2].map((i) => {
+          const cloudAsset = cloudAssets[isNight ? 'night' : 'sunset'][i + 2]; // cloud3 for i=0, undefined for i=1
+          if (!cloudAsset) return null;
+          
+          return (
+            <div
+              key={`right-cloud-${i + 4}`}
+              className="absolute inset-0 w-full h-full transition-all duration-1000"
+              style={{
+                backgroundImage: `url(${cloudAsset})`,
+                backgroundSize: `${(6 + i * 2) * sizeMultiplier}%`,
+                top: `${15 + i * 20}%`,
+                right: `${29 + i * 26}%`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right top',
+                transform: `translateY(${scrollY * -0.08 * (i + 1.5)}px)`,
+                zIndex: 1,
+              }}
+            />
+          );
+        })}
+        
+        {/* Mountains */}
         <div
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
-            backgroundImage: `url(${isNight
-              ? '/assets/home-assets/Night/mountain4.png'
-              : '/assets/home-assets/Sunset/mountain4.png'})`,
-            backgroundSize: 'contain',
+            backgroundImage: `url(${isNight ? nightMountain4 : sunsetMountain4})`,
+            backgroundSize: sizeMultiplier < 1 ? 'cover' : 'contain',
             top: '35%',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center bottom',
@@ -124,6 +185,7 @@ const Home = () => {
           }}
         />
 
+        {/* Spectrum Logo */}
         <div
           className="absolute inset-0 flex items-center justify-center h-screen transition-all duration-1000 ease-in-out"
           style={{
@@ -132,9 +194,9 @@ const Home = () => {
           }}
         >
           <img
-            src="assets/home-assets/Sunset/spectrum.png"
+            src={spectrumLogo}
             alt="Spectrum Logo"
-            className="w-[600px] max-w-[90%] object-contain drop-shadow-xl opacity-80"
+            className="w-[300px] sm:w-[450px] md:w-[600px] max-w-[90%] object-contain drop-shadow-xl opacity-80"
           />
         </div>
 
@@ -144,10 +206,8 @@ const Home = () => {
             key={`pixelcut-${n}`}
             className="absolute inset-0 w-full h-full transition-all duration-1000"
             style={{
-              backgroundImage: `url(${isNight
-                ? `/assets/home-assets/Night/pixelcut${n}.png`
-                : `/assets/home-assets/Sunset/pixelcut${n}.png`})`,
-              backgroundSize: n === 3 ? 'auto' : `${n === 2 ? '55%' : '50%'}`,
+              backgroundImage: `url(${pixelcutAssets[isNight ? 'night' : 'sunset'][n - 1]})`,
+              backgroundSize: n === 3 ? 'auto' : `${(n === 2 ? 55 : 50) * sizeMultiplier}%`,
               top: n === 1 ? '2%' : '0%',
               left: n === 1 ? '12%' : 'auto',
               backgroundRepeat: 'no-repeat',
@@ -161,10 +221,8 @@ const Home = () => {
         <div
           className="absolute inset-0 w-full h-full transition-all duration-1000"
           style={{
-            backgroundImage: `url(${isNight
-              ? '/assets/home-assets/Night/ground.png'
-              : '/assets/home-assets/Sunset/ground.png'})`,
-            backgroundSize: '100%',
+            backgroundImage: `url(${isNight ? nightGround : sunsetGround})`,
+            backgroundSize: sizeMultiplier < 1 ? 'cover' : '100%',
             top: '15%',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center bottom',
@@ -173,13 +231,11 @@ const Home = () => {
         />
 
         {/* Explore More Button */}
-        <div
-          className="absolute bottom-26 left-1/2 transform -translate-x-1/2 z-10"
-        >
+        <div className="absolute bottom-20 sm:bottom-26 left-1/2 transform -translate-x-1/2 z-10">
           <button
             onClick={handleExploreMore}
             className={`
-              px-8 py-4 rounded-full font-semibold text-lg
+              px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg
               transition-all duration-500 ease-in-out
               backdrop-blur-sm border-2
               hover:scale-105 hover:shadow-2xl

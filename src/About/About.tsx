@@ -33,7 +33,7 @@ function About() {
   return (
     <>
       <div
-        className="about-container relative min-h-screen w-screen overflow-y-auto"
+        className="about-container  relative min-h-screen w-screen overflow-y-auto"
         style={{ backgroundColor: '#000000', msOverflowStyle: 'none', scrollbarWidth: 'none' }}
       >
         {/* Particle system */}
@@ -104,7 +104,7 @@ function About() {
             </h2>
 
             {/* Textbox 1 with pig */}
-            <div className="relative w-[90%] sm:w-[80%] max-w-4xl mb-20 flex justify-center items-center">
+            <div className="relative w-[90%] sm:w-[80%] max-w-4xl  mb-20 flex justify-center items-center">
               <div className="textbox-container">
                 <div className="content-area">
                   <div className="connecting-vertical-line left"></div>
