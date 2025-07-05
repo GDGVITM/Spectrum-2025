@@ -7,19 +7,19 @@ import './index.css';
 import About from './About/About';
 import Sponsor from './Sponsor/Sponsor';
 import Home from './components/Home'; 
+import HackBuild from './HackBuild/HackBuild';
 
 const App: React.FC = () => {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<UnderProgress />} />
-        <Route path="/temp-home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/events" element={<UnderProgress />} />
         <Route path="/about" element={<About />} />
-        <Route path="/our-team" element={<Our_Team />} />
-        <Route path="/sponsor" element={<Sponsor />} />
-        <Route path="/hackbuild" element={<UnderProgress />} />
+        <Route path="/team" element={<Our_Team />} />
+        <Route path="/sponsors" element={<Sponsor />} />
+        <Route path="/hackbuild" element={<HackBuild />} />
       </Routes>
     </div>
   );

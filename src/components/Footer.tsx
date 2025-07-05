@@ -216,7 +216,6 @@ const Footer = () => {
                       }`}
                       style={{
                         transitionDelay: `${index * 0.8}s`,
-                        animation: index < typingIndex ? "glow 2s ease-in-out infinite alternate" : "none",
                       }}
                     >
                       {text}
