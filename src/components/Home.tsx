@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
-
-// Import only the assets that exist - adjust these imports based on your actual file structure
 import nightBg from '../assets/home-assets/Night/bg.png';
 import sunsetBg from '../assets/home-assets/Sunset/bg.png';
 import nightCloud1 from '../assets/home-assets/Night/cloud1.png';
@@ -32,7 +30,6 @@ const Home = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Get screen size for responsive calculations
   const getScreenSize = () => {
     if (typeof window !== 'undefined') {
       if (window.innerWidth < 640) return 'sm';
@@ -53,7 +50,6 @@ const Home = () => {
     setIsNight(!isNight);
   };
 
-  // Asset mapping objects - only include assets that exist
   const cloudAssets = {
     night: [nightCloud1, nightCloud2, nightCloud3],
     sunset: [sunsetCloud1, sunsetCloud2, sunsetCloud3]
@@ -80,7 +76,7 @@ const Home = () => {
   return (
     <div className="w-screen font-[Audiowide] overflow-x-hidden">
       {/* ----------- Frame 1: Parallax Section ----------- */}
-      <div className="relative w-full h-[110vh] overflow-hidden">
+      <div className="relative w-full h-[100vh] overflow-hidden">
 
         {/* Background */}
         <div
@@ -246,14 +242,14 @@ const Home = () => {
               }
             `}
           >
-            {isNight ? 'Click me for magic' : 'Click me for magic'}
+            {isNight ? 'Day' : 'Night'}
           </button>
         </div>
       </div>
 
       {/* ----------- Frame 2: Below Main Scene ----------- */}
       <div className="w-full min-h-screen bg-black flex flex-col items-center justify-center px-8 py-20">
-        <h2 className="text-white text-3xl md:text-5xl font-bold mb-6">🚧Work in progress</h2>
+        <h2 className="text-white text-3xl md:text-5xl font-bold mb-6">🚧Work in progress🚧</h2>
         <p className="text-white text-lg md:text-xl text-center max-w-3xl">
           This section is under work in progress..
         </p>
