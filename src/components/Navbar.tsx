@@ -10,7 +10,7 @@ const navLinks = [
   { label: "ABOUT US", to: "/about" },
   { label: "OUR TEAM", to: "/team" },
   { label: "SPONSORS", to: "/sponsors" },
-  { label: "HACKBUILD", to: "/hackbuild", highlighted: true },
+  { label: "HACKBUILD", to: "/hackbuild", highlighted: true, hasTerminal: true },
 ];
 
 const Navbar: React.FC = () => {
@@ -26,33 +26,46 @@ const Navbar: React.FC = () => {
             alt="GDG Logo"
             className="h-6 sm:h-10 w-auto object-contain"
           />
-          <a
-            href="https://gdg-terminal.vercel.app/" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-400 hover:text-green-300 transition-colors duration-300 hover:drop-shadow-[0_0_10px_rgba(34,197,94,0.8)] animate-pulse"
-          >
-            <Terminal size={24} className="sm:w-8 sm:h-8" />
-          </a>
         </div>
 
         <nav className="hidden md:flex gap-6 text-base text-white font-bold tracking-widest font-[Audiowide]">
           {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.to}
-              className={`no-underline transition-all duration-300 relative ${
-                location.pathname === link.to
-                  ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2.5px] after:bg-green-400 after:rounded-full"
-                  : ""
-              } ${
-                link.highlighted
-                  ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,197,94,1)] hover:scale-110"
-                  : "text-white hover:text-white/80"
-              }`}
-            >
-              {link.label}
-            </Link>
+            <div key={link.label}>
+              {link.hasTerminal ? (
+                <a
+                  href="https://gdg-terminal.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`no-underline transition-all duration-300 relative flex items-center gap-2 animate-pulse ${
+                    location.pathname === link.to
+                      ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2.5px] after:bg-green-400 after:rounded-full"
+                      : ""
+                  } ${
+                    link.highlighted
+                      ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,197,94,1)] hover:scale-110"
+                      : "text-white hover:text-white/80"
+                  }`}
+                >
+                  {link.label}
+                  <Terminal size={20} />
+                </a>
+              ) : (
+                <Link
+                  to={link.to}
+                  className={`no-underline transition-all duration-300 relative ${
+                    location.pathname === link.to
+                      ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2.5px] after:bg-green-400 after:rounded-full"
+                      : ""
+                  } ${
+                    link.highlighted
+                      ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,197,94,1)] hover:scale-110"
+                      : "text-white hover:text-white/80"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )}
+            </div>
           ))}
         </nav>
 
@@ -67,22 +80,44 @@ const Navbar: React.FC = () => {
       {menuOpen && (
         <nav className="md:hidden mt-4 flex flex-col items-center gap-4 text-base font-bold tracking-widest font-[Audiowide] pb-4">
           {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.to}
-              className={`no-underline transition-all duration-300 relative ${
-                location.pathname === link.to
-                  ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2.5px] after:bg-green-400 after:rounded-full"
-                  : ""
-              } ${
-                link.highlighted
-                  ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_10px_rgba(34,197,94,0.9)] drop-shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,197,94,1)] hover:scale-110"
-                  : "text-white hover:text-white/80"
-              }`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
+            <div key={link.label}>
+              {link.hasTerminal ? (
+                <a
+                  href="https://gdg-terminal.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`no-underline transition-all duration-300 relative flex items-center gap-2 animate-pulse ${
+                    location.pathname === link.to
+                      ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2.5px] after:bg-green-400 after:rounded-full"
+                      : ""
+                  } ${
+                    link.highlighted
+                      ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_10px_rgba(34,197,94,0.9)] drop-shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,197,94,1)] hover:scale-110"
+                      : "text-white hover:text-white/80"
+                  }`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                  <Terminal size={20} />
+                </a>
+              ) : (
+                <Link
+                  to={link.to}
+                  className={`no-underline transition-all duration-300 relative ${
+                    location.pathname === link.to
+                      ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2.5px] after:bg-green-400 after:rounded-full"
+                      : ""
+                  } ${
+                    link.highlighted
+                      ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_10px_rgba(34,197,94,0.9)] drop-shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,197,94,1)] hover:scale-110"
+                      : "text-white hover:text-white/80"
+                  }`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )}
+            </div>
           ))}
         </nav>
       )}

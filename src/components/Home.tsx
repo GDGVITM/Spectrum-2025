@@ -11,6 +11,7 @@ import sunsetCloud3 from '../assets/home-assets/Sunset/cloud3.png';
 import nightMountain4 from '../assets/home-assets/Night/mountain4.png';
 import sunsetMountain4 from '../assets/home-assets/Sunset/mountain4.png';
 import spectrumLogo from '../assets/home-assets/Sunset/spectrum.png';
+import fontboltLogo from '../assets/home-assets/Sunset/fontbolt.png';
 import nightPixelcut1 from '../assets/home-assets/Night/pixelcut1.png';
 import nightPixelcut2 from '../assets/home-assets/Night/pixelcut2.png';
 import nightPixelcut3 from '../assets/home-assets/Night/pixelcut3.png';
@@ -42,9 +43,13 @@ const Home = () => {
 
   const sunMoonPosition = isNight ? 85 : 15;
 
-  const spectrumBaseOffset = isNight ? -100 : 100; 
+  const spectrumBaseOffset = isNight ? -150 : 50; 
   const spectrumScrollOffset = scrollY * (isNight ? 0.3 : -0.3); 
   const spectrumTransform = `translateY(${spectrumBaseOffset + spectrumScrollOffset}px)`;
+
+  const fontboltBaseOffset = isNight ? -30 : 170;
+  const fontboltScrollOffset = scrollY * (isNight ? 0.2 : -0.2);
+  const fontboltTransform = `translateY(${fontboltBaseOffset + fontboltScrollOffset}px)`;
 
   const handleExploreMore = () => {
     setIsNight(!isNight);
@@ -193,6 +198,21 @@ const Home = () => {
             src={spectrumLogo}
             alt="Spectrum Logo"
             className="w-[300px] sm:w-[450px] md:w-[600px] max-w-[90%] object-contain drop-shadow-xl opacity-80"
+          />
+        </div>
+
+        {/* Fontbolt Logo */}
+        <div
+          className="absolute inset-0 flex items-center justify-center h-screen transition-all duration-1000 ease-in-out"
+          style={{
+            transform: fontboltTransform,
+            zIndex: 2.4,
+          }}
+        >
+          <img
+            src={fontboltLogo}
+            alt="Fontbolt Logo"
+            className="w-[150px] sm:w-[220px] md:w-[300px] max-w-[50%] object-contain drop-shadow-lg opacity-70"
           />
         </div>
 
