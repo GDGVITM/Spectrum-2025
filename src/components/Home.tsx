@@ -20,6 +20,7 @@ import sunsetPixelcut2 from '../assets/home-assets/Sunset/pixelcut2.png';
 import sunsetPixelcut3 from '../assets/home-assets/Sunset/pixelcut3.png';
 import nightGround from '../assets/home-assets/Night/ground.png';
 import sunsetGround from '../assets/home-assets/Sunset/ground.png';
+import Timeline from './Timeline';
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -268,11 +269,8 @@ const Home = () => {
       </div>
 
       {/* ----------- Frame 2: Below Main Scene ----------- */}
-      <div className="w-full min-h-screen bg-black flex flex-col items-center justify-center px-8 py-20">
-        <h2 className="text-white text-3xl md:text-5xl font-bold mb-6">🚧Work in progress🚧</h2>
-        <p className="text-white text-lg md:text-xl text-center max-w-3xl">
-          This section is under work in progress..
-        </p>
+      <div className="w-full min-h-screen flex flex-col items-center justify-center">
+        <Timeline />
       </div>
       <Footer />
     </div>
