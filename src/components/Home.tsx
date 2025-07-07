@@ -247,7 +247,7 @@ const Home = () => {
           }}
         />
 
-        {/* Explore More Button */}
+        {/* Button */}
         <div className="absolute bottom-20 sm:bottom-26 left-1/2 transform -translate-x-1/2 z-10">
           <button
             onClick={handleExploreMore}
@@ -263,7 +263,7 @@ const Home = () => {
               }
             `}
           >
-            {isNight ? 'Day' : 'Night'}
+            {isNight ? 'You have the control of time' : 'You have the control of time'}
           </button>
         </div>
       </div>
