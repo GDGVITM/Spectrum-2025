@@ -97,18 +97,18 @@ const Events = () => {
                             backgroundRepeat: 'no-repeat'
                         }}>
                         {/* Main content area with fixed height */}
-                        <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-3xl p-8 mb-8 min-h-[600px] relative overflow-hidden">
+                        <div className=" bg-opacity-100  rounded-3xl p-8 mb-8 min-h-[600px] relative overflow-hidden">
                             {/* Background image overlay */}
                             <div
                                 className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500`}
-                                style={{ backgroundImage: `url(${events[activeEvent].image})` }}
+                                // style={{ backgroundImage: `url(${events[activeEvent].image})` }}
                             />
 
                             {/* Content */}
                             <div className="relative z-10 h-full">
-                                {/* Event title */}
-                                <div className="flex items-center justify-center mb-6">
-                                    <h1 className="text-4xl md:text-5xl font-bold text-gray-800 flex items-center">
+                                {/* Event title, description, and date - all aligned the same */}
+                                <div className="flex flex-col items-start mb-8 px-7 pt-3">
+                                    <h1 className="text-4xl md:text-5xl font-bold text-white-800 flex items-center mb-4">
                                         {events[activeEvent].title.split('\n').map((line, index) => (
                                             <span key={index}>
                                                 {line}
@@ -117,32 +117,24 @@ const Events = () => {
                                         ))}
                                         <Arrow width={60} height={60} />
                                     </h1>
-                                </div>
-
-                                {/* Event description */}
-                                <div className="text-center mb-8">
-                                    <p className="text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                                    <p className="text-lg md:text-xl text-white-700 max-w-4xl leading-relaxed mb-4">
                                         {events[activeEvent].description}
                                     </p>
-                                </div>
-
-                                {/* Date */}
-                                <div className="text-center mb-8">
-                                    <p className="text-xl font-bold text-gray-800">
+                                    <p className="text-xl font-bold text-white-800">
                                         DATE: {events[activeEvent].date}
                                     </p>
-                                </div>
-
-                                {/* Register button */}
+                                    {/* Register button */}
                                 <div className="text-center mb-8">
                                     <button
                                         type="button"
-                                        className='cursor-pointer hover:scale-105 transition-transform duration-200'
+                                        className='cursor-pointer pt-4 hover:scale-105 transition-transform duration-200'
                                         onClick={() => window.open('https://google.com', '_blank')}
                                     >
                                         <RegisterButton />
                                     </button>
                                 </div>
+                                </div>
+                                
 
                                 {/* Prize pool and carousel section */}
                                 <div className='flex flex-col lg:flex-row items-start justify-between gap-8'>
