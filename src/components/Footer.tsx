@@ -61,6 +61,15 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Trapezoid shape at top */}
+        {/* <div className="z-50 absolute -top-6 left-1/2 -translate-x-1/2 w-[300px] filter drop-shadow-[0_-13px_29.7px_rgba(0,0,0,0.70)]">
+          <div className="h-12 bg-(--minecraft-grey) relative shadow-[inset_0_1px_0_0_#D9D9D9]"> 
+            <div className="absolute top-0 rounded-bl-lg rounded-tl-lg -left-6 h-full w-12 bg-(--minecraft-grey) origin-top-right -skew-x-[20deg] shadow-[inset_0_1px_0_0_#FFF]"></div>
+            <div className="absolute top-0 rounded-br-lg rounded-tr-lg -right-6 h-full w-12 bg-(--minecraft-grey) origin-top-left skew-x-[20deg] shadow-[inset_0_1px_0_0_#FFF]"></div>
+            <span className='flex justify-center items-center h-full'>08 // Contact Us</span>
+          </div>
+        </div> */}
+
         <div className="bg-gradient-to-b from-[#333] to-[#111] relative rounded-t-3xl">
           <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/40 to-transparent rounded-t-3xl"></div>
 

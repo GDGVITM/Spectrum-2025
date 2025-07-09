@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import bgimage from './posters/common_bg.png'
+import { useState } from 'react'
+// import bgimage from './posters/common_bg.png'
 import techfeudImage from './posters/techfeud.png'
 import launchpad from './posters/launchpad.png'
 import hackbuild from './posters/hackbuild.png'
 import ai4startup from './posters/ai4startup.png'
 import ctf from './posters/ctf.png'
 import '../App.css'
-import { Arrow, Eventtitle, LaunchPadPrize, Techfeudprize, RegisterButton, Hackbuildprize,
+import { Arrow, Eventtitle, LaunchPadPrize, Techfeudprize, Hackbuildprize,
   Ctfprize } from './svg'
 import TechFeudComponent from './EventComponents/TechFeudComponent'
 import LaunchPadComponent from './EventComponents/LaunchPadComponent'
