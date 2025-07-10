@@ -636,9 +636,6 @@ body {
 }
 
 html, body, #root {
-  height: 100%;
-  width: 100vw;
-  max-width: 100vw;
   overflow-x: hidden;
 }
 .hero-container {
@@ -888,6 +885,7 @@ html, body, #root {
           }
         }
 
+/* Utility class for optional use */
 .no-scroll-x {
   overflow-x: hidden !important;
   width: 100vw !important;
