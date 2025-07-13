@@ -7,7 +7,6 @@ import ai4startup from "./posters/ai4startup.png";
 import ctf from "./posters/ctf.png";
 import {
   Arrow,
-  Eventtitle,
   LaunchPadPrize,
   Techfeudprize,
   RegisterButton,
