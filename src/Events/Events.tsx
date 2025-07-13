@@ -19,6 +19,7 @@ import LaunchPadComponent from "./EventComponents/LaunchPadComponent";
 import HackBuildComponent from "./EventComponents/HackBuildComponent";
 import AIStartupComponent from "./EventComponents/AIStartupComponent";
 import CTFComponent from "./EventComponents/CTFComponent";
+import Footer from "../components/Footer";
 
 const Events = () => {
   const [activeEvent, setActiveEvent] = useState(0);
@@ -236,6 +237,7 @@ const Events = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );
