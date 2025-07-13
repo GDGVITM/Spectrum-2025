@@ -7,7 +7,7 @@ import './index.css';
 import About from './About/About';
 import Sponsor from './Sponsor/Sponsor';
 import Home from './components/Home'; 
-// import Events from './Events/Events';
+import Events from './Events/Events';
 
 const App: React.FC = () => {
   return (
@@ -15,8 +15,8 @@ const App: React.FC = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/events" element={<UnderProgress />} />
-        {/* <Route path="/events" element={<Events />} /> */}
+        {/* <Route path="/events" element={<UnderProgress />} /> */}
+        <Route path="/events" element={<Events />} />
         <Route path="/about" element={<About />} />
         <Route path="/team" element={<Our_Team />} />
         <Route path="/sponsors" element={<Sponsor />} />
