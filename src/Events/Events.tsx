@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+// 🔹 React & Hooks
+import { useState } from "react";
+
+// 🔹 Assets (Images)
 import bg from "../assets/Union.png";
 import techfeudImage from "./posters/techfeud.png";
 import launchpad from "./posters/launchpad.png";
 import hackbuild from "./posters/hackbuild.png";
 import ai4startup from "./posters/ai4startup.png";
 import ctf from "./posters/ctf.png";
+
+// 🔹 SVG Components
 import {
   Arrow,
   LaunchPadPrize,
@@ -13,18 +18,28 @@ import {
   Hackbuildprize,
   Ctfprize,
 } from "./svg";
+
+// 🔹 Event Detail Components
 import TechFeudComponent from "./EventComponents/TechFeudComponent";
 import LaunchPadComponent from "./EventComponents/LaunchPadComponent";
 import HackBuildComponent from "./EventComponents/HackBuildComponent";
 import AIStartupComponent from "./EventComponents/AIStartupComponent";
 import CTFComponent from "./EventComponents/CTFComponent";
+
+// 🔹 Common Components
 import Footer from "../components/Footer";
 
 const Events = () => {
+  // Stores the index of the currently active event
   const [activeEvent, setActiveEvent] = useState(0);
+
+  // Flag for triggering animation/transition between cards
   const [transitioning, setTransitioning] = useState(false);
+
+  // Stores the index of the selected card in the carousel
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  // Event data list (title, description, prize component, etc.)
   const events = [
     {
       image: techfeudImage,
@@ -70,18 +85,19 @@ const Events = () => {
     },
   ];
 
+  // Triggered when a different card in the carousel is clicked
   const handleImageClick = (index: number) => {
     if (index === activeEvent) return;
 
     setTransitioning(true);
     setTimeout(() => {
       setActiveEvent(index);
-      setSelectedIndex(index); // New selected card
+      setSelectedIndex(index);
       setTransitioning(false);
-    }, 600); // Match transition time
+    }, 600);
   };
 
-  // Reorder the images to show the selected one first
+  // Reorder array so selected event is shown first in carousel
   const orderedEvents = [
     events[activeEvent],
     ...events.slice(0, activeEvent),
@@ -90,6 +106,7 @@ const Events = () => {
 
   return (
     <>
+      {/* 🔹 Background Section with Image */}
       <div
         style={{
           backgroundImage: `url(${bg})`,
@@ -98,9 +115,11 @@ const Events = () => {
         }}
         className="parent-div absolute inset-0 bg-no-repeat min-h-[150vh] md:h-full w-full transition-all duration-500"
       >
-        {/* This black overlay will only be visible on small screens */}
+        {/* Mobile-only black overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50 md:hidden"></div>
+
         <div className="relative pt-20 sm:pt-24 md:pt-32  sm:pb-48 md:pb-0 flex flex-col items-center text-center z-10">
+          {/* Header Title Section */}
           <p
             className="text-[#A1E9A5] md:mb-15 text-2xl sm:text-2xl md:text-3xl lg:text-4xl"
             style={{ fontFamily: "Audiowide" }}
@@ -108,6 +127,7 @@ const Events = () => {
             07 // EVENTS
           </p>
 
+          {/* 🔹 Main Event Display Section */}
           <div
             className="displaying-content w-full max-w-8xl mx-auto px-6 h[2200px] relative bg-b "
             style={{
@@ -117,13 +137,13 @@ const Events = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
-            {/* ⬛ Top Black Gradient Overlay */}
+            {/* Top Gradient Overlay */}
             <div className="absolute top-0 left-0 w-full h-80 md:h-80 bg-gradient-to-b from-black/100 md:from-[rgb(15,15,15,1)]/100 to-transparent z-0 pointer-events-none" />
 
-            {/* Main content area with fixed height */}
+            {/* 🔹 Event Content Wrapper */}
             <div className="w-full flex flex-col md:flex-row gap-10 md:items-start md:justify-between md:py-10 md:pb-20">
               <div className="w-full mt-25 md:mt-15 md:max-w-[100%] md:px-10 flex flex-col items-center md:items-start text-center ">
-                {/* Title */}
+                {/* Event Title */}
                 <div className="flex items-center justify-center md:justify-start mb-6 md:text-left">
                   <h1 className="flex text-4xl md:text-5xl font-bold text-white-800 items-center">
                     {events[activeEvent].title
@@ -145,16 +165,16 @@ const Events = () => {
                   {events[activeEvent].description}
                 </p>
 
-                {/* Date */}
+                {/* Event Date */}
                 <p className="text-xl font-bold text-white-800 mb-6 md:text-left">
                   DATE: {events[activeEvent].date}
                 </p>
 
-                {/* Register button */}
-                {/* Wrap button+prize and carousel in a flex-col for mobile, flex-row for md+ */}
+                {/* 🔹 Register & Prize + Carousel */}
                 <div className="w-full flex flex-col md:flex-row gap-6 md:gap-10">
-                  {/* Left column: Register button + prize */}
+                  {/* Left Column: Button + Prize */}
                   <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
+                    {/* Register Button */}
                     <button
                       type="button"
                       className="cursor-pointer hover:scale-105 transition-transform duration-200 mb-6"
@@ -195,7 +215,8 @@ const Events = () => {
                               alt={event.title}
                               className="w-full h-full object-cover rounded-xl transition-all duration-300 shadow-lg"
                             />
-                            {/* Title at the top */}
+
+                            {/* Gradient Title on Hover */}
                             {events.indexOf(event) === selectedIndex && (
                               <div
                                 className={`absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-black/100 to-transparent z-30 transition-transform duration-500 ease-in-out pt-5 rounded-xl  ${
@@ -220,7 +241,7 @@ const Events = () => {
                               </div>
                             )}
 
-                            {/* Details at the bottom */}
+                            {/* Gradient Bottom Details on Hover */}
                             {events.indexOf(event) === selectedIndex && (
                               <div
                                 className={`absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/100 to-transparent z-30 transition-transform duration-500 ease-in-out mb-0 rounded-xl ${
@@ -253,10 +274,13 @@ const Events = () => {
                 </div>
               </div>
             </div>
-            {/* 🔻 Bottom Black Gradient Overlay */}
+
+            {/* Bottom Gradient Overlay for smooth fade to footer */}
             <div className="absolute bottom-0 left-0 w-full h-20 md:h-40 bg-gradient-to-t from-black/100 md:from-[rgb(15,15,15,1)]/100 to-transparent z-0 pointer-events-none" />
           </div>
         </div>
+
+        {/* Footer Section */}
         <Footer />
       </div>
     </>
