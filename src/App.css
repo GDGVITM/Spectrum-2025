@@ -884,10 +884,3 @@ html, body, #root {
             padding: 8px 12px;
           }
         }
-
-/* Utility class for optional use */
-.no-scroll-x {
-  overflow-x: hidden !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-}

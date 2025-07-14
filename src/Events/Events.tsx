@@ -109,7 +109,7 @@ const Events = () => {
                         <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-3xl p-8 mb-8 min-h-[600px] relative overflow-hidden">
                             <div
                                 className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500`}
-                                style={{ backgroundImage: `url(${events[activeEvent].image})` }}
+                                // style={{ backgroundImage: `url(${events[activeEvent].image})` }}
                             />
 
                             <div className="relative z-10 h-full">
@@ -140,12 +140,14 @@ const Events = () => {
                                 <div className="text-center mb-8">
                                     <button
                                         type="button"
-                                        className='cursor-pointer hover:scale-105 transition-transform duration-200'
+                                        className='cursor-pointer pt-4 hover:scale-105 transition-transform duration-200'
                                         onClick={() => window.open('https://google.com', '_blank')}
                                     >
                                         <RegisterButton />
                                     </button>
                                 </div>
+                                </div>
+                                
 
                                 <div className='flex flex-col lg:flex-row items-start justify-between gap-8'>
                                     <div className="flex-1 flex justify-center lg:justify-start">
