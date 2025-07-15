@@ -4,7 +4,7 @@ const HackBuildComponent = () => {
   return (
     <div>
       <h1 className="text-4xl font-bold flex flex-row items-center">
-        Hack & Build
+        HackBuild
         <Arrow width={80} height={80}/>
       </h1>
       <p className="mt-4 max-w-full">

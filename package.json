@@ -17,6 +17,7 @@
     "@types/styled-components": "^5.1.34",
     "bun": "^1.2.8",
     "figlet": "^1.8.1",
+    "gsap": "^3.13.0",
     "install": "^0.13.0",
     "lucide-react": "^0.509.0",
     "react": "^19.0.0",

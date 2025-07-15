@@ -1,18 +1,15 @@
 import  { useState } from 'react'
-import techfeudImage from './posters/techfeud.png'
+import techfeudImage from './posters/dsa.png'
 import launchpad from './posters/launchpad.png'
 import hackbuild from './posters/hackbuild.png'
 import ai4startup from './posters/ai4startup.png'
-import ctf from './posters/ctf.png'
 import bg from '../assets/Union.png'
 import '../App.css'
-import { Arrow, LaunchPadPrize, Techfeudprize, Hackbuildprize,
-  Ctfprize } from './svg'
+import { Arrow, LaunchPadPrize, Techfeudprize, Hackbuildprize} from './svg'
 import TechFeudComponent from './EventComponents/TechFeudComponent'
 import LaunchPadComponent from './EventComponents/LaunchPadComponent'
 import HackBuildComponent from './EventComponents/HackBuildComponent'
 import AIStartupComponent from './EventComponents/AIStartupComponent'
-import CTFComponent from './EventComponents/CTFComponent'
 
 //deven's Version
 
@@ -23,44 +20,36 @@ export default function Holder() {
   const events = [
     {
       image: techfeudImage,
-      title: "Tech\nFeud",
-      description: "Tech Feud is a dynamic three-round competition designed to sharpen placement-relevant skills through a mix of aptitude, creativity, and technical knowledge. Each round is crafted to challenge participants in different areas.",
-      date: "15th & 16th April '25",
+      title: "Big O Battle",
+      description: "Big O Battle is a dynamic three-round competition designed to sharpen placement-relevant skills through a mix of aptitude, creativity, and technical knowledge. Each round is crafted to challenge participants in different areas.",
+      date: "30th July",
       prizeComponent: <Techfeudprize />,
       component: <TechFeudComponent />
+    },
+      {
+      image: hackbuild,
+      title: "Hack Build",
+      description: "need to be filed yet",
+      date: "R1: 31st July, R2: 2nd & 3rd August",
+      prizeComponent: <Hackbuildprize/> ,
+      component: <HackBuildComponent />
     },
     {
       image: launchpad,
       title: "Launch Pad",
       description: "Welcome to LaunchPad, a high-stakes business strategy competition that challenges participants to think beyond conventional startup ideation. Instead of creating new startups, participants must analyze failed real-world businesses and devise innovative revival strategies.",
-      date: "16th & 17th April '25",
+      date: "5th & 6th August",
       prizeComponent: <LaunchPadPrize />,
       component: <LaunchPadComponent />
     },
     {
-      image: hackbuild,
-      title: "Hack & Build",
-      description: "need to be filed yet",
-      date: "22nd-23rd April 2024",
-      prizeComponent: <Hackbuildprize/> ,
-      component: <HackBuildComponent />
-    },
-    {
       image: ai4startup,
-      title: "AI for Startups",
+      title: "GSOC guidance session",
       description: "need to be filed yet",
-      date: "18th April 2024",
+      date: "8th August",
       prizeComponent: null ,
       component: <AIStartupComponent />
     },
-    {
-      image: ctf,
-      title: "Capture The Flag",
-      description: "need to be filed yet",
-      date: "25th April 2024",
-      prizeComponent: <Ctfprize/>,
-      component: <CTFComponent />
-    }
   ];
 
   const handleImageClick = (index:any) => {
@@ -123,7 +112,7 @@ export default function Holder() {
               
               {/* Content area with fade transition - Increased height */}
               <div 
-                className={`relative h-[600px] w-full mx-auto transition-opacity duration-300 ${transitioning ? 'opacity-0' : 'opacity-100'}`}
+                className={`relative h-[600px] font-[AudioWide] w-full mx-auto transition-opacity duration-300 ${transitioning ? 'opacity-0' : 'opacity-100'}`}
               >
                 <div className="relative z-10 h-full w-full p-6 text-white">
                   {/* Render the active event component */}
