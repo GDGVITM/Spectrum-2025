@@ -43,7 +43,7 @@
           top: 50%;
           left: 10%;
           height: 2px;
-          background: linear-gradient(90deg, #8bc34a, #ffc107, #00bcd4, #f44336, #4caf50);
+          background: linear-gradient(90deg, #8bc34a, #ffc107, #8bc34a, #ffc107, #4caf50);
           transform: translateY(-50%);
           z-index: 1;
           animation: flowingLine 5s ease-in-out 1s forwards;
@@ -68,42 +68,43 @@
         
         /* Timeline point glow animations - each triggered when line reaches them */
         .minecraft-world .timeline-point:nth-child(1) {
-          --color: #8bc34a;
+          --color: #A1E9A5;
           --delay: 1.2s; /* When line reaches first point */
           animation: pointGlow 0.5s ease-out var(--delay) forwards;
         }
         
         .minecraft-world .timeline-point:nth-child(2) {
-          --color: #ffc107;
+          --color: #A1E9A5;
           --delay: 2.2s; /* When line reaches second point */
           animation: pointGlow 0.5s ease-out var(--delay) forwards;
         }
         
         .minecraft-world .timeline-point:nth-child(3) {
-          --color: #00bcd4;
+          --color: #A1E9A5;
           --delay: 3.2s; /* When line reaches third point */
           animation: pointGlow 0.5s ease-out var(--delay) forwards;
         }
         
         .minecraft-world .timeline-point:nth-child(4) {
-          --color: #f44336;
+          --color: #A1E9A5;
           --delay: 4.2s; /* When line reaches fourth point */
           animation: pointGlow 0.5s ease-out var(--delay) forwards;
         }
         
         .minecraft-world .timeline-point:nth-child(5) {
-          --color: #4caf50;
+          --color: #A1E9A5;
           --delay: 5.2s; /* When line reaches fifth point */
           animation: pointGlow 0.5s ease-out var(--delay) forwards;
         }
         
         .minecraft-world .popup {
-          width: 330px;
-          height: auto;
-          max-height: 0;
+          width: 370px;
+          height: 220px;
+          max-height: 220px;
+          min-height: 220px;
           background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           position: absolute;
           color: white;
           border-radius: 8px;
@@ -114,7 +115,6 @@
           padding: 0;
           z-index: 20;
           opacity: 0;
-          /* Popup appears when line reaches each point */
           animation: expandPopup 0.6s ease-out calc(var(--delay) + 0.3s) forwards;
         }
         
@@ -125,7 +125,7 @@
           left: 0;
           right: 0;
           height: 2px;
-          background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+          /* background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700); */
         }
         
         .minecraft-world .popup-number {
@@ -155,12 +155,16 @@
           font-weight: 500;
           user-select: none;
           cursor: auto;
-          overflow: hidden;
-          font-size: 0.9rem;
+          overflow: visible;
+          font-size: 0.85rem;
           text-align: left;
           margin: 0;
           animation: fadeIn 0.4s ease-out calc(var(--delay) + 0.5s) forwards;
           flex: 1;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
         }
         
         .minecraft-world .popup-title {
@@ -170,7 +174,39 @@
           font-weight: 600;
           text-shadow: 1px 1px 0 #000;
           letter-spacing: 0.5px;
-          margin-bottom: 2px;
+          margin-bottom: 6px;
+        }
+
+        .minecraft-world .popup-date {
+          color: #A1E9A5;
+          font-size: 14px;
+          font-weight: 600;
+          margin-bottom: 4px;
+          text-shadow: 1px 1px 0 #000;
+          background: rgba(0, 188, 212, 0.1);
+          padding: 2px 6px;
+          border-radius: 4px;
+          border-left: 3px solid #A1E9A5;
+        }
+
+        .minecraft-world .popup-venue {
+          color: #ff9800;
+          font-size: 13px;
+          font-weight: 500;
+          margin-bottom: 8px;
+          opacity: 0.9;
+        }
+
+        .minecraft-world .popup-description {
+          color: #ffffff;
+          font-size: 13px;
+          line-height: 1.4;
+          opacity: 0.9;
+        }
+
+        /* Make dates more distinguishable */
+        .minecraft-world .popup-details {
+          line-height: 1.4;
         }
         
         .minecraft-world .popup::after {
@@ -230,12 +266,16 @@
         /* Popup expansion */
         @keyframes expandPopup {
           0% { 
-            max-height: 0; 
+            height: 0;
+            max-height: 0;
+            min-height: 0;
             opacity: 0;
             transform: scale(0.8);
           }
           100% { 
-            max-height: 200px; 
+            height: 220px;
+            max-height: 220px;
+            min-height: 220px;
             opacity: 1;
             transform: scale(1);
           }
