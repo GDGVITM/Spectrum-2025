@@ -130,7 +130,7 @@ export default function Holder() {
             08 // EVENTS
           </p>
 
-          <div className="relative w-full px-4 sm:px-6">
+          <div className="relative w-full  px-4 sm:px-6">
             <div className="w-full bg-opacity-0 min-h-[calc(100vh-3rem)] rounded-3xl overflow-hidden relative">
               <div
                 className="absolute inset-0 bg-cover bg-center opacity-40 rounded-3xl z-0"
@@ -155,8 +155,6 @@ export default function Holder() {
                       <div className="flex gap-4 px-2">
                         {events.map((event, index) => {
                           const isActive = index === activeEvent;
-                          // Adjusting card sizes to try and fit three cards,
-                          // these values might need more fine-tuning depending on your exact layout needs.
                           const cardBaseSize =
                             screenWidth >= 1024
                               ? isActive
@@ -196,9 +194,6 @@ export default function Holder() {
                                   <Calendar size={screenWidth < 640 ? 14 : 16} />
                                   <span>{event.date}</span>
                                 </div>
-                                {/* Removed location and time to keep card compact for 3-card display */}
-                                {/* <p className="text-[10px] sm:text-xs hidden sm:block">📍 Auditorium</p>
-                                <p className="text-[10px] sm:text-xs hidden sm:block">🕒 10:00 AM – 4:00 PM</p> */}
                                 <div className="mt-2 flex justify-center">
                                   <div
                                     className={`transition-transform duration-200 bounce-hover ${

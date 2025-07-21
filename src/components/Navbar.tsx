@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/30 text-white px-4 sm:px-8 py-4 shadow-md">
+    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md text-white px-4 sm:px-8 py-4 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <img
@@ -34,8 +34,6 @@ const Navbar: React.FC = () => {
               {link.hasTerminal ? (
                 <a
                   href="https://hackbuild.gdgvitm.tech/"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className={`no-underline transition-all duration-300 relative flex items-center gap-2 animate-pulse ${
                     location.pathname === link.to
                       ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2.5px] after:bg-green-400 after:rounded-full"
@@ -84,8 +82,6 @@ const Navbar: React.FC = () => {
               {link.hasTerminal ? (
                 <a
                   href="https://hackbuild.gdgvitm.tech/"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className={`no-underline transition-all duration-300 relative flex items-center gap-2 animate-pulse ${
                     location.pathname === link.to
                       ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2.5px] after:bg-green-400 after:rounded-full"
