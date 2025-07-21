@@ -278,7 +278,7 @@ const Home = () => {
       </div>
 
       {/* ----------- Frame 2: Below Main Scene ----------- */}
-      <div className="w-full min-h-screen my-16 flex flex-col items-center justify-center bg-black">
+      <div className="w-full min-h-screen my-18 flex flex-col items-center justify-center bg-black">
         <Timeline />
       </div>
       <Footer />

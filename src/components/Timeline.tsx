@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useRef, useState } from 'react'
 import { Pickaxe, Sword, Shield, Target, Sprout } from "lucide-react"
 import "./timeline.css"
 
@@ -18,7 +19,7 @@ const minecraftTimeline = [
 		date: "30th July 2025 (Wednesday)",
 		venue: "L-Block/M-block Labs",
 		description:
-			"Individual Participation DSA challenge. Participants who will successfully pass all test cases/submit each question will get a balloon attached to their chair.",
+			"Individual Participation DSA challenge. We have an ICPC rule for this, but with a twist :)",
 	},
 	{
 		icon: Shield,
@@ -30,7 +31,7 @@ const minecraftTimeline = [
 	},
 	{
 		icon: Sword,
-		title: "Launchpad – Vibe Coding Challenge",
+		title: "Launchpad",
 		date: "5th and 6th August 2025",
 		venue: "TBD",
 		description:
@@ -47,25 +48,68 @@ const minecraftTimeline = [
 ]
 
 export default function Timeline() {
+	const timelineRef = useRef<HTMLDivElement>(null)
+	const [isAnimated, setIsAnimated] = useState(false)
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting && !isAnimated) {
+						setIsAnimated(true)
+					}
+				})
+			},
+			{
+				threshold: 0.3, // Trigger when 30% of the timeline is visible
+				rootMargin: '0px 0px -100px 0px' // Trigger slightly before it's fully visible
+			}
+		)
+
+		if (timelineRef.current) {
+			observer.observe(timelineRef.current)
+		}
+
+		return () => {
+			if (timelineRef.current) {
+				observer.unobserve(timelineRef.current)
+			}
+		}
+	}, [isAnimated])
+
 	return (
-		<div className="minecraft-world">			
-    <div className="background-effects">
+		<div ref={timelineRef} className={`minecraft-world ${isAnimated ? 'animate' : ''}`}>
+			<div className="background-effects">
 				{/* Gradient Overlay */}
 				<div className="gradient-overlay"></div>
 
-				{/* Floating Particles */}
+				{/* Enhanced Particles */}
 				<div className="particles">
-					{Array.from({ length: 20 }).map((_, i) => (
+					{Array.from({ length: 8 }).map((_, i) => (
 						<div key={i} className={`particle particle-${i % 4}`}></div>
 					))}
 				</div>
 
-				{/* Animated Grid */}
+				{/* Shooting Stars */}
+				<div className="shooting-stars">
+					{Array.from({ length: 3 }).map((_, i) => (
+						<div key={i} className="shooting-star"></div>
+					))}
+				</div>
+
+				{/* Aurora Waves */}
+				<div className="aurora-waves">
+					{Array.from({ length: 3 }).map((_, i) => (
+						<div key={i} className="aurora-wave"></div>
+					))}
+				</div>
+
+				{/* Enhanced Grid */}
 				<div className="grid-background">
 					<div className="grid-lines"></div>
 				</div>
 
-				{/* Floating Elements */}
+				{/* Enhanced Floating Elements */}
 				<div className="floating-elements">
 					<div className="floating-cube floating-cube-1"></div>
 					<div className="floating-cube floating-cube-2"></div>
@@ -74,11 +118,18 @@ export default function Timeline() {
 					<div className="floating-orb floating-orb-2"></div>
 				</div>
 
-				{/* Light Rays */}
+				{/* Enhanced Light Rays */}
 				<div className="light-rays">
 					<div className="light-ray light-ray-1"></div>
 					<div className="light-ray light-ray-2"></div>
 					<div className="light-ray light-ray-3"></div>
+				</div>
+
+				{/* Pulsing Stars */}
+				<div className="pulsing-stars">
+					{Array.from({ length: 5 }).map((_, i) => (
+						<div key={i} className="star"></div>
+					))}
 				</div>
 			</div>
 
