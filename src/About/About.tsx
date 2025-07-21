@@ -3,6 +3,7 @@ import pig from '../assets/aboutpig.png';
 import llama from '../assets/abouthorse.png';
 import gdgLogoText from '../assets/gdgwhite.png';
 import Footer from '../components/Footer';
+import { MapPin } from 'lucide-react';
 import '../App.css';
 import '../font.css';
 
@@ -141,7 +142,7 @@ function About() {
             </div>
 
             {/* Textbox 2 with llama */}
-            <div className="relative w-[90%] sm:w-[80%] max-w-4xl mb-0  flex justify-center items-center">
+            <div className="relative w-[90%] sm:w-[80%] max-w-4xl mb-20  flex justify-center items-center">
               <div className="textbox-container">
                 <div className="content-area">
                   <div className="connecting-vertical-line left"></div>
@@ -163,6 +164,102 @@ function About() {
                   transform: 'translate(35%, 35%)',
                 }}
               />
+            </div>
+
+            {/* VIT Location Section */}
+            <div className="w-[90%] mt-6 sm:w-[80%] max-w-6xl mb-20">
+              <h3
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#A1E9A5] font-bold mb-8 text-shadow"
+                style={{ fontFamily: 'Press Start 2P' }}
+              >
+                FIND US AT VIT
+              </h3>
+              
+              {/* Map and Address Side by Side */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                {/* Map Section - Square (Left) */}
+                <div className="relative">
+                  <div 
+                    className="w-full aspect-square rounded-lg overflow-hidden"
+                    style={{
+                      border: '2px solid #A1E9A5',
+                      boxShadow: '0 0 20px rgba(161, 233, 165, 0.3)',
+                    }}
+                  >
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.042926280613!2d72.8397!3d19.0176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cf26f4d0c4e5%3A0x1b10edc7a7c4a8c4!2sVidyalankar%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1642584000000!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen={true}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Vidyalankar Institute of Technology Location"
+                    />
+                  </div>
+                  
+                  {/* Map overlay with cyber effect */}
+                  <div 
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(45deg, transparent 49%, rgba(161, 233, 165, 0.1) 50%, transparent 51%)',
+                      backgroundSize: '20px 20px',
+                    }}
+                  />
+                </div>
+
+                {/* Address Section (Right) */}
+                <div className="flex flex-col aspect-square">
+                  {/* Address Box */}
+                  <div 
+                    className="w-full flex-1 rounded-lg overflow-hidden flex items-center justify-center mb-4"
+                    style={{
+                      boxShadow: '0 0 20px rgba(161, 233, 165, 0.3)',
+                    }}
+                  >
+                    <div className="textbox-container w-full h-full flex items-center justify-center p-0">
+                      <div className="content-area p-4">
+                        <div className="line">
+                          <span className="text-[#A1E9A5] font-semibold">Vidyalankar Institute of Technology</span>
+                        </div>
+                        <div className="line">
+                          <div className="line-separator" />
+                          <span>Vidyalankar Educational Campus</span>
+                        </div>
+                        <div className="line">
+                          <div className="line-separator" />
+                          <span>Vidyalankar College Marg, Wadala (E)</span>
+                        </div>
+                        <div className="line">
+                          <div className="line-separator" />
+                          <span>Sangam Nagar, Antop Hill</span>
+                        </div>
+                        <div className="line">
+                          <div className="line-separator" />
+                          <span>Mumbai - 400037, Maharashtra, India</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Directions Button */}
+                  <div className="flex justify-start">
+                    <a
+                      href="https://www.google.com/maps/dir//Vidyalankar+Institute+of+Technology,+Vidyalankar+Educational+Campus,+Vidyalankar+College+Marg,+Wadala+East,+Deen+Bandhu+Nagar,+Antop+Hill,+Mumbai,+Maharashtra+400037"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-6 py-3 text-black bg-[#A1E9A5] hover:bg-[#8fd993] font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+                      style={{
+                        boxShadow: '0 0 20px rgba(161, 233, 165, 0.4)',
+                        fontFamily: 'Audiowide',
+                      }}
+                    >
+                      <MapPin size={20} className="mr-2" />
+                      GET DIRECTIONS
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <Footer />

@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
             <div key={link.label}>
               {link.hasTerminal ? (
                 <a
-                  href="https://gdg-terminal.vercel.app/"
+                  href="https://hackbuild.gdgvitm.tech/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`no-underline transition-all duration-300 relative flex items-center gap-2 animate-pulse ${
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
             <div key={link.label}>
               {link.hasTerminal ? (
                 <a
-                  href="https://gdg-terminal.vercel.app/"
+                  href="https://hackbuild.gdgvitm.tech/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`no-underline transition-all duration-300 relative flex items-center gap-2 animate-pulse ${

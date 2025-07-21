@@ -1,58 +1,65 @@
-import  { useState } from 'react'
-import techfeudImage from './posters/dsa.png'
-import launchpad from './posters/launchpad.png'
-import hackbuild from './posters/hackbuild.png'
-import ai4startup from './posters/ai4startup.png'
-import bg from '../assets/Union.png'
-import '../App.css'
-import { Arrow, LaunchPadPrize, Techfeudprize, Hackbuildprize} from './svg'
-import TechFeudComponent from './EventComponents/TechFeudComponent'
-import LaunchPadComponent from './EventComponents/LaunchPadComponent'
-import HackBuildComponent from './EventComponents/HackBuildComponent'
-import AIStartupComponent from './EventComponents/AIStartupComponent'
-
-//deven's Version
+import { useState, useEffect, useRef } from 'react';
+import { Calendar } from 'lucide-react';
+import techfeudImage from './posters/dsa.png';
+import launchpad from './posters/launchpad.png';
+import hackbuild from './posters/hackbuild.png';
+import ai4startup from './posters/ai4startup.png';
+import bg from '../assets/Union.png';
+import '../App.css';
+import { Arrow, LaunchPadPrize, Techfeudprize, Hackbuildprize } from './svg';
+import TechFeudComponent from './EventComponents/TechFeudComponent';
+import LaunchPadComponent from './EventComponents/LaunchPadComponent';
+import HackBuildComponent from './EventComponents/HackBuildComponent';
+import AIStartupComponent from './EventComponents/AIStartupComponent';
 
 export default function Holder() {
   const [activeEvent, setActiveEvent] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const updateScreenWidth = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', updateScreenWidth);
+    return () => window.removeEventListener('resize', updateScreenWidth);
+  }, []);
 
   const events = [
     {
       image: techfeudImage,
-      title: "Big O Battle",
-      description: "Big O Battle is a dynamic three-round competition designed to sharpen placement-relevant skills through a mix of aptitude, creativity, and technical knowledge. Each round is crafted to challenge participants in different areas.",
-      date: "30th July",
+      title: 'Big O Battle',
+      description: 'Big O Battle is a dynamic three-round competition...',
+      date: '30th July',
       prizeComponent: <Techfeudprize />,
-      component: <TechFeudComponent />
+      component: <TechFeudComponent />,
     },
-      {
+    {
       image: hackbuild,
-      title: "Hack Build",
-      description: "need to be filed yet",
-      date: "R1: 31st July, R2: 2nd & 3rd August",
-      prizeComponent: <Hackbuildprize/> ,
-      component: <HackBuildComponent />
+      title: 'Hack Build',
+      description: 'need to be filed yet',
+      date: 'R1: 31st July, R2: 2nd & 3rd August',
+      prizeComponent: <Hackbuildprize />,
+      component: <HackBuildComponent />,
     },
     {
       image: launchpad,
-      title: "Launch Pad",
-      description: "Welcome to LaunchPad, a high-stakes business strategy competition that challenges participants to think beyond conventional startup ideation. Instead of creating new startups, participants must analyze failed real-world businesses and devise innovative revival strategies.",
-      date: "5th & 6th August",
+      title: 'Launch Pad',
+      description: 'Welcome to LaunchPad, a high-stakes business strategy competition...',
+      date: '5th & 6th August',
       prizeComponent: <LaunchPadPrize />,
-      component: <LaunchPadComponent />
+      component: <LaunchPadComponent />,
     },
     {
       image: ai4startup,
-      title: "GSOC guidance session",
-      description: "need to be filed yet",
-      date: "8th August",
-      prizeComponent: null ,
-      component: <AIStartupComponent />
+      title: 'GSOC guidance session',
+      description: 'need to be filed yet',
+      date: '8th August',
+      prizeComponent: null,
+      component: <AIStartupComponent />,
     },
   ];
 
-  const handleImageClick = (index:any) => {
+  const handleImageClick = (index: number): void => {
     if (index === activeEvent) return;
     setTransitioning(true);
     setTimeout(() => {
@@ -61,105 +68,179 @@ export default function Holder() {
     }, 300);
   };
 
-  // Reorder The images to show tHe Selected one first
-  const orderedEvents = [
-    events[activeEvent],
-    ...events.slice(0, activeEvent),
-    ...events.slice(activeEvent + 1)
-  ];
+  const scrollCarousel = (direction: number): void => {
+    const cardWidth: number = screenWidth >= 1024 ? 220 : screenWidth >= 768 ? 180 : 140; // Base card width
+    const gap = 16; 
+    const scrollAmount = cardWidth + gap;
+
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const mobileDateStyle = "font-bold text-sm sm:text-base text-[#A1E9A5] px-1.5 py-1 rounded bg-black/50 backdrop-blur-sm shadow-md border-2 border-[#A1E9A5]/40 whitespace-nowrap overflow-hidden text-ellipsis";
 
   return (
-    <div 
-      className='min-h-screen w-screen relative overflow-y-auto hide-scrollbar'
-      style={{ backgroundColor: '#000000', msOverflowStyle: 'none' }}
-    >
+    <div className="min-h-screen w-screen relative overflow-y-auto bg-black text-white">
       <style>{`
-        div.relative::-webkit-scrollbar {
-          display: none;
-        }
-        /* This class applies a linear gradient from transparent to black at the bottom */
         .gradient-overlay {
           background: linear-gradient(to bottom, transparent 70%, #000000 100%);
         }
+        .carousel-scrollbar::-webkit-scrollbar {
+          height: 6px;
+        }
+        .carousel-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.3);
+        }
+        .carousel-scrollbar {
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-4px); }
+        }
+        .bounce-hover:hover {
+          animation: bounce 0.6s;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        .animate-pulse {
+          animation: pulse 2s infinite;
+        }
       `}</style>
-      
-      {/* Teams page background */}
+
       <div
-        style={{ 
-          backgroundImage: `url(${bg})`, 
-          backgroundSize: '100% auto', 
-          backgroundPosition: 'top center' 
-        }}
         className="absolute inset-0 bg-no-repeat min-h-[150vh] w-full"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundSize: '100% auto',
+          backgroundPosition: 'top center',
+        }}
       >
         <div className="absolute inset-0 gradient-overlay"></div>
-        
-        <div className="relative pt-20 sm:pt-24 md:pt-32 pb-40 sm:pb-48 md:pb-56 flex flex-col items-center text-center z-10">
-          <p className="text-[#A1E9A5] mb-16 sm:mb-20 md:mb-24 text-xl sm:text-2xl md:text-3xl lg:text-4xl" style={{ fontFamily: 'Audiowide' }}>
+
+        <div className="relative pt-20 pb-40 flex flex-col items-center text-center z-10">
+          <p className="text-[#A1E9A5] mb-16 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-[Audiowide]">
             08 // EVENTS
           </p>
-          <div className="relative px-6 w-full">
 
-            {/* Main container - Full width */}
-            <div className='bg-(--minecraft-grey) min-h-[calc(100vh-3rem)] w-full max-w-none shadow-[inset_0_1px_0_0_#D9D9D9] mx-auto rounded-3xl overflow-hidden'>
-              <div className='h-20 shadow-[inset_0_1px_0_0_#FFF] rounded-3xl bg-(--minecraft-grey) w-full' />
-              
-              {/* Background image only for main container */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center z-0 opacity-50 rounded-2xl"
+          <div className="relative w-full px-4 sm:px-6">
+            <div className="w-full bg-opacity-0 min-h-[calc(100vh-3rem)] rounded-3xl overflow-hidden relative">
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-40 rounded-3xl z-0"
                 style={{ backgroundImage: `url(${events[activeEvent].image})` }}
               />
-              
-              {/* Content area with fade transition - Increased height */}
-              <div 
-                className={`relative h-[600px] font-[AudioWide] w-full mx-auto transition-opacity duration-300 ${transitioning ? 'opacity-0' : 'opacity-100'}`}
-              >
-                <div className="relative z-10 h-full w-full p-6 text-white">
-                  {/* Render the active event component */}
-                  {events[activeEvent].component}
-                  
-                  {/* Prize component and image scroller */}
-                  <div className='flex flex-row items-start mt-8'>
-                    <div className="ml-10 mr-8">
-                      {events[activeEvent].prizeComponent}
+
+              <div className={`relative z-10 p-4 sm:p-6 transition-opacity duration-300 ${transitioning ? 'opacity-0' : 'opacity-100'}`}>
+                {/* Active Event Component */}
+                <div className="mb-6">{events[activeEvent].component}</div>
+
+                <div className="flex flex-col lg:flex-row items-start mt-4 gap-6">
+                  {/* Prize Component */}
+                  {events[activeEvent].prizeComponent && (
+                    <div className="w-full lg:w-auto flex justify-center lg:justify-start max-w-[180px] sm:max-w-[220px] md:max-w-[300px]">
+                      <div className="w-full">{events[activeEvent].prizeComponent}</div>
                     </div>
-                    
-                    {/* Horizontal scroll container with scroll snap - limited to 3 visible images */}
-                    <div className="relative flex-1 h-[320px] overflow-hidden"> 
-                      <div className="absolute right-0 h-full w-[calc(200px+160px*2+1.5rem*2)] overflow-x-auto no-scrollbar">
-                        <div className="flex space-x-6 h-full items-center px-4 snap-x snap-mandatory scroll-smooth" style={{ width: 'max-content' }}> 
-                          {orderedEvents.map((event, index) => (
-                            <div 
-                              key={index} 
-                              className={`flex-shrink-0 transition-all duration-300 snap-center relative ${
-                                index === 0 ? 
-                                  'h-[300px] w-[200px] brightness-100' : 
-                                  'h-[220px] w-[160px] brightness-75 hover:brightness-100'
+                  )}
+
+                  {/* Carousel */}
+                  <div className="relative flex-1 w-full">
+                    <div className="overflow-x-auto carousel-scrollbar" ref={carouselRef}>
+                      <div className="flex gap-4 px-2">
+                        {events.map((event, index) => {
+                          const isActive = index === activeEvent;
+                          // Adjusting card sizes to try and fit three cards,
+                          // these values might need more fine-tuning depending on your exact layout needs.
+                          const cardBaseSize =
+                            screenWidth >= 1024
+                              ? isActive
+                                ? 'w-[200px] h-[300px]'
+                                : 'w-[180px] h-[270px]' // Slightly smaller for non-active
+                              : screenWidth >= 768
+                              ? isActive
+                                ? 'w-[160px] h-[240px]'
+                                : 'w-[140px] h-[210px]'
+                              : isActive
+                              ? 'w-[120px] h-[180px]'
+                              : 'w-[100px] h-[150px]'; // Even smaller for mobile non-active
+
+                          return (
+                            <div
+                              key={index}
+                              onClick={() => handleImageClick(index)}
+                              className={`relative flex-shrink-0 cursor-pointer rounded-lg transition-all duration-300 ${cardBaseSize} ${
+                                isActive ? 'brightness-100 scale-105' : 'brightness-75 hover:scale-105'
                               }`}
-                              onClick={() => handleImageClick(events.indexOf(event))}
-                            > 
-                              <img 
-                                src={event.image} 
-                                alt={event.title} 
-                                className="w-full h-full object-fill rounded-lg transition-all duration-300" // Changed object-cover to object-fill
-                              />
-                              {/* Title at the top */}
-                              <div className="absolute top-0 left-0 right-0 p-2 text-center">
-                                <h3 className="text-white font-bold text-3xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">{event.title}</h3>
+                            >
+                              <img src={event.image} alt={event.title} className="w-full h-full object-fill rounded-lg shadow-lg" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-lg"></div>
+
+                              {/* Title */}
+                              <div className="absolute top-1 left-0 right-0 text-center px-1">
+                                <h3 className={`text-white font-bold leading-tight ${
+                                  screenWidth >= 1024 ? 'text-lg' : screenWidth >= 768 ? 'text-base' : 'text-sm'
+                                }`}>
+                                  {event.title}
+                                </h3>
                               </div>
-                              
-                              {/* Other details at the bottom */}
-                              <div className="absolute bottom-0  p-2 text-center">
-                                <p className="text-white text-xs drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">{event.date}</p>
-                                <p className="text-white text-xs drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">Location: Auditorium</p>
-                                <p className="text-white text-xs drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">10:00 AM - 4:00 PM</p>  
-                                <Arrow height={40} width={40}/> 
+
+                              {/* Info Section - Now showing date more prominently */}
+                              <div className="absolute bottom-2 left-0 right-0 px-1 text-center text-white space-y-1">
+                                <div className={`flex items-center justify-center gap-1 ${screenWidth < 640 ? mobileDateStyle : "text-sm sm:text-base font-semibold text-[#A1E9A5]"} ${isActive && screenWidth < 640 ? 'animate-pulse' : ''}`}>
+                                  <Calendar size={screenWidth < 640 ? 14 : 16} />
+                                  <span>{event.date}</span>
+                                </div>
+                                {/* Removed location and time to keep card compact for 3-card display */}
+                                {/* <p className="text-[10px] sm:text-xs hidden sm:block">📍 Auditorium</p>
+                                <p className="text-[10px] sm:text-xs hidden sm:block">🕒 10:00 AM – 4:00 PM</p> */}
+                                <div className="mt-2 flex justify-center">
+                                  <div
+                                    className={`transition-transform duration-200 bounce-hover ${
+                                      isActive ? 'scale-100' : 'scale-90 opacity-70'
+                                    }`}
+                                  >
+                                    <Arrow
+                                      height={isActive ? (screenWidth > 768 ? 36 : 28) : 24}
+                                      width={isActive ? (screenWidth > 768 ? 36 : 28) : 24}
+                                    />
+                                  </div>
+                                </div>
                               </div>
+
+                              {/* Active Dot */}
+                              {isActive && (
+                                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2.5 h-2.5 bg-[#A1E9A5] rounded-full shadow-lg" />
+                              )}
                             </div>
-                          ))}
-                        </div>
+                          );
+                        })}
                       </div>
                     </div>
+
+                    {/* Navigation Arrows */}
+                    <button
+                      className="absolute top-1/2 -translate-y-1/2 left-1 sm:left-2 bg-black/60 text-white p-2 rounded-full hidden sm:block"
+                      onClick={() => scrollCarousel(-1)}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    <button
+                      className="absolute top-1/2 -translate-y-1/2 right-1 sm:right-2 bg-black/60 text-white p-2 rounded-full hidden sm:block"
+                      onClick={() => scrollCarousel(1)}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -168,5 +249,5 @@ export default function Holder() {
         </div>
       </div>
     </div>
-  )
-};
+  );
+}
