@@ -11,7 +11,7 @@ import sunsetCloud3 from '../assets/home-assets/Sunset/cloud3.png';
 import nightMountain4 from '../assets/home-assets/Night/mountain4.png';
 import sunsetMountain4 from '../assets/home-assets/Sunset/mountain4.png';
 import spectrumLogo from '../assets/home-assets/Sunset/spectrum.png';
-import fontboltLogo from '../assets/home-assets/Sunset/fontbolt.png';
+import fontboltLogo from '../assets/home-assets/Sunset/2025-white.png';
 import nightPixelcut1 from '../assets/home-assets/Night/pixelcut1.png';
 import nightPixelcut2 from '../assets/home-assets/Night/pixelcut2.png';
 import nightPixelcut3 from '../assets/home-assets/Night/pixelcut3.png';
@@ -66,14 +66,14 @@ const Home = () => {
     sunset: [sunsetPixelcut1, sunsetPixelcut2, sunsetPixelcut3]
   };
 
-  // Responsive size multipliers
+
   const getSizeMultiplier = () => {
     const screenSize = getScreenSize();
     switch (screenSize) {
-      case 'sm': return 0.4;  // 40% of original size
-      case 'md': return 0.6;  // 60% of original size
-      case 'lg': return 0.8;  // 80% of original size
-      default: return 1;      // 100% original size
+      case 'sm': return 0.4;  
+      case 'md': return 0.6; 
+      case 'lg': return 0.8;  
+      default: return 1;     
     }
   };
 
@@ -81,7 +81,7 @@ const Home = () => {
 
   return (
     <div className="w-screen font-[Audiowide] overflow-x-hidden">
-      {/* ----------- Frame 1: Parallax Section ----------- */}
+      {/*Frame 1: Parallax Section */}
       <div className="relative w-full h-[100vh] overflow-hidden">
 
         {/* Background */}
@@ -151,9 +151,9 @@ const Home = () => {
           );
         })}
 
-        {/* Right Clouds - Only show if we have enough cloud assets */}
+        {/* Right Clouds */}
         {[1, 2].map((i) => {
-          const cloudAsset = cloudAssets[isNight ? 'night' : 'sunset'][i + 2]; // cloud3 for i=0, undefined for i=1
+          const cloudAsset = cloudAssets[isNight ? 'night' : 'sunset'][i + 2]; 
           if (!cloudAsset) return null;
           
           return (
@@ -213,7 +213,7 @@ const Home = () => {
           <img
             src={fontboltLogo}
             alt="Fontbolt Logo"
-            className="w-[150px] sm:w-[220px] md:w-[300px] max-w-[50%] object-contain drop-shadow-lg opacity-70"
+            className="w-[110px] sm:w-[180px] md:w-[260px] max-w-[50%] object-contain drop-shadow-lg opacity-75"
           />
         </div>
 
@@ -263,13 +263,13 @@ const Home = () => {
               }
             `}
           >
-            {isNight ? 'You have the control of time' : 'You have the control of time'}
+            {isNight ? 'Day' : 'Night'}
           </button>
         </div>
       </div>
 
       {/* ----------- Frame 2: Below Main Scene ----------- */}
-      <div className="w-full min-h-screen flex flex-col items-center justify-center">
+      <div className="w-full min-h-screen my-16 flex flex-col items-center justify-center">
         <Timeline />
       </div>
       <Footer />
