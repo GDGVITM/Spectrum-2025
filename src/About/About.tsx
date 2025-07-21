@@ -105,15 +105,15 @@ function About() {
             </h2>
 
             {/* Textbox 1 with pig */}
-            <div className="relative w-[90%] sm:w-[80%] max-w-4xl  mb-20 flex justify-center items-center">
-              <div className="textbox-container">
-                <div className="content-area">
+            <div className="relative w-[90%] sm:w-[80%] max-w-3xl mb-20 flex justify-center items-center">
+              <div className="textbox-container inline-block">
+                <div className="content-area py-4 px-6 sm:py-6 sm:px-8">
                   <div className="connecting-vertical-line left"></div>
                   <div className="connecting-vertical-line right"></div>
                   {linesBox1.map((text, idx) => (
                     <div key={idx} className="line">
                       {idx !== 0 && <div className="line-separator" />}
-                      <span>{text}</span>
+                      <span className="text-sm sm:text-base leading-relaxed">{text}</span>
                     </div>
                   ))}
                 </div>
@@ -121,7 +121,7 @@ function About() {
               <img
                 src={pig}
                 alt="Pig"
-                className="absolute left-0 bottom-0 w-24 sm:w-28 md:w-32 lg:w-40 xl:w-48 animal-image"
+                className="absolute left-0 bottom-0 w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36 animal-image"
                 style={{
                   height: 'auto',
                   transform: 'translate(-35%, 35%)',
@@ -142,15 +142,15 @@ function About() {
             </div>
 
             {/* Textbox 2 with llama */}
-            <div className="relative w-[90%] sm:w-[80%] max-w-4xl mb-20  flex justify-center items-center">
-              <div className="textbox-container">
-                <div className="content-area">
+            <div className="relative w-[90%] sm:w-[80%] max-w-3xl mb-20 flex justify-center items-center">
+              <div className="textbox-container inline-block">
+                <div className="content-area py-4 px-6 sm:py-6 sm:px-8">
                   <div className="connecting-vertical-line left"></div>
                   <div className="connecting-vertical-line right"></div>
                   {linesBox2.map((text, idx) => (
                     <div key={idx} className="line">
                       {idx !== 0 && <div className="line-separator" />}
-                      <span>{text}</span>
+                      <span className="text-sm sm:text-base leading-relaxed">{text}</span>
                     </div>
                   ))}
                 </div>
@@ -158,7 +158,7 @@ function About() {
               <img
                 src={llama}
                 alt="Llama"
-                className="absolute right-0 bottom-0 w-24 sm:w-28 md:w-32 lg:w-40 xl:w-48 animal-image"
+                className="absolute right-0 bottom-0 w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36 animal-image"
                 style={{
                   height: 'auto',
                   transform: 'translate(35%, 35%)',
@@ -169,16 +169,16 @@ function About() {
             {/* VIT Location Section */}
             <div className="w-[90%] mt-6 sm:w-[80%] max-w-6xl mb-20">
               <h3
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#A1E9A5] font-bold mb-8 text-shadow"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#A1E9A5] font-bold mb-6 sm:mb-8 text-shadow text-center lg:text-left"
                 style={{ fontFamily: 'Press Start 2P' }}
               >
                 FIND US AT VIT
               </h3>
               
               {/* Map and Address Side by Side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
                 {/* Map Section - Square (Left) */}
-                <div className="relative">
+                <div className="relative order-2 lg:order-1">
                   <div 
                     className="w-full aspect-square rounded-lg overflow-hidden"
                     style={{
@@ -187,14 +187,14 @@ function About() {
                     }}
                   >
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.042926280613!2d72.8397!3d19.0176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cf26f4d0c4e5%3A0x1b10edc7a7c4a8c4!2sVidyalankar%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1642584000000!5m2!1sen!2sin"
+                      src="https://www.google.com/maps?q=Vidyalankar+Institute+of+Technology,+Vidyalankar+Educational+Campus,+Vidyalankar+College+Marg,+Wadala+East,+Deen+Bandhu+Nagar,+Antop+Hill,+Mumbai,+Maharashtra+400037&output=embed"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
                       allowFullScreen={true}
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Vidyalankar Institute of Technology Location"
+                      title="VIT Location - 2VCC+J6V, College Marg, Wadala"
                     />
                   </div>
                   
@@ -209,52 +209,56 @@ function About() {
                 </div>
 
                 {/* Address Section (Right) */}
-                <div className="flex flex-col aspect-square">
+                <div className="flex flex-col order-1 lg:order-2">
                   {/* Address Box */}
                   <div 
-                    className="w-full flex-1 rounded-lg overflow-hidden flex items-center justify-center mb-4"
+                    className="w-full rounded-lg overflow-hidden inline-block mb-4 sm:mb-6"
                     style={{
                       boxShadow: '0 0 20px rgba(161, 233, 165, 0.3)',
                     }}
                   >
-                    <div className="textbox-container w-full h-full flex items-center justify-center p-0">
-                      <div className="content-area p-4">
+                    <div className="textbox-container inline-block w-full">
+                      <div className="content-area py-4 px-6 sm:py-5 sm:px-7">
                         <div className="line">
-                          <span className="text-[#A1E9A5] font-semibold">Vidyalankar Institute of Technology</span>
+                          <span className="text-[#A1E9A5] font-semibold text-base sm:text-lg">
+                            Vidyalankar Institute of Technology
+                          </span>
                         </div>
                         <div className="line">
                           <div className="line-separator" />
-                          <span>Vidyalankar Educational Campus</span>
+                          <span className="text-sm sm:text-base">
+                            2VCC+J6V, College Marg
+                          </span>
                         </div>
                         <div className="line">
                           <div className="line-separator" />
-                          <span>Vidyalankar College Marg, Wadala (E)</span>
+                          <span className="text-sm sm:text-base">
+                            Wadala (E), Sangam Nagar
+                          </span>
                         </div>
                         <div className="line">
                           <div className="line-separator" />
-                          <span>Sangam Nagar, Antop Hill</span>
-                        </div>
-                        <div className="line">
-                          <div className="line-separator" />
-                          <span>Mumbai - 400037, Maharashtra, India</span>
+                          <span className="text-sm sm:text-base">
+                            Mumbai, Maharashtra 400037
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
                   
                   {/* Directions Button */}
-                  <div className="flex justify-start">
+                  <div className="flex justify-center lg:justify-start">
                     <a
-                      href="https://www.google.com/maps/dir//Vidyalankar+Institute+of+Technology,+Vidyalankar+Educational+Campus,+Vidyalankar+College+Marg,+Wadala+East,+Deen+Bandhu+Nagar,+Antop+Hill,+Mumbai,+Maharashtra+400037"
+                      href="https://www.google.com/maps/dir//2VCC%2BJ6V%2C+College+Marg%2C+Wadala%28E%2C+Sangam+Nagar%2C+Mumbai%2C+Maharashtra+400037"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center px-6 py-3 text-black bg-[#A1E9A5] hover:bg-[#8fd993] font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+                      className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 text-black bg-[#A1E9A5] hover:bg-[#8fd993] font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
                       style={{
                         boxShadow: '0 0 20px rgba(161, 233, 165, 0.4)',
                         fontFamily: 'Audiowide',
                       }}
                     >
-                      <MapPin size={20} className="mr-2" />
+                      <MapPin size={16} className="mr-2 sm:mr-2 sm:w-5 sm:h-5" />
                       GET DIRECTIONS
                     </a>
                   </div>

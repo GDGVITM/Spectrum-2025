@@ -266,10 +266,19 @@ const Home = () => {
             {isNight ? 'Day' : 'Night'}
           </button>
         </div>
+
+        {/* Black Bottom Gradient */}
+        <div
+          className="absolute bottom-0 left-0 w-full h-32 pointer-events-none"
+          style={{
+            background: 'linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3), black)',
+            zIndex: 10,
+          }}
+        />
       </div>
 
       {/* ----------- Frame 2: Below Main Scene ----------- */}
-      <div className="w-full min-h-screen my-16 flex flex-col items-center justify-center">
+      <div className="w-full min-h-screen my-16 flex flex-col items-center justify-center bg-black">
         <Timeline />
       </div>
       <Footer />
