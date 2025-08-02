@@ -1,617 +1,851 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
-        
-        .minecraft-world {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 50px 0;
-          min-height: 100vh;
-          position: relative;
-        }
-        
-        .minecraft-world * {
-          box-sizing: border-box;
-        }
-        
-        .minecraft-world .timeline-container {
-          display: flex;
-          gap: 100px;
-          width: 100%;
-          height: 100px;
-          justify-content: center;
-          font-weight: 900;
-          font-size: 67px;
-          position: relative;
-        }
-        
-        /* Static connection line */
-        .minecraft-world .timeline-container::before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: 10%;
-          right: 10%;
-          height: 2px;
-          background: #333;
-          transform: translateY(-50%);
-          z-index: 0;
-        }
-        
-        /* Flowing line animation */
-        .minecraft-world .timeline-container::after {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: 10%;
-          height: 2px;
-          background: linear-gradient(90deg, #8bc34a, #ffc107, #8bc34a, #ffc107, #4caf50);
-          transform: translateY(-50%);
-          z-index: 1;
-          animation: flowingLine 5s ease-in-out 1s forwards;
-          width: 0%;
-          box-shadow: 0 0 10px rgba(139, 195, 74, 0.8);
-        }
-        
-        .minecraft-world .timeline-point {
-          transition: all 0.3s ease;
-          border-radius: 20px;
-          background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
-          box-shadow: 10px 10px 30px #1c1f23, -10px -10px 30px #404040;
-          display: grid;
-          place-items: center;
-          width: 100px;
-          height: 100px;
-          position: relative;
-          color: #666;
-          border: 2px solid rgba(255, 255, 255, 0.1);
-          z-index: 5;
-        }
-        
-        /* Timeline point glow animations - each triggered when line reaches them */
-        .minecraft-world .timeline-point:nth-child(1) {
-          --color: #A1E9A5;
-          --delay: 1.2s; /* When line reaches first point */
-          animation: pointGlow 0.5s ease-out var(--delay) forwards;
-        }
-        
-        .minecraft-world .timeline-point:nth-child(2) {
-          --color: #A1E9A5;
-          --delay: 2.2s; /* When line reaches second point */
-          animation: pointGlow 0.5s ease-out var(--delay) forwards;
-        }
-        
-        .minecraft-world .timeline-point:nth-child(3) {
-          --color: #A1E9A5;
-          --delay: 3.2s; /* When line reaches third point */
-          animation: pointGlow 0.5s ease-out var(--delay) forwards;
-        }
-        
-        .minecraft-world .timeline-point:nth-child(4) {
-          --color: #A1E9A5;
-          --delay: 4.2s; /* When line reaches fourth point */
-          animation: pointGlow 0.5s ease-out var(--delay) forwards;
-        }
-        
-        .minecraft-world .timeline-point:nth-child(5) {
-          --color: #A1E9A5;
-          --delay: 5.2s; /* When line reaches fifth point */
-          animation: pointGlow 0.5s ease-out var(--delay) forwards;
-        }
-        
-        .minecraft-world .popup {
-          width: 370px;
-          height: 220px;
-          max-height: 220px;
-          min-height: 220px;
-          background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
-          display: flex;
-          align-items: flex-start;
-          position: absolute;
-          color: white;
-          border-radius: 8px;
-          border: 2px solid gray;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-          transform-origin: bottom bottom;
-          overflow: hidden;
-          padding: 0;
-          z-index: 20;
-          opacity: 0;
-          animation: expandPopup 0.6s ease-out calc(var(--delay) + 0.3s) forwards;
-        }
-        
-        .minecraft-world .popup::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          /* background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700); */
-        }
-        
-        .minecraft-world .popup-number {
-          width: 48px;
-          height: 48px;
-          background: linear-gradient(145deg, #8b4513, #654321);
-          border: 1px solid #a0522d;
-          border-radius: 4px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.2rem;
-          font-weight: bold;
-          color: #ffd700;
-          margin: 12px;
-          flex-shrink: 0;
-          opacity: 0;
-          animation: fadeIn 0.4s ease-out calc(var(--delay) + 0.5s) forwards;
-          box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.2), inset -2px -2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .minecraft-world .popup-details {
-          padding: 12px 16px 12px 0;
-          background: transparent;
-          border-radius: 0;
-          opacity: 0;
-          font-weight: 500;
-          user-select: none;
-          cursor: auto;
-          overflow: visible;
-          font-size: 0.85rem;
-          text-align: left;
-          margin: 0;
-          animation: fadeIn 0.4s ease-out calc(var(--delay) + 0.5s) forwards;
-          flex: 1;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-        }
-        
-        .minecraft-world .popup-title {
-          color: #ffd700;
-          padding-bottom: 4px;
-          font-size: 17px;
-          font-weight: 600;
-          text-shadow: 1px 1px 0 #000;
-          letter-spacing: 0.5px;
-          margin-bottom: 6px;
-        }
 
-        .minecraft-world .popup-date {
-          color: #A1E9A5;
-          font-size: 14px;
-          font-weight: 600;
-          margin-bottom: 4px;
-          text-shadow: 1px 1px 0 #000;
-          background: rgba(0, 188, 212, 0.1);
-          padding: 2px 6px;
-          border-radius: 4px;
-          border-left: 3px solid #A1E9A5;
-        }
+.minecraft-world {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  min-height: 100vh;
+  position: relative;
+}
 
-        .minecraft-world .popup-venue {
-          color: #ff9800;
-          font-size: 13px;
-          font-weight: 500;
-          margin-bottom: 8px;
-          opacity: 0.9;
-        }
+.minecraft-world * {
+  box-sizing: border-box;
+}
 
-        .minecraft-world .popup-description {
-          color: #ffffff;
-          font-size: 13px;
-          line-height: 1.4;
-          opacity: 0.9;
-        }
+.minecraft-world .timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  width: 100%;
+  max-width: 800px;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 67px;
+  position: relative;
+  padding: 50px 0;
+}
 
-        /* Make dates more distinguishable */
-        .minecraft-world .popup-details {
-          line-height: 1.4;
-        }
-        
-        .minecraft-world .popup::after {
-          content: "";
-          width: 2px;
-          height: 0;
-          border-radius: 20px;
-          background: linear-gradient(180deg, var(--color), rgba(0, 0, 0, 0.3));
-          position: absolute;
-          left: 50%;
-          display: flex;
-          box-shadow: 0 0 8px var(--color);
-          animation: drawLine 0.4s ease-out calc(var(--delay) + 0.2s) forwards;
-        }
-        
-        .minecraft-world .timeline-point:nth-child(odd) .popup {
-          bottom: 180px;
-        }
-        
-        .minecraft-world .timeline-point:nth-child(odd) .popup::after {
-          top: -30px;
-        }
-        
-        .minecraft-world .timeline-point:nth-child(even) .popup {
-          top: 180px;
-        }
-        
-        .minecraft-world .timeline-point:nth-child(even) .popup::after {
-          bottom: -30px;
-        }
-        
-        .minecraft-world .timeline-point:hover {
-          transform: translateY(-2px);
-          box-shadow: 10px 10px 30px #1c1f23, -10px -10px 30px #404040, 0 0 40px var(--color);
-        }
-        
-        /* Flowing line animation */
-        @keyframes flowingLine {
-          0% { width: 0%; }
-          100% { width: 80%; }
-        }
-        
-        /* Timeline point glow when line reaches it */
-        @keyframes pointGlow {
-          0% { 
-            color: #666;
-            background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
-            box-shadow: 10px 10px 30px #1c1f23, -10px -10px 30px #404040;
-          }
-          100% { 
-            color: var(--color);
-            /* background: linear-gradient(145deg, var(--color), #2c2c2c); */
-            box-shadow: 10px 10px 30px #1c1f23, -10px -10px 30px #404040, 0 0 30px var(--color);
-          }
-        }
-        
-        /* Popup expansion */
-        @keyframes expandPopup {
-          0% { 
-            height: 0;
-            max-height: 0;
-            min-height: 0;
-            opacity: 0;
-            transform: scale(0.8);
-          }
-          100% { 
-            height: 220px;
-            max-height: 220px;
-            min-height: 220px;
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
-        /* Connection line drawing */
-        @keyframes drawLine {
-          0% { height: 0%; opacity: 0; }
-          100% { height: 25px; opacity: 1; }
-        }
-        
-        /* Fade in animation */
-        @keyframes fadeIn {
-          to { opacity: 1; }
-        }
+/* Static vertical connection line */
+.minecraft-world .timeline-container::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 50%;
+  width: 4px;
+  background: #333;
+  transform: translateX(-50%);
+  z-index: 0;
+  border-radius: 2px;
+}
 
-        /* Background Effects */
-        .background-effects {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-          overflow: hidden;
-        }
+/* Flowing vertical line animation */
+.minecraft-world .timeline-container::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 4px;
+  background: linear-gradient(180deg, #8bc34a, #ffc107, #8bc34a, #ffc107, #4caf50);
+  transform: translateX(-50%);
+  z-index: 1;
+  animation: flowingLineVertical 5s ease-in-out 1s forwards;
+  height: 0%;
+  box-shadow: 0 0 15px rgba(139, 195, 74, 0.8);
+  border-radius: 2px;
+}
 
-        .gradient-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            45deg,
-            rgba(139, 69, 19, 0.1) 0%,
-            rgba(34, 139, 34, 0.1) 25%,
-            rgba(0, 100, 0, 0.1) 50%,
-            rgba(85, 107, 47, 0.1) 75%,
-            rgba(139, 69, 19, 0.1) 100%
-          );
-          animation: gradientShift 8s ease-in-out infinite;
-        }
+.minecraft-world .timeline-point {
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+  box-shadow: 10px 10px 30px #1c1f23, -10px -10px 30px #404040;
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  color: #666;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  z-index: 5;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
 
-        @keyframes gradientShift {
-          0%, 100% {
-            opacity: 0.3;
-          }
-          50% {
-            opacity: 0.6;
-          }
-        }
+.minecraft-world .timeline-point.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-        /* Particles */
-        .particles {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-        }
+/* Timeline point glow animations - triggered on scroll */
+.minecraft-world .timeline-point:nth-child(1).visible {
+  --color: #A1E9A5;
+  animation: pointGlow 0.5s ease-out 0.1s forwards;
+}
 
-        .particle {
-          position: absolute;
-          background: rgba(255, 255, 255, 0.3);
-          border-radius: 50%;
-          animation: floatParticle 6s linear infinite;
-        }
+.minecraft-world .timeline-point:nth-child(2).visible {
+  --color: #A1E9A5;
+  animation: pointGlow 0.5s ease-out 0.1s forwards;
+}
 
-        .particle-0 {
-          width: 4px;
-          height: 4px;
-          left: 10%;
-          animation-delay: 0s;
-          animation-duration: 8s;
-        }
+.minecraft-world .timeline-point:nth-child(3).visible {
+  --color: #A1E9A5;
+  animation: pointGlow 0.5s ease-out 0.1s forwards;
+}
 
-        .particle-1 {
-          width: 6px;
-          height: 6px;
-          left: 30%;
-          animation-delay: 2s;
-          animation-duration: 10s;
-        }
+.minecraft-world .timeline-point:nth-child(4).visible {
+  --color: #A1E9A5;
+  animation: pointGlow 0.5s ease-out 0.1s forwards;
+}
 
-        .particle-2 {
-          width: 3px;
-          height: 3px;
-          left: 60%;
-          animation-delay: 4s;
-          animation-duration: 7s;
-        }
+.minecraft-world .timeline-point:nth-child(5).visible {
+  --color: #A1E9A5;
+  animation: pointGlow 0.5s ease-out 0.1s forwards;
+}
 
-        .particle-3 {
-          width: 5px;
-          height: 5px;
-          left: 80%;
-          animation-delay: 1s;
-          animation-duration: 9s;
-        }
+.minecraft-world .popup {
+  min-width: 380px;
+  width: max-content;
+  max-width: 450px;
+  min-height: 200px;
+  height: auto;
+  background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  color: white;
+  border-radius: 8px;
+  border: 2px solid gray;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform-origin: center left;
+  overflow: hidden;
+  padding: 0;
+  z-index: 20;
+  opacity: 0;
+  transform: translateY(-50%) scale(0.8);
+  transition: all 0.6s ease-out;
+  top: 50%;
+}
 
-        @keyframes floatParticle {
-          0% {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.8;
-          }
-          90% {
-            opacity: 0.8;
-          }
-          100% {
-            transform: translateY(-10px) rotate(360deg);
-            opacity: 0;
-          }
-        }
+.minecraft-world .timeline-point.visible .popup {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
 
-        /* Grid Background */
-        .grid-background {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          opacity: 0.1;
-        }
+.minecraft-world .popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
 
-        .grid-lines {
-          width: 100%;
-          height: 100%;
-          background-image: 
-            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-          background-size: 50px 50px;
-          animation: gridMove 20s linear infinite;
-        }
+.minecraft-world .popup-number {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(145deg, #8b4513, #654321);
+  border: 1px solid #a0522d;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffd700;
+  margin: 14px;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s ease-out;
+  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.2), inset -2px -2px 4px rgba(0, 0, 0, 0.5);
+}
 
-        @keyframes gridMove {
-          0% {
-            transform: translate(0, 0);
-          }
-          100% {
-            transform: translate(50px, 50px);
-          }
-        }
+.minecraft-world .timeline-point.visible .popup-number {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.2s;
+}
 
-        /* Floating Elements */
-        .floating-elements {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-        }
+.minecraft-world .popup-details {
+  padding: 14px 18px 14px 0;
+  background: transparent;
+  border-radius: 0;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.4s ease-out;
+  font-weight: 500;
+  user-select: none;
+  cursor: auto;
+  overflow: visible;
+  font-size: 0.95rem;
+  text-align: left;
+  margin: 0;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  line-height: 1.5;
+}
 
-        .floating-cube {
-          position: absolute;
-          background: linear-gradient(
-            45deg,
-            rgba(139, 69, 19, 0.3),
-            rgba(160, 82, 45, 0.3)
-          );
-          border: 1px solid rgba(139, 69, 19, 0.5);
-          border-radius: 4px;
-        }
+.minecraft-world .timeline-point.visible .popup-details {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.3s;
+}
 
-        .floating-cube-1 {
-          width: 20px;
-          height: 20px;
-          top: 20%;
-          left: 15%;
-          animation: floatCube 12s ease-in-out infinite;
-        }
+.minecraft-world .popup-title {
+  color: #ffd700;
+  padding-bottom: 6px;
+  font-size: 19px;
+  font-weight: 600;
+  text-shadow: 1px 1px 0 #000;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
 
-        .floating-cube-2 {
-          width: 15px;
-          height: 15px;
-          top: 60%;
-          right: 20%;
-          animation: floatCube 15s ease-in-out infinite reverse;
-        }
+.minecraft-world .popup-date {
+  color: #A1E9A5;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-shadow: 1px 1px 0 #000;
+  background: rgba(0, 188, 212, 0.1);
+  padding: 3px 7px;
+  border-radius: 4px;
+  border-left: 3px solid #A1E9A5;
+  line-height: 1.4;
+}
 
-        .floating-cube-3 {
-          width: 25px;
-          height: 25px;
-          bottom: 30%;
-          left: 70%;
-          animation: floatCube 10s ease-in-out infinite;
-          animation-delay: 3s;
-        }
+.minecraft-world .popup-venue {
+  color: #ff9800;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
 
-        .floating-orb {
-          position: absolute;
-          background: radial-gradient(
-            circle,
-            rgba(34, 139, 34, 0.4),
-            rgba(0, 100, 0, 0.2)
-          );
-          border-radius: 50%;
-          border: 1px solid rgba(34, 139, 34, 0.3);
-        }
+.minecraft-world .popup-description {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
 
-        .floating-orb-1 {
-          width: 30px;
-          height: 30px;
-          top: 40%;
-          right: 10%;
-          animation: floatOrb 14s ease-in-out infinite;
-        }
+/* Horizontal connecting lines from timeline points to popups */
+.minecraft-world .popup::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--color), rgba(0, 0, 0, 0.3));
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  box-shadow: 0 0 8px var(--color);
+  transition: all 0.4s ease-out;
+  z-index: -1;
+}
 
-        .floating-orb-2 {
-          width: 20px;
-          height: 20px;
-          bottom: 20%;
-          left: 10%;
-          animation: floatOrb 18s ease-in-out infinite reverse;
-          animation-delay: 5s;
-        }
+.minecraft-world .timeline-point.visible .popup::after {
+  width: 25px;
+  opacity: 1;
+  transition-delay: 0.1s;
+}
 
-        @keyframes floatCube {
-          0%, 100% {
-            transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-          }
-          25% {
-            transform: translateY(-20px) rotateX(90deg) rotateY(90deg);
-          }
-          50% {
-            transform: translateY(-10px) rotateX(180deg) rotateY(180deg);
-          }
-          75% {
-            transform: translateY(-30px) rotateX(270deg) rotateY(270deg);
-          }
-        }
+/* Alternating left and right positioning */
+.minecraft-world .timeline-point:nth-child(odd) .popup {
+  left: 150px;
+}
 
-        @keyframes floatOrb {
-          0%, 100% {
-            transform: translateY(0px) scale(1);
-            opacity: 0.6;
-          }
-          50% {
-            transform: translateY(-40px) scale(1.2);
-            opacity: 0.8;
-          }
-        }
+.minecraft-world .timeline-point:nth-child(odd) .popup::after {
+  left: -30px;
+}
 
-        /* Light Rays */
-        .light-rays {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-        }
+.minecraft-world .timeline-point:nth-child(even) .popup {
+  right: 150px;
+}
 
-        .light-ray {
-          position: absolute;
-          background: linear-gradient(
-            45deg,
-            transparent,
-            rgba(255, 255, 255, 0.1),
-            transparent
-          );
-          transform-origin: center;
-        }
+.minecraft-world .timeline-point:nth-child(even) .popup::after {
+  right: -30px;
+}
 
-        .light-ray-1 {
-          width: 2px;
-          height: 100%;
-          left: 25%;
-          animation: rotateRay 20s linear infinite;
-        }
+.minecraft-world .timeline-point:hover {
+  transform: translateY(-2px);
+  box-shadow: 10px 10px 30px #1c1f23, -10px -10px 30px #404040, 0 0 40px var(--color);
+}
 
-        .light-ray-2 {
-          width: 1px;
-          height: 100%;
-          right: 30%;
-          animation: rotateRay 25s linear infinite reverse;
-          animation-delay: 5s;
-        }
+/* Animations */
+@keyframes flowingLineVertical {
+  0% { height: 0%; }
+  100% { height: 80%; }
+}
 
-        .light-ray-3 {
-          width: 3px;
-          height: 100%;
-          left: 70%;
-          animation: rotateRay 15s linear infinite;
-          animation-delay: 10s;
-        }
+@keyframes pointGlow {
+  0% { 
+    color: #666;
+    background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+    box-shadow: 10px 10px 30px #1c1f23, -10px -10px 30px #404040;
+  }
+  100% { 
+    color: var(--color);
+    box-shadow: 10px 10px 30px #1c1f23, -10px -10px 30px #404040, 0 0 30px var(--color);
+  }
+}
 
-        @keyframes rotateRay {
-          0% {
-            transform: rotate(0deg);
-            opacity: 0;
-          }
-          25% {
-            opacity: 0.3;
-          }
-          75% {
-            opacity: 0.3;
-          }
-          100% {
-            transform: rotate(360deg);
-            opacity: 0;
-          }
-        }
+@keyframes expandPopup {
+  0% { 
+    transform: translateY(-50%) scale(0.8);
+  }
+  100% { 
+    transform: translateY(-50%) scale(1);
+  }
+}
 
-        @media (max-width: 1050px) {
-          .minecraft-world {
-            padding: 50px 20px;
-          }
-          
-          .minecraft-world .timeline-container {
-            flex-direction: column;
-            height: auto;
-            width: 100%;
-            padding: 100px 0px;
-            gap: 80px;
-          }
-          
-          .minecraft-world .timeline-container::before,
-          .minecraft-world .timeline-container::after {
-            display: none;
-          }
-          
-          .minecraft-world .timeline-point {
-            height: 100px;
-            flex-shrink: 0;
-            left: calc(-300px / 2);
-            margin: 0px auto;
-            position: relative;
-          }
-          
-          .minecraft-world .timeline-point .popup::after {
-            display: none;
-          }
-          
-          .minecraft-world .timeline-point:nth-child(odd) .popup {
-            bottom: auto;
-            right: -320px;
-          }
-          
-          .minecraft-world .timeline-point:nth-child(even) .popup {
-            top: auto;
-            right: -320px;
-          }
-        }
+/* Mobile expandPopup animation */
+@media (max-width: 768px) {
+  @keyframes expandPopup {
+    0% { 
+      transform: scale(0.9);
+    }
+    100% { 
+      transform: scale(1);
+    }
+  }
+}
+
+@keyframes drawLineHorizontal {
+  0% { width: 0%; opacity: 0; }
+  100% { width: 25px; opacity: 1; }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Background Effects */
+.background-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(139, 69, 19, 0.1) 0%,
+    rgba(34, 139, 34, 0.1) 25%,
+    rgba(0, 100, 0, 0.1) 50%,
+    rgba(85, 107, 47, 0.1) 75%,
+    rgba(139, 69, 19, 0.1) 100%
+  );
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: floatParticle 6s linear infinite;
+}
+
+.particle-0 {
+  width: 4px;
+  height: 4px;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 8s;
+}
+
+.particle-1 {
+  width: 6px;
+  height: 6px;
+  left: 30%;
+  animation-delay: 2s;
+  animation-duration: 10s;
+}
+
+.particle-2 {
+  width: 3px;
+  height: 3px;
+  left: 60%;
+  animation-delay: 4s;
+  animation-duration: 7s;
+}
+
+.particle-3 {
+  width: 5px;
+  height: 5px;
+  left: 80%;
+  animation-delay: 1s;
+  animation-duration: 9s;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-10px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.grid-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+}
+
+.grid-lines {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+.floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-cube {
+  position: absolute;
+  background: linear-gradient(
+    45deg,
+    rgba(139, 69, 19, 0.3),
+    rgba(160, 82, 45, 0.3)
+  );
+  border: 1px solid rgba(139, 69, 19, 0.5);
+  border-radius: 4px;
+}
+
+.floating-cube-1 {
+  width: 20px;
+  height: 20px;
+  top: 20%;
+  left: 15%;
+  animation: floatCube 12s ease-in-out infinite;
+}
+
+.floating-cube-2 {
+  width: 15px;
+  height: 15px;
+  top: 60%;
+  right: 20%;
+  animation: floatCube 15s ease-in-out infinite reverse;
+}
+
+.floating-cube-3 {
+  width: 25px;
+  height: 25px;
+  bottom: 30%;
+  left: 70%;
+  animation: floatCube 10s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+.floating-orb {
+  position: absolute;
+  background: radial-gradient(
+    circle,
+    rgba(34, 139, 34, 0.4),
+    rgba(0, 100, 0, 0.2)
+  );
+  border-radius: 50%;
+  border: 1px solid rgba(34, 139, 34, 0.3);
+}
+
+.floating-orb-1 {
+  width: 30px;
+  height: 30px;
+  top: 40%;
+  right: 10%;
+  animation: floatOrb 14s ease-in-out infinite;
+}
+
+.floating-orb-2 {
+  width: 20px;
+  height: 20px;
+  bottom: 20%;
+  left: 10%;
+  animation: floatOrb 18s ease-in-out infinite reverse;
+  animation-delay: 5s;
+}
+
+@keyframes floatCube {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotateX(90deg) rotateY(90deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(180deg) rotateY(180deg);
+  }
+  75% {
+    transform: translateY(-30px) rotateX(270deg) rotateY(270deg);
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-40px) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.light-rays {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.light-ray {
+  position: absolute;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform-origin: center;
+}
+
+.light-ray-1 {
+  width: 2px;
+  height: 100%;
+  left: 25%;
+  animation: rotateRay 20s linear infinite;
+}
+
+.light-ray-2 {
+  width: 1px;
+  height: 100%;
+  right: 30%;
+  animation: rotateRay 25s linear infinite reverse;
+  animation-delay: 5s;
+}
+
+.light-ray-3 {
+  width: 3px;
+  height: 100%;
+  left: 70%;
+  animation: rotateRay 15s linear infinite;
+  animation-delay: 10s;
+}
+
+@keyframes rotateRay {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .minecraft-world {
+    padding: 30px 15px;
+  }
+  
+  .minecraft-world .timeline-container {
+    gap: 30px;
+    max-width: 100%;
+    padding: 30px 0;
+  }
+  
+  .minecraft-world .timeline-container::before,
+  .minecraft-world .timeline-container::after {
+    display: none;
+  }
+  
+  .minecraft-world .timeline-point {
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    display: block;
+    position: static;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+  }
+  
+  .minecraft-world .timeline-point.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .minecraft-world .popup {
+    width: 100%;
+    min-width: auto;
+    max-width: none;
+    height: auto;
+    min-height: auto;
+    position: static;
+    transform: none;
+    margin: 0;
+    opacity: 0;
+    top: auto;
+    left: auto;
+    right: auto;
+    transition: all 0.5s ease-out;
+  }
+  
+  .minecraft-world .timeline-point.visible .popup {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .minecraft-world .popup-number {
+    opacity: 0;
+    transition: all 0.4s ease-out;
+  }
+  
+  .minecraft-world .timeline-point.visible .popup-number {
+    opacity: 1;
+    transition-delay: 0.1s;
+  }
+  
+  .minecraft-world .popup-details {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease-out;
+    font-size: 0.9rem;
+  }
+  
+  .minecraft-world .timeline-point.visible .popup-details {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+  
+  .minecraft-world .popup-title {
+    font-size: 17px;
+  }
+  
+  .minecraft-world .popup-date {
+    font-size: 14px;
+  }
+  
+  .minecraft-world .popup-venue {
+    font-size: 13px;
+  }
+  
+  .minecraft-world .popup-description {
+    font-size: 13px;
+  }
+  
+  .minecraft-world .timeline-point:nth-child(odd) .popup,
+  .minecraft-world .timeline-point:nth-child(even) .popup {
+    position: static;
+    transform: none;
+    left: auto;
+    right: auto;
+    top: auto;
+    margin: 0;
+  }
+  
+  .minecraft-world .timeline-point:nth-child(odd) .popup::after,
+  .minecraft-world .timeline-point:nth-child(even) .popup::after {
+    display: none;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .minecraft-world .timeline-container {
+    gap: 25px;
+    padding: 15px 0;
+  }
+  
+  .minecraft-world .timeline-point {
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    display: block;
+    position: static;
+  }
+  
+  .minecraft-world .popup {
+    width: 100%;
+    min-width: auto;
+    max-width: none;
+    height: auto;
+    min-height: auto;
+    position: static;
+    transform: none;
+    margin: 0;
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .minecraft-world {
+    min-height: auto;
+    padding: 20px 15px;
+  }
+  
+  .minecraft-world .timeline-container {
+    gap: 180px;
+  }
+  
+  .minecraft-world .timeline-point:nth-child(odd) .popup,
+  .minecraft-world .timeline-point:nth-child(even) .popup {
+    top: 120px;
+  }
+  
+  .minecraft-world .popup {
+    min-height: 140px;
+  }
+}
+
+/* Enhanced Mobile Responsive Styles */
+.minecraft-world.mobile {
+  padding: 20px 10px;
+}
+
+.minecraft-world.mobile .timeline-container {
+  gap: 30px;
+  padding: 20px 0;
+}
+
+.minecraft-world.mobile .timeline-container::before,
+.minecraft-world.mobile .timeline-container::after {
+  display: none;
+}
+
+.minecraft-world.mobile .timeline-point {
+  width: auto;
+  height: auto;
+  background: none;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+  display: block;
+  position: static;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
+
+.minecraft-world.mobile .timeline-point.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.minecraft-world.mobile .popup {
+  width: 100%;
+  min-width: auto;
+  max-width: none;
+  height: auto;
+  min-height: auto;
+  position: static;
+  transform: none;
+  margin: 0;
+  opacity: 0;
+  top: auto;
+  left: auto;
+  right: auto;
+  transition: all 0.5s ease-out;
+}
+
+.minecraft-world.mobile .timeline-point.visible .popup {
+  opacity: 1;
+  transform: none;
+}
+
+.minecraft-world.mobile .popup-number {
+  opacity: 0;
+  transition: all 0.4s ease-out;
+}
+
+.minecraft-world.mobile .timeline-point.visible .popup-number {
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.minecraft-world.mobile .popup-details {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease-out;
+}
+
+.minecraft-world.mobile .timeline-point.visible .popup-details {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}

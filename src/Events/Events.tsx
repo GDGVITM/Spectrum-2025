@@ -1,15 +1,13 @@
-// 🔹 React & Hooks
 import { useState, useRef, useEffect } from "react";
-import gsap from "gsap";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-// 🔹 Assets (Images)
 import bg from "../assets/Union.png";
 import techfeudImage from "./posters/techfeud.png";
 import launchpad from "./posters/launchpad.png";
 import hackbuild from "./posters/hackbuild.png";
 import ai4startup from "./posters/ai4startup.png";
 
-// 🔹 SVG Components
+
 import {
   Arrow,
   LaunchPadPrize,
@@ -18,132 +16,98 @@ import {
   Hackbuildprize,
 } from "./svg";
 
-// 🔹 Event Detail Components
+
 import TechFeudComponent from "./EventComponents/TechFeudComponent";
 import LaunchPadComponent from "./EventComponents/LaunchPadComponent";
 import HackBuildComponent from "./EventComponents/HackBuildComponent";
 import AIStartupComponent from "./EventComponents/AIStartupComponent";
 
-// 🔹 Common Components
+
 import Footer from "../components/Footer";
 
 const Events = () => {
   const [activeEvent, setActiveEvent] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
- const events = [
+  const events = [
     {
       image: techfeudImage,
       title: "Big O Battle - Powered by GeeksforGeeks",
       description:
         "Test your problem solving skills by solving questions based on Data Structures and Algorithms, and compete with others in a thrilling contest.",
-      date: "30th July",
+      date: "14th August",
       prizeComponent: <Techfeudprize />,
       component: <TechFeudComponent />,
+      registerLink: "https://unstop.com/hackathons/big-o-battle-powered-by-geeksforgeeks-dsa-competition-spectrum-2025-vit-mumbai-1526360",
     },
-    {
-      image: hackbuild,
-      title: "HackBuild",
-      description:
-        "Get ready to build innovative solutions in a collaborative environment, where creativity meets technology.",
-      date: "R1: 31st July, R2: 2nd & 3rd August",
-      prizeComponent: <Hackbuildprize />,
-      component: <HackBuildComponent />,
-    },
-    {
+     {
       image: launchpad,
       title: "Launch Pad",
       description:
         "Welcome to LaunchPad, a high-stakes business strategy competition that challenges participants to think beyond conventional startup ideation. Instead of creating new startups, participants must analyze failed real-world businesses and devise innovative revival strategies.",
-      date: "5th & 6th August",
+      date: "18th & 19th August",
       prizeComponent: <LaunchPadPrize />,
       component: <LaunchPadComponent />,
+      registerLink: "https://unstop.com/hackathons/launchpad-vibe-coding-saas-startup-challenge-spectrum-2025-vit-mumbai-1529774",
     },
     {
       image: ai4startup,
       title: "GSOC Guidance Session",
       description:
         "Join us for an insightful session on GSOC, where you'll receive guidance on how to make your application stand out.",
-      date: "8th August",
+      date: "21st August",
       prizeComponent: null,
       component: <AIStartupComponent />,
+      registerLink: "https://lu.ma/slb6g0zd",
+    },
+     {
+      image: hackbuild,
+      title: "HackBuild",
+      description:
+        "Get ready to build innovative solutions in a collaborative environment, where creativity meets technology. We have two rounds for hackathon, first round is online and second round is on-site. In the first round, participants will submit their project ideas and prototypes online, and the top teams will be selected to present their projects in person during the second round.",
+      date: "12th to 24th August",
+      prizeComponent: <Hackbuildprize />,
+      component: <HackBuildComponent />,
+      registerLink: "https://hackbuild.gdgvitm.tech",
     },
   ];
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setActiveEvent((prevActiveEvent) => (prevActiveEvent + 1) % events.length);
+    }, 10000);
+
+    return () => clearInterval(intervalId);
+  }, [events.length]);
+
   const handleImageClick = (index: number) => {
-    if (index === activeEvent || transitioning) return;
-    setTransitioning(true);
-    setTimeout(() => {
-      setActiveEvent(index);
-      setSelectedIndex(index);
-      setTransitioning(false);
-    }, 600);
+    if (index === activeEvent) return;
+    setActiveEvent(index);
   };
 
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (!scrollContainer) return;
-
-    const cardWidth = 220 + 24;
-    const scrollTo = selectedIndex * cardWidth;
-
-    gsap.to(scrollContainer, {
-      scrollLeft: scrollTo,
-      duration: 0.6,
-      ease: "power3.inOut",
-    });
-  }, [selectedIndex]);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const handleWheel = (e: WheelEvent) => {
-      if (container.scrollLeft + e.deltaY < container.scrollWidth - container.clientWidth) {
-        e.preventDefault();
-        container.scrollLeft += e.deltaY;
-      }
-    };
-
-    container.addEventListener("wheel", handleWheel, { passive: false });
-    return () => container.removeEventListener("wheel", handleWheel);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!transitioning) {
-        const nextIndex = (activeEvent + 1) % events.length;
-        setTransitioning(true);
-        setTimeout(() => {
-          setActiveEvent(nextIndex);
-          setSelectedIndex(nextIndex);
-          setTransitioning(false);
-        }, 600);
-      }
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [activeEvent, transitioning]);
-
+  // Reorder array so selected event is shown first in carousel
   const orderedEvents = [
     events[activeEvent],
-    events[(activeEvent + 1) % events.length],
+    ...events.slice(0, activeEvent),
+    ...events.slice(activeEvent + 1),
   ];
 
   return (
     <>
+      {/* 🔹 Background Section with Image */}
       <div
         style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: "100% auto",
           backgroundPosition: "top center",
         }}
-        className="absolute inset-0 bg-no-repeat min-h-[150vh] md:h-full w-full transition-all duration-500"
+        className="parent-div absolute inset-0 bg-no-repeat min-h-[150vh] md:h-full w-full transition-all duration-500"
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50 md:hidden z-10" />
+        {/* Mobile-only black overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 md:hidden"></div>
 
-        <div className="relative pt-20 sm:pt-24 md:pt-32 sm:pb-48 md:pb-0 flex flex-col items-center text-center z-20">
+        <div className="relative pt-20 sm:pt-24 md:pt-32  sm:pb-0 flex flex-col items-center text-center z-10">
+          {/* Header Title Section */}
           <p
             className="text-[#A1E9A5] md:mb-15 text-2xl sm:text-2xl md:text-3xl lg:text-4xl"
             style={{ fontFamily: "Audiowide" }}
@@ -151,8 +115,9 @@ const Events = () => {
             07 // EVENTS
           </p>
 
+          {/* 🔹 Main Event Display Section */}
           <div
-            className="w-full font-[GoodTiming] max-w-8xl mx-auto px-6 relative"
+            className="displaying-content w-full font-[GoodTiming] max-w-8xl mx-auto px-6 relative"
             style={{
               backgroundImage: `url(${events[activeEvent].image})`,
               backgroundSize: "cover",
@@ -160,48 +125,113 @@ const Events = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
-            {/* 🟢 Top Gradient (preserved) */}
+            {/* Mobile-specific dark overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/60 md:bg-black/20 z-5 pointer-events-none" />
+            
+            {/* Top Gradient Overlay - Enhanced for mobile */}
             <div className="absolute top-0 left-0 w-full h-80 md:h-80 bg-gradient-to-b from-black/100 md:from-[rgb(15,15,15,1)]/100 to-transparent z-10 pointer-events-none" />
 
-            <div className="w-full flex flex-col md:flex-row gap-10 md:items-start md:justify-between md:py-10 md:pb-20 relative z-30">
+            {/* 🔹 Event Content Wrapper */}
+            <div className="w-full flex flex-col md:flex-row gap-10 md:items-start md:justify-between md:py-10 md:pb-0 relative z-30">
               <div className="w-full mt-25 md:mt-15 md:max-w-[100%] md:px-10 flex flex-col items-center md:items-start text-center relative z-30">
-                <div className="flex items-center justify-center md:justify-start mb-6 md:text-left z-30">
-                  <h1 className="flex text-4xl md:text-5xl font-bold text-white-800 items-center">
-                    {events[activeEvent].title.split("\n").map((line, index) => (
-                      <span key={index}>
-                        {line}
-                        {index < events[activeEvent].title.split("\n").length - 1 && <br />}
-                      </span>
+                
+                {/* Mobile Event Title (no background) */}
+                <div className="md:hidden flex items-center justify-center mb-6">
+                  <h1 className="flex text-3xl font-bold text-white items-center">
+                    {events[activeEvent].title
+                      .split("\n")
+                      .map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          {index <
+                            events[activeEvent].title.split("\n").length -
+                              1 && <br />}
+                        </span>
                     ))}
-                    <Arrow width={60} height={60} />
+                    <Arrow width={50} height={50} />
                   </h1>
                 </div>
 
-                <p className="text-lg md:text-xl text-white-800 leading-relaxed mb-6 md:text-left z-30">
-                  {events[activeEvent].description}
-                </p>
+                {/* Mobile description container with background for readability */}
+                <div className="md:hidden w-full bg-black/40 backdrop-blur-sm rounded-lg p-6 mb-6">
+                  {/* Description */}
+                  <p className="text-base text-white leading-relaxed mb-4">
+                    {events[activeEvent].description}
+                  </p>
 
-                <p className="text-xl font-bold text-white-800 mb-6 md:text-left z-30">
-                  DATE: {events[activeEvent].date}
-                </p>
+                  {/* Event Date */}
+                  <p className="text-lg font-bold text-white">
+                    DATE: {events[activeEvent].date}
+                  </p>
+                </div>
 
+                {/* Desktop text (original styling) */}
+                <div className="hidden md:block w-full">
+                  {/* Event Title */}
+                  <div className="flex items-center justify-center md:justify-start mb-6 md:text-left">
+                    <h1 className="flex text-4xl md:text-5xl font-bold text-white-800 items-center">
+                      {events[activeEvent].title
+                        .split("\n")
+                        .map((line, index) => (
+                          <span key={index}>
+                            {line}
+                            {index <
+                              events[activeEvent].title.split("\n").length -
+                                1 && <br />}
+                          </span>
+                      ))}
+                      <Arrow width={60} height={60} />
+                    </h1>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-lg md:text-xl text-white-200  leading-relaxed mb-6 md:text-left">
+                    {events[activeEvent].description}
+                  </p>
+
+                  {/* Event Date */}
+                  <p className="text-xl font-bold text-white-800 mb-6 md:text-left">
+                    DATE: {events[activeEvent].date}
+                  </p>
+                </div>
+
+                {/* 🔹 Register & Prize + Carousel */}
                 <div className="w-full flex flex-col md:flex-row gap-6 md:gap-10">
-                  <div className="w-full md:w-1/2 flex flex-col items-center md:items-start z-30">
+                  {/* Left Column: Button + Prize */}
+                  <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
+                    {/* Register Button */}
                     <button
                       type="button"
                       className="cursor-pointer hover:scale-105 transition-transform duration-200 mb-6"
-                      onClick={() => window.open("https://google.com", "_blank")}
+                      onClick={() =>
+                        window.open(events[activeEvent].registerLink, "_blank")
+                      }
                     >
                       <RegisterButton />
                     </button>
 
+                    {/* Prize component */}
                     <div className="flex justify-center md:justify-start">
                       {events[activeEvent].prizeComponent}
                     </div>
                   </div>
 
-                  {/* 🔹 Carousel */}
+                  {/* Right column: Carousel */}
                   <div className="w-full md:w-1/2 relative h-[350px] overflow-hidden">
+                    <button className="absolute left-2 top-1/2 z-40 -translate-y-1/2 bg-black/50 text-white rounded-full p-2" onClick={() => {
+                      if (scrollContainerRef.current) {
+                        scrollContainerRef.current.scrollLeft -= 300;
+                      }
+                    }}>
+                      <ChevronLeft size={20} />
+                    </button>
+                    <button className="absolute right-2 top-1/2 z-40 -translate-y-1/2 bg-black/50 text-white rounded-full p-2" onClick={() => {
+                      if (scrollContainerRef.current) {
+                        scrollContainerRef.current.scrollLeft += 300;
+                      }
+                    }}>
+                      <ChevronRight size={20} />
+                    </button>
                     <div
                       ref={scrollContainerRef}
                       className="h-full w-full overflow-x-scroll overflow-y-hidden scroll-smooth snap-x snap-mandatory"
@@ -227,7 +257,7 @@ const Events = () => {
                             key={index}
                             className={`flex-shrink-0 transition-all duration-300 snap-center relative cursor-pointer rounded-xl ${
                               index === 0
-                                ? "h-[300px] w-[220px] brightness-100 scale-105"
+                                ? "h-[300px] w-[200px] brightness-100 scale-105"
                                 : "h-[280px] w-[200px] brightness-75 hover:brightness-100 hover:scale-105"
                             }`}
                             onClick={() => handleImageClick(events.indexOf(event))}
@@ -237,17 +267,10 @@ const Events = () => {
                               alt={event.title}
                               className="w-full h-full object-cover rounded-xl transition-all duration-300 shadow-lg"
                             />
-
-                            {events.indexOf(event) === selectedIndex && (
-                              <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-black/100 to-transparent z-30 pt-5 rounded-xl">
-                                <h3 className="text-white font-bold text-lg md:text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-                                  {event.title.split("\n").map((line, idx) => (
-                                    <span key={idx}>
-                                      {line}
-                                      {idx < event.title.split("\n").length - 1 && <br />}
-                                    </span>
-                                  ))}
-                                </h3>
+                            {index === 0 && (
+                              <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white p-2 rounded-b-xl">
+                                <h3 className="font-bold text-lg">{event.title}</h3>
+                                <p className="text-sm text-[#A1E9A5]">{event.date}</p>
                               </div>
                             )}
                           </div>
@@ -259,10 +282,12 @@ const Events = () => {
               </div>
             </div>
 
+            {/* Bottom Gradient Overlay for smooth fade to footer */}
             <div className="absolute bottom-0 left-0 w-full h-20 md:h-40 bg-gradient-to-t from-black/100 md:from-[rgb(15,15,15,1)]/100 to-transparent z-10 pointer-events-none" />
           </div>
         </div>
 
+        {/* Footer Section */}
         <Footer />
       </div>
     </>
