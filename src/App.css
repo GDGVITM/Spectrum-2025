@@ -342,6 +342,7 @@ body {
   box-shadow: 0 0 10px rgba(95, 255, 175, 0.3);
   animation: scan-vertical 8s ease-in-out infinite;
   z-index: 2;
+  mix-blend-mode: screen; 
 }
 
 @keyframes scan-vertical {

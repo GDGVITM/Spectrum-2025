@@ -21,15 +21,28 @@ import sunsetPixelcut3 from '../assets/home-assets/Sunset/pixelcut3.png';
 import nightGround from '../assets/home-assets/Night/ground.png';
 import sunsetGround from '../assets/home-assets/Sunset/ground.png';
 import Timeline from './Timeline';
+import Sponsors from './Sponsors';
+import Partners from './Partners';
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isNight, setIsNight] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    
+    // Initial check
+    handleResize();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const getScreenSize = () => {
@@ -42,7 +55,9 @@ const Home = () => {
     return 'xl';
   };
 
-  const sunMoonPosition = isNight ? 85 : 15;
+  // Corrected sun/moon positioning: sun rises in east (left), moon appears in west (right)
+  const sunMoonPosition = isNight ? 85 : 15; // Moon at 85% (right/west), Sun at 15% (left/east)
+  const sunMoonHeight = isNight ? 25 : 12; // Moon lower at 25%, Sun higher at 12%
 
   const spectrumBaseOffset = isNight ? -150 : 50; 
   const spectrumScrollOffset = scrollY * (isNight ? 0.3 : -0.3); 
@@ -65,7 +80,6 @@ const Home = () => {
     night: [nightPixelcut1, nightPixelcut2, nightPixelcut3],
     sunset: [sunsetPixelcut1, sunsetPixelcut2, sunsetPixelcut3]
   };
-
 
   const getSizeMultiplier = () => {
     const screenSize = getScreenSize();
@@ -96,32 +110,33 @@ const Home = () => {
           }}
         />
 
-        {/* Sun/Moon */}
+        {/* Sun/Moon - Responsive positioning */}
         <div
-          className="absolute w-16 h-16 md:w-20 md:h-20 rounded-full transition-all duration-1000 ease-in-out"
+          className="absolute w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full transition-all duration-1000 ease-in-out"
           style={{
             left: `${sunMoonPosition}%`,
-            top: `${isNight ? '20%' : '15%'}`, 
+            top: `${sunMoonHeight}%`, 
             backgroundColor: isNight ? '#E6E6FA' : '#FFD700',
             boxShadow: isNight 
-              ? '0 0 30px rgba(230, 230, 250, 0.6), inset -8px -8px 0 rgba(200, 200, 220, 0.3)'
-              : '0 0 40px rgba(255, 215, 0, 0.8)',
+              ? '0 0 20px rgba(230, 230, 250, 0.6), inset -6px -6px 0 rgba(200, 200, 220, 0.3)'
+              : '0 0 30px rgba(255, 215, 0, 0.8)',
             transform: `translateX(-50%) translateY(-50%)`,
             zIndex: 1,
           }}
         >
+          {/* Moon craters - responsive sizing */}
           {isNight && (
             <>
               <div 
-                className="absolute w-2 h-2 bg-gray-400 rounded-full opacity-40 transition-opacity duration-1000"
+                className="absolute w-1 h-1 sm:w-2 sm:h-2 bg-gray-400 rounded-full opacity-40 transition-opacity duration-1000"
                 style={{ top: '20%', left: '30%' }}
               />
               <div 
-                className="absolute w-1.5 h-1.5 bg-gray-400 rounded-full opacity-30 transition-opacity duration-1000"
+                className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-400 rounded-full opacity-30 transition-opacity duration-1000"
                 style={{ top: '60%', right: '25%' }}
               />
               <div 
-                className="absolute w-1 h-1 bg-gray-400 rounded-full opacity-35 transition-opacity duration-1000"
+                className="absolute w-0.5 h-0.5 sm:w-1 sm:h-1 bg-gray-400 rounded-full opacity-35 transition-opacity duration-1000"
                 style={{ bottom: '30%', left: '20%' }}
               />
             </>
@@ -187,33 +202,33 @@ const Home = () => {
           }}
         />
 
-        {/* Spectrum Logo */}
+        {/* Spectrum Logo - Responsive */}
         <div
-          className="absolute inset-0 flex items-center justify-center h-screen transition-all duration-1000 ease-in-out"
+          className="absolute inset-0 flex items-center justify-center h-screen transition-all duration-1000 ease-in-out px-4"
           style={{
-            transform: spectrumTransform,
+            transform: isMobile ? `translateY(${spectrumBaseOffset * 0.7 + spectrumScrollOffset}px)` : spectrumTransform,
             zIndex: 2.5,
           }}
         >
           <img
             src={spectrumLogo}
             alt="Spectrum Logo"
-            className="w-[300px] sm:w-[450px] md:w-[600px] max-w-[90%] object-contain drop-shadow-xl opacity-80"
+            className="w-[250px] xs:w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] max-w-[90%] object-contain drop-shadow-xl opacity-80"
           />
         </div>
 
-        {/* Fontbolt Logo */}
+        {/* Fontbolt Logo - Responsive */}
         <div
-          className="absolute inset-0 flex items-center justify-center h-screen transition-all duration-1000 ease-in-out"
+          className="absolute inset-0 flex items-center justify-center h-screen transition-all duration-1000 ease-in-out px-4"
           style={{
-            transform: fontboltTransform,
+            transform: isMobile ? `translateY(${fontboltBaseOffset * 0.8 + fontboltScrollOffset}px)` : fontboltTransform,
             zIndex: 2.4,
           }}
         >
           <img
             src={fontboltLogo}
             alt="Fontbolt Logo"
-            className="w-[110px] sm:w-[180px] md:w-[260px] max-w-[50%] object-contain drop-shadow-lg opacity-75"
+            className="w-[90px] xs:w-[110px] sm:w-[150px] md:w-[200px] lg:w-[260px] max-w-[50%] object-contain drop-shadow-lg opacity-75"
           />
         </div>
 
@@ -247,23 +262,25 @@ const Home = () => {
           }}
         />
 
-        {/* Button */}
-        <div className="absolute bottom-20 sm:bottom-26 left-1/2 transform -translate-x-1/2 z-10">
+        {/* Button - Responsive */}
+        <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 left-1/2 transform -translate-x-1/2 z-10 px-4">
           <button
             onClick={handleExploreMore}
             className={`
-              px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg
+              px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm sm:text-base md:text-lg
               transition-all duration-500 ease-in-out
               backdrop-blur-sm border-2
               hover:scale-105 hover:shadow-2xl
               active:scale-95
+              w-full max-w-xs sm:max-w-none sm:w-auto
               ${isNight 
                 ? 'bg-indigo-900/70 text-white border-indigo-400 hover:bg-indigo-800/80 hover:border-indigo-300' 
                 : 'bg-orange-600/70 text-white border-orange-300 hover:bg-orange-500/80 hover:border-orange-200'
               }
             `}
           >
-            {isNight ? 'Day' : 'Night'}
+            <span className="block sm:hidden">Control Time</span>
+            <span className="hidden sm:block">You have the control of time</span>
           </button>
         </div>
 
@@ -277,10 +294,28 @@ const Home = () => {
         />
       </div>
 
-      {/* ----------- Frame 2: Below Main Scene ----------- */}
-      <div className="w-full min-h-screen my-18 flex flex-col items-center justify-center bg-black">
+      {/* ----------- Frame 2: Timeline Section ----------- */}
+      <div className="w-full min-h-screen py-12 sm:py-16 md:py-20 flex flex-col items-center justify-start bg-black">
+        {/* Timeline Heading */}
+        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
+          <h1 
+            className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[8rem] 2xl:text-[8rem] text-[#A1E9A5] font-bold mb-4 sm:mb-6 text-shadow"
+            style={{ fontFamily: 'Minecraft' }}
+          >
+            EVENT TIMELINE
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Explore our exciting lineup of events and competitions throughout Spectrum 2025
+          </p>
+        </div>
+        
         <Timeline />
       </div>
+
+      <Sponsors sectionId="sponsors" />
+
+      <Partners sectionId="community-partners" />
+
       <Footer />
     </div>
   );
