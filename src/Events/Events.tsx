@@ -68,7 +68,7 @@ const Events = () => {
       date: "12th to 24th August",
       prizeComponent: <Hackbuildprize />,
       component: <HackBuildComponent />,
-      registerLink: "https://hackbuild.gdgvitm.tech",
+      registerLink: "https://hackbuild.devfolio.co/",
     },
   ];
 
