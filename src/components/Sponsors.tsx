@@ -1,5 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import devfolioLogo from '../assets/sponsors/devfolio.png';
+import polygonLogo from '../assets/sponsors/polygon.png';
+import ethIndiaLogo from '../assets/sponsors/eth.png';
+import gfgLogo from '../assets/sponsors/gfg.png';
+import topclubLogo from '../assets/sponsors/topclub.png';
+import xyzLogo from '../assets/sponsors/xyz.png';
+
 interface SponsorsProps {
   sectionId: string;
 }
@@ -60,7 +67,14 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
     </div>
   );
 
-  const SponsorLogo = ({ src, alt, name, size }: { src: string; alt: string; name: string; size: 'large' | 'medium' | 'small' }) => {
+  interface SponsorLogoProps {
+    src: string;
+    alt: string;
+    name: string;
+    size: 'large' | 'medium' | 'small';
+  }
+
+  const SponsorLogo: React.FC<SponsorLogoProps> = ({ src, alt, name, size }) => {
     const sizeClasses = {
       large: 'w-64 h-32 sm:w-80 sm:h-40 md:w-96 md:h-48',
       medium: 'w-48 h-24 sm:w-56 sm:h-28 md:w-64 md:h-32',
@@ -143,7 +157,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
           visibleSections.has('title') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`} data-section="title">
           <div className="flex justify-center">
-            <SponsorLogo src="src/assets/sponsors/devfolio.png" alt="Devfolio" name="Devfolio" size="large" />
+            <SponsorLogo src={devfolioLogo} alt="Devfolio" name="Devfolio" size="large" />
           </div>
         </div>
 
@@ -152,8 +166,8 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
           visibleSections.has('gold') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`} data-section="gold">
           <div className="flex flex-wrap justify-center gap-12 lg:gap-16">
-            <SponsorLogo src="src/assets/sponsors/polygon.png" alt="Polygon" name="Polygon" size="medium" />
-            <SponsorLogo src="src/assets/sponsors/eth.png" alt="ETHIndia" name="ETHIndia" size="medium" />
+            <SponsorLogo src={polygonLogo} alt="Polygon" name="Polygon" size="medium" />
+            <SponsorLogo src={ethIndiaLogo} alt="ETHIndia" name="ETHIndia" size="medium" />
           </div>
         </div>
 
@@ -162,9 +176,9 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
           visibleSections.has('silver') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`} data-section="silver">
           <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
-            <SponsorLogo src="src/assets/sponsors/gfg.png" alt="GeeksforGeeks" name="GeeksforGeeks" size="small" />
-            <SponsorLogo src="src/assets/sponsors/topclub.png" alt="TopClub" name="TopClub" size="small" />
-            <SponsorLogo src="src/assets/sponsors/xyz.png" alt=".xyz" name=".xyz" size="small" />
+            <SponsorLogo src={gfgLogo} alt="GeeksforGeeks" name="GeeksforGeeks" size="small" />
+            <SponsorLogo src={topclubLogo} alt="TopClub" name="TopClub" size="small" />
+            <SponsorLogo src={xyzLogo} alt=".xyz" name=".xyz" size="small" />
           </div>
         </div>
       </div>
