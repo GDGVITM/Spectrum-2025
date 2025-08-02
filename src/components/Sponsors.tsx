@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+<<<<<<< HEAD
+// Import sponsor logos
+=======
+>>>>>>> 8eb0867fcf6f43ad2468b4f8250dac001b332365
 import devfolioLogo from '../assets/sponsors/devfolio.png';
 import polygonLogo from '../assets/sponsors/polygon.png';
 import ethIndiaLogo from '../assets/sponsors/eth.png';
@@ -157,7 +161,11 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
           visibleSections.has('title') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`} data-section="title">
           <div className="flex justify-center">
+<<<<<<< HEAD
+            <SponsorLogo src={devfolioLogo} alt="Devfolio" name="Devfolio" size="large" />
+=======
             <SponsorLogo src={devfolioLogo} alt="DEVFOLIO LOGO" name="Devfolio" size="large" />
+>>>>>>> 8eb0867fcf6f43ad2468b4f8250dac001b332365
           </div>
         </div>
 
@@ -167,7 +175,11 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
         }`} data-section="gold">
           <div className="flex flex-wrap justify-center gap-12 lg:gap-16">
             <SponsorLogo src={polygonLogo} alt="Polygon" name="Polygon" size="medium" />
+<<<<<<< HEAD
+            <SponsorLogo src={ethIndiaLogo} alt="ETHIndia" name="ETHIndia" size="medium" />
+=======
             <SponsorLogo src={ethIndiaLogo} alt="ETHINDIA LOGO" name="ETHIndia" size="medium" />
+>>>>>>> 8eb0867fcf6f43ad2468b4f8250dac001b332365
           </div>
         </div>
 
