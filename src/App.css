@@ -714,74 +714,7 @@ html, body, #root {
   color: #fff;
 }
 
-/* Apply with Devfolio Button Styles */
+/* Remove custom Devfolio button overrides to use native styling */
 .apply-button {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-  color: white;
-  padding: 14px 32px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 16px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.apply-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.apply-button:hover::before {
-  left: 100%;
-}
-
-.apply-button:hover {
-  background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
-  border-color: #A1E9A5;
-}
-
-.apply-button:active {
-  transform: translateY(0px);
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-}
-
-/* Devfolio specific styles */
-.devfolio-button {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-}
-
-.devfolio-button:hover {
-  background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
-}
-
-/* Add some glow effect for better visibility */
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 4px 25px rgba(0, 123, 255, 0.5);
-  }
-}
-
-.apply-button.animate-glow {
-  animation: glow 2s ease-in-out infinite;
+  /* Let Devfolio handle the styling natively */
 }
