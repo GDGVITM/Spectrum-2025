@@ -22,8 +22,6 @@ import AIStartupComponent from "./EventComponents/AIStartupComponent";
 
 import Footer from "../components/Footer";
 
-import DevfolioApplyButton from "./DevfolioApplyButton"; // adjust path if needed
-
 type EventItem = {
   image: string;
   title: string;
@@ -32,8 +30,6 @@ type EventItem = {
   prizeComponent: React.ReactNode;
   component: React.ReactNode;
   registerLink?: string;
-  isDevfolio?: boolean;
-  devfolioSlug?: string;
 };
 
 const Events = () => {
@@ -51,7 +47,6 @@ const Events = () => {
       component: <TechFeudComponent />,
       registerLink:
         "https://unstop.com/hackathons/big-o-battle-powered-by-geeksforgeeks-dsa-competition-spectrum-2025-vit-mumbai-1526360",
-      isDevfolio: false,
     },
     {
       image: launchpad,
@@ -63,7 +58,6 @@ const Events = () => {
       component: <LaunchPadComponent />,
       registerLink:
         "https://unstop.com/hackathons/launchpad-vibe-coding-saas-startup-challenge-spectrum-2025-vit-mumbai-1529774",
-      isDevfolio: false,
     },
     {
       image: ai4startup,
@@ -74,7 +68,6 @@ const Events = () => {
       prizeComponent: null,
       component: <AIStartupComponent />,
       registerLink: "https://lu.ma/slb6g0zd",
-      isDevfolio: false,
     },
     {
       image: hackbuild,
@@ -84,8 +77,7 @@ const Events = () => {
       date: "12th to 24th August",
       prizeComponent: <Hackbuildprize />,
       component: <HackBuildComponent />,
-      isDevfolio: true,
-      devfolioSlug: "hackbuild", // replace with actual slug
+      registerLink: "https://hackbuild.gdgvitm.tech/",
     },
   ];
 
@@ -199,21 +191,15 @@ const Events = () => {
                 {/* Registration & Prize + Carousel */}
                 <div className="w-full flex flex-col md:flex-row gap-6 md:gap-10">
                   <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
-                    {events[activeEvent].isDevfolio && events[activeEvent].devfolioSlug ? (
-                      <div className="mb-6">
-                        <DevfolioApplyButton hackathonSlug={events[activeEvent].devfolioSlug} />
-                      </div>
-                    ) : (
-                      <button
-                        type="button"
-                        className="cursor-pointer hover:scale-105 transition-transform duration-200 mb-6"
-                        onClick={() =>
-                          window.open(events[activeEvent].registerLink || "#", "_blank")
-                        }
-                      >
-                        <RegisterButton />
-                      </button>
-                    )}
+                    <button
+                      type="button"
+                      className="cursor-pointer hover:scale-105 transition-transform duration-200 mb-6"
+                      onClick={() =>
+                        window.open(events[activeEvent].registerLink || "#", "_blank")
+                      }
+                    >
+                      <RegisterButton />
+                    </button>
 
                     <div className="flex justify-center md:justify-start">
                       {events[activeEvent].prizeComponent}
@@ -302,3 +288,4 @@ const Events = () => {
 };
 
 export default Events;
+

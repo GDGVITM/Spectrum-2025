@@ -314,18 +314,52 @@ const Home = () => {
       </div>
 
       {/* ----------- Frame 3: Hackathon Section ----------- */}
-      <div className="w-full py-16 sm:py-20 md:py-24 bg-black">
+      <div className="w-full py-16 sm:py-20 md:py-24 bg-black relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900/50 to-black" />
+        
+        {/* Animated gradient blobs */}
+        <div className="absolute top-10 left-10 w-72 h-72 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute top-1/3 right-10 w-96 h-96 bg-gradient-to-r from-blue-500/15 to-teal-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
+        <div className="absolute bottom-10 left-1/3 w-80 h-80 bg-gradient-to-r from-purple-500/15 to-pink-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+        
+        {/* Floating particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-gradient-to-r from-green-400/40 to-blue-400/40 rounded-full animate-ping"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(161, 233, 165, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(161, 233, 165, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }} />
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hackathon Heading */}
           <div className="text-center mb-12 sm:mb-16">
             <h2 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-[#A1E9A5] via-green-400 to-emerald-300 font-bold mb-6 sm:mb-8"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-[#A1E9A5] via-green-400 to-emerald-300 font-bold mb-6 sm:mb-8 drop-shadow-2xl"
               style={{ fontFamily: 'Minecraft' }}
             >
               HACKBUILD 2025
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#A1E9A5] to-green-400 mx-auto mb-6 rounded-full" />
+            <div className="w-24 h-1 bg-gradient-to-r from-[#A1E9A5] to-green-400 mx-auto mb-6 rounded-full shadow-lg shadow-green-400/50" />
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
               Join our flagship hackathon and build innovative solutions in a collaborative environment where creativity meets technology.
             </p>
@@ -335,15 +369,15 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left: Description */}
             <div className="space-y-6">
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
+              <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm rounded-lg p-6 border border-green-400/30 shadow-lg shadow-green-400/10 hover:shadow-green-400/20 transition-all duration-300">
                 <h3 className="text-xl font-bold text-[#A1E9A5] mb-4">What is HackBuild?</h3>
                 <p className="text-gray-300 leading-relaxed">
                   HackBuild is our premier hackathon featuring two exciting rounds. Start with online submissions of your project ideas and prototypes, then compete on-site with the top selected teams.
                 </p>
               </div>
               
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
-                <h3 className="text-xl font-bold text-[#A1E9A5] mb-4">Event Timeline</h3>
+              <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm rounded-lg p-6 border border-blue-400/30 shadow-lg shadow-blue-400/10 hover:shadow-blue-400/20 transition-all duration-300">
+                <h3 className="text-xl font-bold text-blue-400 mb-4">Event Timeline</h3>
                 <p className="text-gray-300 leading-relaxed">
                   <strong>Duration:</strong> 12th to 24th August<br />
                   <strong>Round 1:</strong> Online submissions<br />
@@ -354,7 +388,7 @@ const Home = () => {
 
             {/* Right: Apply Button & Features */}
             <div className="text-center space-y-8">
-              <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+              <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm rounded-xl p-8 border border-purple-400/30 shadow-lg shadow-purple-400/10 hover:shadow-purple-400/20 transition-all duration-300">
                 <h3 className="text-2xl font-bold text-white mb-6">Ready to Build?</h3>
                 <div className="mb-6">
                   <DevfolioApplyButton hackathonSlug="hackbuild" />
@@ -365,12 +399,12 @@ const Home = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg p-4 border border-green-400/30 shadow-lg shadow-green-400/10 hover:shadow-green-400/20 transition-all duration-300">
                   <div className="text-2xl font-bold text-[#A1E9A5]">12th to 24th August</div>
                   <div className="text-sm text-gray-400">Timeline</div>
                 </div>
-                <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                  <div className="text-2xl font-bold text-[#A1E9A5]">₹40K+</div>
+                <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg p-4 border border-yellow-400/30 shadow-lg shadow-yellow-400/10 hover:shadow-yellow-400/20 transition-all duration-300">
+                  <div className="text-2xl font-bold text-yellow-400">₹40K+</div>
                   <div className="text-sm text-gray-400">Prize Pool</div>
                 </div>
               </div>

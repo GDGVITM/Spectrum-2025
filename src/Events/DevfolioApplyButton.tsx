@@ -1,5 +1,4 @@
-import React from "react";
-import logo from "../assets/sponsors/logo.png"; // adjust path if needed
+import React, { useEffect } from "react";
 
 type DevfolioApplyButtonProps = {
   hackathonSlug: string;
@@ -8,44 +7,36 @@ type DevfolioApplyButtonProps = {
 const DevfolioApplyButton: React.FC<DevfolioApplyButtonProps> = ({
   hackathonSlug,
 }) => {
+  useEffect(() => {
+    // Load Devfolio SDK if not already loaded
+    if (!document.querySelector('script[src="https://apply.devfolio.co/v2/sdk.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://apply.devfolio.co/v2/sdk.js';
+      script.defer = true;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  }, []);
+
   return (
-    <a
-      href={`https://devfolio.co/hackathons/${hackathonSlug}/apply`}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Apply with Devfolio for ${hackathonSlug}`}
-      className="
-        inline-flex items-center gap-3
-        px-6 py-3
-        rounded-lg
-        border-2 border-[#A1E9A5]
-        hover:border-green-400
-        transition-all duration-300
-        text-white
-        font-bold
-        text-lg
-        hover:scale-105
-        hover:shadow-lg
-        hover:shadow-green-400/20
-      "
-      style={{ minHeight: 50 }}
-    >
-      <div
-        className="
-          flex items-center justify-center
-          rounded-sm
-          h-8 w-8
-        "
+    <div className="flex justify-center">
+      <div 
+        className="apply-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 cursor-pointer flex items-center justify-center min-h-[44px] min-w-[312px]" 
+        data-hackathon-slug={hackathonSlug} 
+        data-button-theme="dark" 
+        style={{ 
+          height: '44px', 
+          width: '312px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
       >
-        <img
-          src={logo}
-          alt="Devfolio"
-          className="h-full w-full object-contain"
-        />
+        Apply with Devfolio
       </div>
-      <span className="leading-none">Apply with Devfolio</span>
-    </a>
+    </div>
   );
 };
 
 export default DevfolioApplyButton;
+
