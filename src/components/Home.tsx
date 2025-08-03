@@ -381,7 +381,8 @@ const Home = () => {
                 <p className="text-gray-300 leading-relaxed">
                   <strong>Duration:</strong> 12th to 24th August<br />
                   <strong>Round 1:</strong> Online submissions<br />
-                  <strong>Round 2:</strong> On-site presentations and judging
+                  <strong>Round 2:</strong> On-site hackathon for selected teams<br />
+                  <strong>Finals:</strong> Presentations and judging on 24th August
                 </p>
               </div>
             </div>
