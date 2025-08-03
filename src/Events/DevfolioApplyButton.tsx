@@ -16,24 +16,25 @@ const DevfolioApplyButton: React.FC<DevfolioApplyButtonProps> = ({
       aria-label={`Apply with Devfolio for ${hackathonSlug}`}
       className="
         inline-flex items-center gap-3
-        bg-white
-        px-6 py-2
-        rounded-md
-        shadow-sm
-        border border-gray-300
-        hover:shadow-md
-        transition-all duration-200
-        text-gray-800
-        font-medium
-        text-sm
+        px-6 py-3
+        rounded-lg
+        border-2 border-[#A1E9A5]
+        hover:border-green-400
+        transition-all duration-300
+        text-white
+        font-bold
+        text-lg
+        hover:scale-105
+        hover:shadow-lg
+        hover:shadow-green-400/20
       "
-      style={{ minHeight: 40 }}
+      style={{ minHeight: 50 }}
     >
       <div
         className="
           flex items-center justify-center
           rounded-sm
-          h-6 w-6
+          h-8 w-8
         "
       >
         <img

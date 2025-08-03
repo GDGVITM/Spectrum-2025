@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+// Import partner logos
+import partner1Logo from '../assets/partners/gdgcloud.png';
+import partner2Logo from '../assets/partners/csi.png';
+import partner3Logo from '../assets/partners/cesa.png';
+
 interface PartnersProps {
   sectionId: string;
 }
@@ -37,6 +42,23 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
     };
   }, []);
 
+  const PartnerLogo = ({ src, alt, name }: { src: string; alt: string; name: string }) => {
+    return (
+      <div className="flex flex-col items-center group cursor-pointer">
+        <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 flex items-center justify-center p-4 transition-all duration-500 hover:scale-110">
+          <img 
+            src={src}
+            alt={alt}
+            className="max-w-full max-h-full object-contain filter brightness-90 hover:brightness-110 transition-all duration-300 drop-shadow-lg hover:drop-shadow-xl"
+          />
+        </div>
+        <p className="text-white/80 text-sm font-medium mt-3 group-hover:text-[#A1E9A5] transition-colors duration-300">
+          {name}
+        </p>
+      </div>
+    );
+  };
+
   return (
     <div ref={partnersRef} className="w-full py-16 sm:py-20 md:py-24 bg-black" id={sectionId}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,9 +78,6 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
             COMMUNITY PARTNERS
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#A1E9A5] to-green-400 mx-auto mb-6 rounded-full" />
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            on boarding partners soon...
-          </p>
         </div>
 
         {/* Partners Grid */}
@@ -70,6 +89,11 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
           }`}
           data-section="partners"
         >
+          <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
+            <PartnerLogo src={partner1Logo} alt="Partner 1" name="GDG Cloud Mumbai" />
+            <PartnerLogo src={partner2Logo} alt="Partner 2" name="CSI VIT" />
+            <PartnerLogo src={partner3Logo} alt="Partner 3" name="CESA VIT" />
+          </div>
         </div>
       </div>
 
