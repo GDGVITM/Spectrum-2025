@@ -23,6 +23,7 @@ import sunsetGround from '../assets/home-assets/Sunset/ground.png';
 import Timeline from './Timeline';
 import Sponsors from './Sponsors';
 import Partners from './Partners';
+import DevfolioApplyButton from '../Events/DevfolioApplyButton';
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -310,6 +311,72 @@ const Home = () => {
         </div>
         
         <Timeline />
+      </div>
+
+      {/* ----------- Frame 3: Hackathon Section ----------- */}
+      <div className="w-full py-16 sm:py-20 md:py-24 bg-black">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Hackathon Heading */}
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-[#A1E9A5] via-green-400 to-emerald-300 font-bold mb-6 sm:mb-8"
+              style={{ fontFamily: 'Minecraft' }}
+            >
+              HACKBUILD 2025
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#A1E9A5] to-green-400 mx-auto mb-6 rounded-full" />
+            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+              Join our flagship hackathon and build innovative solutions in a collaborative environment where creativity meets technology.
+            </p>
+          </div>
+
+          {/* Hackathon Content */}
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left: Description */}
+            <div className="space-y-6">
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
+                <h3 className="text-xl font-bold text-[#A1E9A5] mb-4">What is HackBuild?</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  HackBuild is our premier hackathon featuring two exciting rounds. Start with online submissions of your project ideas and prototypes, then compete on-site with the top selected teams.
+                </p>
+              </div>
+              
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
+                <h3 className="text-xl font-bold text-[#A1E9A5] mb-4">Event Timeline</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  <strong>Duration:</strong> 12th to 24th August<br />
+                  <strong>Round 1:</strong> Online submissions<br />
+                  <strong>Round 2:</strong> On-site presentations and judging
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Apply Button & Features */}
+            <div className="text-center space-y-8">
+              <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+                <h3 className="text-2xl font-bold text-white mb-6">Ready to Build?</h3>
+                <div className="mb-6">
+                  <DevfolioApplyButton hackathonSlug="hackbuild" />
+                </div>
+                <p className="text-sm text-gray-400">
+                  Applications are now open on Devfolio
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                  <div className="text-2xl font-bold text-[#A1E9A5]">12th to 24th August</div>
+                  <div className="text-sm text-gray-400">Timeline</div>
+                </div>
+                <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                  <div className="text-2xl font-bold text-[#A1E9A5]">₹40K+</div>
+                  <div className="text-sm text-gray-400">Prize Pool</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Sponsors sectionId="sponsors" />
