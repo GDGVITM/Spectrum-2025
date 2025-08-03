@@ -34,7 +34,8 @@ type EventItem = {
 
 const Events = () => {
   const [activeEvent, setActiveEvent] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const carouselIntervalRef = useRef<number | null>(null);
 
   const events: EventItem[] = [
     {
@@ -73,7 +74,7 @@ const Events = () => {
       image: hackbuild,
       title: "HackBuild",
       description:
-        "Get ready to build innovative solutions in a collaborative environment, where creativity meets technology. We have two rounds for hackathon, first round is online and second round is on-site. In the first round, participants will submit their project ideas and prototypes online, and the top teams will be selected to present their projects in person during the second round.",
+        "Get ready to build innovative solutions in a collaborative environment, where creativity meets technology. We have two rounds for hackathon, first round is online and second round is on-site. In the first round, participants will submit their project ideas and prototypes online, and the top teams will be selected to participate in the on-site hackathon.",
       date: "12th to 24th August",
       prizeComponent: <Hackbuildprize />,
       component: <HackBuildComponent />,
@@ -81,23 +82,44 @@ const Events = () => {
     },
   ];
 
+  // Auto-slide carousel effect
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setActiveEvent((prev) => (prev + 1) % events.length);
-    }, 10000);
-    return () => clearInterval(intervalId);
+    const startCarouselAutoSlide = () => {
+      carouselIntervalRef.current = setInterval(() => {
+        setCarouselIndex((prev) => (prev + 1) % (events.length * 2)); // Double for infinite effect
+      }, 3000); // Slide every 3 seconds
+    };
+
+    startCarouselAutoSlide();
+
+    return () => {
+      if (carouselIntervalRef.current) {
+        clearInterval(carouselIntervalRef.current);
+      }
+    };
   }, [events.length]);
 
-  const handleImageClick = (index: number) => {
-    if (index === activeEvent) return;
-    setActiveEvent(index);
-  };
+  // Create infinite carousel array
+  const infiniteEvents = [...events, ...events, ...events]; // Triple for smooth infinite scroll
 
-  const orderedEvents = [
-    events[activeEvent],
-    ...events.slice(0, activeEvent),
-    ...events.slice(activeEvent + 1),
-  ];
+  const handleCarouselNavigation = (direction: "left" | "right") => {
+    if (carouselIntervalRef.current) {
+      clearInterval(carouselIntervalRef.current);
+    }
+
+    if (direction === "left") {
+      setCarouselIndex((prev) => (prev - 1 + infiniteEvents.length) % infiniteEvents.length);
+    } else {
+      setCarouselIndex((prev) => (prev + 1) % infiniteEvents.length);
+    }
+
+    // Restart auto-slide after manual navigation
+    setTimeout(() => {
+      carouselIntervalRef.current = setInterval(() => {
+        setCarouselIndex((prev) => (prev + 1) % infiniteEvents.length);
+      }, 3000);
+    }, 1000);
+  };
 
   return (
     <>
@@ -113,14 +135,61 @@ const Events = () => {
 
         <div className="relative pt-20 sm:pt-24 md:pt-32 sm:pb-0 flex flex-col items-center text-center z-10">
           <p
-            className="text-[#A1E9A5] md:mb-15 text-2xl sm:text-2xl md:text-3xl lg:text-4xl"
+            className="text-[#A1E9A5] md:mb-15 text-2xl sm:text-2xl md:text-3xl lg:text-4xl mb-8"
             style={{ fontFamily: "Audiowide" }}
           >
             07 // EVENTS
           </p>
 
+          {/* Mobile Event Cards */}
+          <div className="md:hidden w-full px-4 space-y-6 mb-8">
+            {events.map((event, index) => (
+              <div
+                key={index}
+                className={`relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ${
+                  index === activeEvent ? 'scale-105 ring-2 ring-[#A1E9A5]/50' : 'scale-100'
+                }`}
+                onClick={() => {
+                  setActiveEvent(index);
+                  window.open(event.registerLink || "#", "_blank");
+                }}
+                style={{
+                  backgroundImage: `url(${event.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  height: "380px"
+                }}
+              >
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/50" />
+                
+                {/* Content */}
+                <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                  <h3 className="text-white text-2xl font-bold mb-2 leading-tight" style={{ fontFamily: "GoodTiming" }}>
+                    {event.title}
+                  </h3>
+                  <p className="text-white/80 text-sm mb-3 leading-relaxed" style={{ fontFamily: "Audiowide" }}>
+                    {event.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-white/90 text-sm mb-1" style={{ fontFamily: "Audiowide" }}>
+                        Date: {event.date}
+                      </p>
+                    </div>
+                    <div className="w-12 h-12 bg-[#A1E9A5] rounded-full flex items-center justify-center">
+                      <Arrow width={24} height={24} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Layout - keep existing structure */}
           <div
-            className="displaying-content w-full font-[GoodTiming] max-w-8xl mx-auto px-6 relative"
+            className="hidden md:block displaying-content w-full font-[GoodTiming] max-w-8xl mx-auto px-6 relative"
             style={{
               backgroundImage: `url(${events[activeEvent].image})`,
               backgroundSize: "cover",
@@ -208,69 +277,73 @@ const Events = () => {
 
                   <div className="w-full md:w-1/2 relative h-[350px] overflow-hidden">
                     <button
-                      className="absolute left-2 top-1/2 z-40 -translate-y-1/2 bg-black/50 text-white rounded-full p-2"
-                      onClick={() => {
-                        if (scrollContainerRef.current) {
-                          scrollContainerRef.current.scrollLeft -= 300;
-                        }
-                      }}
+                      className="absolute left-2 top-1/2 z-40 -translate-y-1/2 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors"
+                      onClick={() => handleCarouselNavigation("left")}
                     >
                       <ChevronLeft size={20} />
                     </button>
                     <button
-                      className="absolute right-2 top-1/2 z-40 -translate-y-1/2 bg-black/50 text-white rounded-full p-2"
-                      onClick={() => {
-                        if (scrollContainerRef.current) {
-                          scrollContainerRef.current.scrollLeft += 300;
-                        }
-                      }}
+                      className="absolute right-2 top-1/2 z-40 -translate-y-1/2 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors"
+                      onClick={() => handleCarouselNavigation("right")}
                     >
                       <ChevronRight size={20} />
                     </button>
-                    <div
-                      ref={scrollContainerRef}
-                      className="h-full w-full overflow-x-scroll overflow-y-hidden scroll-smooth snap-x snap-mandatory"
-                      style={{
-                        scrollbarWidth: "none",
-                        msOverflowStyle: "none",
-                      }}
-                    >
-                      <style>
-                        {`
-                          ::-webkit-scrollbar {
-                            display: none;
-                          }
-                        `}
-                      </style>
 
+                    <div className="h-full w-full overflow-hidden">
                       <div
-                        className="flex space-x-6 h-full items-center px-4"
-                        style={{ width: "max-content" }}
+                        className="flex h-full items-center transition-transform duration-500 ease-in-out"
+                        style={{
+                          transform: `translateX(-${carouselIndex * 220}px)`,
+                          width: `${infiniteEvents.length * 220}px`,
+                        }}
                       >
-                        {orderedEvents.map((event, index) => (
-                          <div
-                            key={index}
-                            className={`flex-shrink-0 transition-all duration-300 snap-center relative cursor-pointer rounded-xl ${
-                              index === 0
-                                ? "h-[300px] w-[200px] brightness-100 scale-105"
-                                : "h-[280px] w-[200px] brightness-75 hover:brightness-100 hover:scale-105"
-                            }`}
-                            onClick={() => handleImageClick(events.indexOf(event))}
-                          >
-                            <img
-                              src={event.image}
-                              alt={event.title}
-                              className="w-full h-full object-cover rounded-xl transition-all duration-300 shadow-lg"
-                            />
-                            {index === 0 && (
-                              <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white p-2 rounded-b-xl">
-                                <h3 className="font-bold text-lg">{event.title}</h3>
-                                <p className="text-sm text-[#A1E9A5]">{event.date}</p>
-                              </div>
-                            )}
-                          </div>
-                        ))}
+                        {infiniteEvents.map((event, index) => {
+                          const originalIndex = index % events.length;
+                          const isActive = originalIndex === activeEvent;
+
+                          return (
+                            <div
+                              key={`${originalIndex}-${Math.floor(index / events.length)}`}
+                              className={`flex-shrink-0 transition-all duration-300 relative cursor-pointer rounded-xl mx-3 ${
+                                isActive
+                                  ? "h-[300px] w-[200px] brightness-100 scale-105 ring-2 ring-[#A1E9A5]/50"
+                                  : "h-[280px] w-[200px] brightness-75 hover:brightness-100 hover:scale-105"
+                              }`}
+                              onClick={() => setActiveEvent(originalIndex)}
+                            >
+                              <img
+                                src={event.image}
+                                alt={event.title}
+                                className="w-full h-full object-cover rounded-xl transition-all duration-300 shadow-lg"
+                              />
+                              {isActive && (
+                                <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white p-2 rounded-b-xl">
+                                  <h3 className="font-bold text-lg truncate">{event.title}</h3>
+                                  <p className="text-sm text-[#A1E9A5]">{event.date}</p>
+                                </div>
+                              )}
+                              {!isActive && (
+                                <div className="absolute inset-0 bg-black/30 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                  <span className="text-white font-bold text-sm">Click to View</span>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
+                    </div>
+
+                    {/* Carousel indicators */}
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                      {events.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                            index === activeEvent ? "bg-[#A1E9A5]" : "bg-white/30"
+                          }`}
+                          onClick={() => setActiveEvent(index)}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
