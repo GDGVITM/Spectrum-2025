@@ -26,6 +26,7 @@ type EventItem = {
   image: string;
   title: string;
   description: string;
+  detailedDescription: string;
   date: string;
   prizeComponent: React.ReactNode;
   component: React.ReactNode;
@@ -43,6 +44,8 @@ const Events = () => {
       title: "Big O Battle - Powered by GeeksforGeeks",
       description:
         "Test your problem solving skills by solving questions based on Data Structures and Algorithms, and compete with others in a thrilling contest.",
+      detailedDescription:
+        "Big O Battle is an intensive Data Structures and Algorithms competition powered by GeeksforGeeks. This individual participation event challenges programmers to solve complex algorithmic problems under time constraints. Following ICPC-style rules with our unique twist, participants will demonstrate their problem-solving prowess across various difficulty levels. The contest covers fundamental concepts including arrays, linked lists, trees, graphs, dynamic programming, and advanced algorithms. Whether you're a beginner looking to test your skills or an experienced coder aiming for the top, this battle will push your computational thinking to new heights.",
       date: "14th August",
       prizeComponent: <Techfeudprize />,
       component: <TechFeudComponent />,
@@ -54,6 +57,8 @@ const Events = () => {
       title: "Launch Pad",
       description:
         "Welcome to LaunchPad, a high-stakes business strategy competition that challenges participants to think beyond conventional startup ideation. Instead of creating new startups, participants must analyze failed real-world businesses and devise innovative revival strategies.",
+      detailedDescription:
+        "LaunchPad revolutionizes traditional startup competitions by focusing on business revival rather than creation. This intensive two-day challenge pushes teams of 2-4 participants to analyze real-world business failures and develop comprehensive revival strategies. You'll dive deep into case studies of companies that couldn't sustain their market position, conducting thorough market analysis, identifying failure points, and crafting innovative solutions. The competition emphasizes practical business acumen, strategic thinking, and presentation skills. Teams will present their revival plans to industry experts who will evaluate feasibility, innovation, and market potential. This unique format teaches valuable lessons about business sustainability and strategic pivoting.",
       date: "18th & 19th August",
       prizeComponent: <LaunchPadPrize />,
       component: <LaunchPadComponent />,
@@ -65,6 +70,8 @@ const Events = () => {
       title: "GSOC Guidance Session",
       description:
         "Join us for an insightful session on GSOC, where you'll receive guidance on how to make your application stand out.",
+      detailedDescription:
+        "The Google Summer of Code (GSoC) Guidance Session is a comprehensive workshop designed to help students navigate the competitive GSoC application process. Led by past GSoC contributors, mentors, and current selected students, this session covers everything from selecting the right organization to crafting winning proposals. You'll learn about the program structure, timeline, expectations, and receive insider tips on what mentors look for in successful applicants. The session includes hands-on guidance for proposal writing, community engagement strategies, and technical preparation. Whether you're a first-time applicant or looking to improve your chances, this session provides invaluable insights into one of the most prestigious open-source programs globally.",
       date: "21st August",
       prizeComponent: null,
       component: <AIStartupComponent />,
@@ -75,6 +82,8 @@ const Events = () => {
       title: "HackBuild",
       description:
         "Get ready to build innovative solutions in a collaborative environment, where creativity meets technology. We have two rounds for hackathon, first round is online and second round is on-site. In the first round, participants will submit their project ideas and prototypes online, and the top teams will be selected to participate in the on-site hackathon.",
+      detailedDescription:
+        "HackBuild represents our flagship hackathon experience, designed to foster innovation and collaborative problem-solving over an extended period. This hybrid competition spans multiple days with a unique two-round format. Round 1 operates entirely online, where teams submit detailed project proposals, prototypes, and implementation plans. Our expert judging panel evaluates submissions based on innovation, technical feasibility, market potential, and presentation quality. Selected teams advance to Round 2, an intensive on-site hackathon where ideas transform into working solutions. Participants have access to mentorship, technical resources, and industry guidance throughout the process. The event encourages cross-domain collaboration, bringing together developers, designers, business strategists, and domain experts to tackle real-world challenges across various sectors including healthcare, education, sustainability, and emerging technologies.",
       date: "12th to 24th August",
       prizeComponent: <Hackbuildprize />,
       component: <HackBuildComponent />,
@@ -250,9 +259,9 @@ const Events = () => {
                     </h1>
                   </div>
                   <p className="text-lg md:text-xl text-white-200 leading-relaxed mb-6 md:text-left">
-                    {events[activeEvent].description}
+                    {events[activeEvent].detailedDescription}
                   </p>
-                  <p className="text-xl font-bold text-white-800 mb-6 md:text-left">
+                  <p className="text-2xl font-bold text-white-800 mb-6 md:text-left">
                     DATE: {events[activeEvent].date}
                   </p>
                 </div>
