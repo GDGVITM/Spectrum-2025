@@ -19,15 +19,15 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const sectionId = entry.target.getAttribute('data-section');
-          if (entry.isIntersecting && sectionId) {
-            setVisibleSections(prev => new Set([...prev, sectionId]));
+          const sectionIdAttr = entry.target.getAttribute('data-section');
+          if (entry.isIntersecting && sectionIdAttr) {
+            setVisibleSections((prev) => new Set([...prev, sectionIdAttr]));
           }
         });
       },
       {
         threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -50px 0px',
       }
     );
 
@@ -46,24 +46,27 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
 
   // Background components
   const FloatingElement = ({ className, delay = 0 }: { className: string; delay?: number }) => (
-    <div 
+    <div
       className={`absolute rounded-full opacity-20 animate-pulse ${className}`}
-      style={{ 
+      style={{
         animationDelay: `${delay}s`,
-        animationDuration: '4s'
+        animationDuration: '4s',
       }}
     />
   );
 
   const GridPattern = () => (
     <div className="absolute inset-0 opacity-5">
-      <div className="absolute inset-0" style={{
-        backgroundImage: `
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `
           linear-gradient(rgba(161, 233, 165, 0.3) 1px, transparent 1px),
           linear-gradient(90deg, rgba(161, 233, 165, 0.3) 1px, transparent 1px)
         `,
-        backgroundSize: '50px 50px'
-      }} />
+          backgroundSize: '50px 50px',
+        }}
+      />
     </div>
   );
 
@@ -72,19 +75,26 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
     alt: string;
     name: string;
     size: 'large' | 'medium' | 'small';
+    href: string;
   }
 
-  const SponsorLogo: React.FC<SponsorLogoProps> = ({ src, alt, name, size }) => {
+  const SponsorLogo: React.FC<SponsorLogoProps> = ({ src, alt, name, size, href }) => {
     const sizeClasses = {
       large: 'w-64 h-32 sm:w-80 sm:h-40 md:w-96 md:h-48',
       medium: 'w-48 h-24 sm:w-56 sm:h-28 md:w-64 md:h-32',
-      small: 'w-32 h-16 sm:w-40 sm:h-20 md:w-48 md:h-24'
+      small: 'w-32 h-16 sm:w-40 sm:h-20 md:w-48 md:h-24',
     };
 
     return (
-      <div className="flex flex-col items-center group cursor-pointer">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex flex-col items-center group cursor-pointer"
+        aria-label={name}
+      >
         <div className={`${sizeClasses[size]} flex items-center justify-center p-4 transition-all duration-500 hover:scale-110`}>
-          <img 
+          <img
             src={src}
             alt={alt}
             className="max-w-full max-h-full object-contain filter brightness-90 hover:brightness-110 transition-all duration-300 drop-shadow-lg hover:drop-shadow-xl"
@@ -93,7 +103,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
         <p className="text-white/80 text-sm font-medium mt-3 group-hover:text-[#A1E9A5] transition-colors duration-300">
           {name}
         </p>
-      </div>
+      </a>
     );
   };
 
@@ -101,7 +111,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
     <div ref={sponsorsRef} className="w-full py-20 sm:py-24 md:py-32 bg-black relative overflow-hidden" id={sectionId}>
       {/* Enhanced Background Elements */}
       <GridPattern />
-      
+
       {/* Animated floating elements */}
       <FloatingElement className="top-10 left-10 w-4 h-4 bg-green-400" delay={0} />
       <FloatingElement className="top-20 right-20 w-6 h-6 bg-yellow-400" delay={1} />
@@ -111,9 +121,18 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
       <FloatingElement className="top-1/3 right-1/3 w-4 h-4 bg-teal-400" delay={2.5} />
 
       {/* Large gradient blobs */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-radial from-green-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-radial from-yellow-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
-      <div className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-radial from-emerald-500/8 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '1s' }} />
+      <div
+        className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-radial from-green-500/10 to-transparent rounded-full blur-3xl animate-pulse"
+        style={{ animationDuration: '6s' }}
+      />
+      <div
+        className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-radial from-yellow-500/10 to-transparent rounded-full blur-3xl animate-pulse"
+        style={{ animationDuration: '8s', animationDelay: '2s' }}
+      />
+      <div
+        className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-radial from-emerald-500/8 to-transparent rounded-full blur-2xl animate-pulse"
+        style={{ animationDuration: '7s', animationDelay: '1s' }}
+      />
 
       {/* Moving particles */}
       <div className="absolute inset-0">
@@ -125,7 +144,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
+              animationDuration: `${2 + Math.random() * 3}s`,
             }}
           />
         ))}
@@ -134,7 +153,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Sponsors Heading */}
         <div className="text-center mb-16 sm:mb-20" data-section="heading">
-          <h2 
+          <h2
             className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-[#A1E9A5] via-green-400 to-emerald-300 font-bold mb-6 sm:mb-8 transition-all duration-1000 ${
               visibleSections.has('heading') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
@@ -142,43 +161,62 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
           >
             OUR SPONSORS
           </h2>
-          <div className={`w-24 h-1 bg-gradient-to-r from-[#A1E9A5] to-green-400 mx-auto mb-6 rounded-full transition-all duration-1000 delay-300 ${
-            visibleSections.has('heading') ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-          }`} />
-          <p className={`text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-500 ${
-            visibleSections.has('heading') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}>
+          <div
+            className={`w-24 h-1 bg-gradient-to-r from-[#A1E9A5] to-green-400 mx-auto mb-6 rounded-full transition-all duration-1000 delay-300 ${
+              visibleSections.has('heading') ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+            }`}
+          />
+          <p
+            className={`text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-500 ${
+              visibleSections.has('heading') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}
+          >
             Powered by amazing partners who make <span className="text-[#A1E9A5] font-semibold">Spectrum 2025</span> possible
           </p>
         </div>
 
         {/* Title Sponsor - Devfolio */}
-        <div className={`mb-20 transition-all duration-1000 ${
-          visibleSections.has('title') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`} data-section="title">
+        <div
+          className={`mb-20 transition-all duration-1000 ${
+            visibleSections.has('title') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          data-section="title"
+        >
           <div className="flex justify-center">
-            <SponsorLogo src={devfolioLogo} alt="DEVFOLIO LOGO" name="Devfolio" size="large" />
+            <SponsorLogo
+              src={devfolioLogo}
+              alt="DEVFOLIO LOGO"
+              name="Devfolio"
+              size="large"
+              href="https://devfolio.co"
+            />
           </div>
         </div>
 
         {/* Gold Sponsors */}
-        <div className={`mb-20 transition-all duration-1000 delay-200 ${
-          visibleSections.has('gold') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`} data-section="gold">
+        <div
+          className={`mb-20 transition-all duration-1000 delay-200 ${
+            visibleSections.has('gold') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          data-section="gold"
+        >
           <div className="flex flex-wrap justify-center gap-12 lg:gap-16">
-            <SponsorLogo src={polygonLogo} alt="Polygon" name="Polygon" size="medium" />
-            <SponsorLogo src={ethIndiaLogo} alt="ETHINDIA LOGO" name="ETHIndia" size="medium" />
+            <SponsorLogo src={polygonLogo} alt="Polygon" name="Polygon" size="medium" href="https://polygon.technology" />
+            <SponsorLogo src={ethIndiaLogo} alt="ETHIndia Logo" name="ETHIndia" size="medium" href="https://ethindia.co" />
           </div>
         </div>
 
         {/* Silver Sponsors */}
-        <div className={`mb-12 transition-all duration-1000 delay-400 ${
-          visibleSections.has('silver') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`} data-section="silver">
+        <div
+          className={`mb-12 transition-all duration-1000 delay-400 ${
+            visibleSections.has('silver') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          data-section="silver"
+        >
           <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
-            <SponsorLogo src={gfgLogo} alt="GeeksforGeeks" name="GeeksforGeeks" size="small" />
-            <SponsorLogo src={topclubLogo} alt="TopClub" name="TopClub" size="small" />
-            <SponsorLogo src={xyzLogo} alt=".xyz" name=".xyz" size="small" />
+            <SponsorLogo src={gfgLogo} alt="GeeksforGeeks" name="GeeksforGeeks" size="small" href="https://www.geeksforgeeks.org" />
+            <SponsorLogo src={topclubLogo} alt="TopClub" name="TopClub" size="small" href="https://www.topclubfantasy.com/" />
+            <SponsorLogo src={xyzLogo} alt=".xyz" name=".xyz" size="small" href="https://gen.xyz/" />
           </div>
         </div>
       </div>
@@ -188,16 +226,16 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
         ::-webkit-scrollbar {
           width: 8px;
         }
-        
+
         ::-webkit-scrollbar-track {
           background: rgba(0, 0, 0, 0.1);
         }
-        
+
         ::-webkit-scrollbar-thumb {
           background: rgba(161, 233, 165, 0.3);
           border-radius: 4px;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
           background: rgba(161, 233, 165, 0.5);
         }

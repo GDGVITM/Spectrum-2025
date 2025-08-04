@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-// Import partner logos
 import partner1Logo from '../assets/partners/gdgcloud.png';
 import partner2Logo from '../assets/partners/csi.png';
 import partner3Logo from '../assets/partners/cesa.png';
@@ -17,15 +16,15 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const sectionId = entry.target.getAttribute('data-section');
-          if (entry.isIntersecting && sectionId) {
-            setVisibleSections(prev => new Set([...prev, sectionId]));
+          const sectionIdAttr = entry.target.getAttribute('data-section');
+          if (entry.isIntersecting && sectionIdAttr) {
+            setVisibleSections((prev) => new Set([...prev, sectionIdAttr]));
           }
         });
       },
       {
         threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -50px 0px',
       }
     );
 
@@ -42,11 +41,28 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
     };
   }, []);
 
-  const PartnerLogo = ({ src, alt, name }: { src: string; alt: string; name: string }) => {
-    return (
+  const PartnerLogo = ({
+    src,
+    alt,
+    name,
+    large = false,
+    link,
+  }: {
+    src: string;
+    alt: string;
+    name: string;
+    large?: boolean;
+    link?: string;
+  }) => {
+    const content = (
       <div className="flex flex-col items-center group cursor-pointer">
-        <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 flex items-center justify-center p-4 transition-all duration-500 hover:scale-110">
-          <img 
+        <div
+          className={`
+            flex items-center justify-center p-4 transition-all duration-500 hover:scale-110
+            ${large ? 'w-70 h-30 sm:w-78 sm:h-28 md:w-82 md:h-52' : 'w-52 h-32 sm:w-56 sm:h-36 md:w-60 md:h-30'}
+          `}
+        >
+          <img
             src={src}
             alt={alt}
             className="max-w-full max-h-full object-contain filter brightness-90 hover:brightness-110 transition-all duration-300 drop-shadow-lg hover:drop-shadow-xl"
@@ -57,21 +73,29 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
         </p>
       </div>
     );
+
+    if (link) {
+      return (
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          {content}
+        </a>
+      );
+    }
+
+    return content;
   };
 
   return (
-    <div ref={partnersRef} className="w-full py-16 sm:py-20 md:py-24 bg-black" id={sectionId}>
+    <div ref={partnersRef} className="w-full py-16 sm:py-20 md:py-24 bg-transparent" id={sectionId}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Partners Heading */}
-        <div 
+        <div
           className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${
-            visibleSections.has('heading') 
-              ? 'opacity-100 transform translate-y-0' 
-              : 'opacity-0 transform translate-y-8'
+            visibleSections.has('heading') ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
           }`}
           data-section="heading"
         >
-          <h2 
+          <h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-[#A1E9A5] via-green-400 to-emerald-300 font-bold mb-6 sm:mb-8"
             style={{ fontFamily: 'Minecraft' }}
           >
@@ -81,18 +105,28 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
         </div>
 
         {/* Partners Grid */}
-        <div 
+        <div
           className={`transition-all duration-1000 delay-200 ${
-            visibleSections.has('partners') 
-              ? 'opacity-100 transform translate-y-0' 
-              : 'opacity-0 transform translate-y-8'
+            visibleSections.has('partners') ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
           }`}
           data-section="partners"
         >
-          <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
-            <PartnerLogo src={partner1Logo} alt="Partner 1" name="GDG Cloud Mumbai" />
-            <PartnerLogo src={partner2Logo} alt="Partner 2" name="CSI VIT" />
-            <PartnerLogo src={partner3Logo} alt="Partner 3" name="CESA VIT" />
+          <div className="flex flex-col items-center gap-12">
+            {/* First row: GDG Cloud Mumbai larger */}
+            <div className="flex justify-center w-full">
+              <PartnerLogo
+                src={partner1Logo}
+                alt="GDG Cloud Mumbai"
+                name="GDG Cloud Mumbai"
+                large
+                link="https://gdg.community.dev/gdg-cloud-mumbai/"
+              />
+            </div>
+            {/* Second row: other partners */}
+            <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
+              <PartnerLogo src={partner2Logo} alt="CSI VIT" name="CSI VIT" />
+              <PartnerLogo src={partner3Logo} alt="CESA VIT" name="CESA VIT" />
+            </div>
           </div>
         </div>
       </div>
