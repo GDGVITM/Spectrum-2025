@@ -379,7 +379,7 @@ const Home = () => {
                   <DevfolioApplyButton hackathonSlug="hackbuild" />
                 </div>
                 <p className="text-xs sm:text-sm text-gray-400">
-                  Applications are now open on Devfolio
+                  Applications are starting soon
                 </p>
               </div>
 
