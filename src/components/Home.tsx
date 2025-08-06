@@ -330,6 +330,21 @@ const Home = () => {
         </div>
         
         <Timeline />
+
+        {/* Info about Brochure */}
+        <div className="mt-10 flex flex-col items-center">
+          <p className="text-base sm:text-lg text-gray-300 mb-4 text-center">
+            For a detailed overview of Spectrum 2025, checkout our brochure below
+          </p>
+          <a
+            href="/Spectrum.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-[#A1E9A5] to-green-400 text-black font-bold text-lg shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
+          >
+            View Brochure (PDF)
+          </a>
+        </div>
       </div>
 
       {/* ----------- Frame 3: Hackathon Section ----------- */}
