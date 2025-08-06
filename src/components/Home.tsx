@@ -363,7 +363,7 @@ const Home = () => {
               <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-blue-400/30 shadow-lg shadow-blue-400/10 hover:shadow-blue-400/20 transition-all duration-300">
                 <h3 className="text-lg sm:text-xl font-bold text-blue-400 mb-3 sm:mb-4">Event Timeline</h3>
                 <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  <strong>Duration:</strong> 12th to 24th August<br />
+                  <strong>Duration:</strong> 12th to 23rd August<br />
                   <strong>Round 1:</strong> Online submissions<br />
                   <strong>Round 2:</strong> On-site hackathon for selected teams<br />
                   <strong>Finals:</strong> Presentations and judging on 24th August
