@@ -84,7 +84,7 @@ const Events = () => {
         "Get ready to build innovative solutions in a collaborative environment, where creativity meets technology. We have two rounds for hackathon, first round is online and second round is on-site. In the first round, participants will submit their project ideas and prototypes online, and the top teams will be selected to participate in the on-site hackathon.",
       detailedDescription:
         "HackBuild represents our flagship hackathon experience, designed to foster innovation and collaborative problem-solving over an extended period. This hybrid competition spans multiple days with a unique two-round format. Round 1 operates entirely online, where teams submit detailed project proposals, prototypes, and implementation plans. Our expert judging panel evaluates submissions based on innovation, technical feasibility, market potential, and presentation quality. Selected teams advance to Round 2, an intensive on-site hackathon where ideas transform into working solutions. Participants have access to mentorship, technical resources, and industry guidance throughout the process. The event encourages cross-domain collaboration, bringing together developers, designers, business strategists, and domain experts to tackle real-world challenges across various sectors including healthcare, education, sustainability, and emerging technologies.",
-      date: "12th to 24th August",
+      date: "12th to 23rd August",
       prizeComponent: <Hackbuildprize />,
       component: <HackBuildComponent />,
       registerLink: "https://hackbuild.gdgvitm.tech/",
