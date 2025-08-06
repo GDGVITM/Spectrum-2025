@@ -25,7 +25,7 @@ const minecraftTimeline = [
 		icon: Sword,
 		title: "Launchpad",
 		date: "18th & 19th August 2025",
-		venue: "M-block",
+		venue: "3rd floor M-Block labs",
 		description:
 			"A two-round AI + SaaS challenge where teams of 2–3 ideate and build innovative SaaS solutions using AI tools and prompt engineering.",
 	},

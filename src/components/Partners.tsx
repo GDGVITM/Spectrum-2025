@@ -96,10 +96,10 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
           data-section="heading"
         >
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-[#A1E9A5] via-green-400 to-emerald-300 font-bold mb-6 sm:mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#A1E9A5] via-green-400 to-emerald-300 font-bold mb-6 sm:mb-8"
             style={{ fontFamily: 'Minecraft' }}
           >
-            COMMUNITY PARTNERS
+            HackBuild Community Partners
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#A1E9A5] to-green-400 mx-auto mb-6 rounded-full" />
         </div>
