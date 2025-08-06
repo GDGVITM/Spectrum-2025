@@ -366,7 +366,7 @@ const Home = () => {
                   <strong>Duration:</strong> 12th to 23rd August<br />
                   <strong>Round 1:</strong> Online submissions<br />
                   <strong>Round 2:</strong> On-site hackathon for selected teams<br />
-                  <strong>Finals:</strong> Presentations and judging on 24th August
+                  <strong>Finals:</strong> Presentations and judging on 23rd August
                 </p>
               </div>
             </div>
