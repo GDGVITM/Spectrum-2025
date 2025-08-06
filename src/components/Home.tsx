@@ -386,7 +386,7 @@ const Home = () => {
               {/* Stats grid - responsive */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg p-3 sm:p-4 border border-green-400/30 shadow-lg shadow-green-400/10 hover:shadow-green-400/20 transition-all duration-300">
-                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#A1E9A5]">12th to 24th August</div>
+                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#A1E9A5]">12th to 23rd August</div>
                   <div className="text-xs sm:text-sm text-gray-400">Timeline</div>
                 </div>
                 <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg p-3 sm:p-4 border border-yellow-400/30 shadow-lg shadow-yellow-400/10 hover:shadow-yellow-400/20 transition-all duration-300">
