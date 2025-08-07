@@ -24,6 +24,7 @@ import Timeline from './Timeline';
 import Sponsors from './Sponsors';
 import Partners from './Partners';
 import DevfolioApplyButton from '../Events/DevfolioApplyButton';
+import FAQSection from './Faqs'; 
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -422,6 +423,10 @@ const Home = () => {
         <Partners sectionId="community-partners" />
       </div>
 
+
+<div className="relative z-10">
+  <FAQSection />
+</div>
       <div className="relative z-10">
         <Footer />
       </div>
