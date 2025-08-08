@@ -394,7 +394,7 @@ const Home = () => {
                   {/* <DevfolioApplyButton hackathonSlug="hackbuild" /> */}
                   {/* <DevfolioApplyButton hackathonSlug="hackbuild">
                     </DevfolioApplyButton> */}
-                  <DevfolioApplyButton/>
+                  <DevfolioApplyButton hackathonSlug="hackbuild" />
 
                 </div>
                 <p className="text-xs sm:text-sm text-gray-400">
