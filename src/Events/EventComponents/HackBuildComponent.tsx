@@ -14,7 +14,7 @@ const HackBuildComponent = () => {
       <button 
           type="button" 
           className='ml-10 mt-4 cursor-pointer' 
-          onClick={() => window.open('https://google.com', '_blank')}
+          onClick={() => window.open('https://hackbuild.devfolio.co/', '_blank')}
         >
           <RegisterButton/>
         </button>
