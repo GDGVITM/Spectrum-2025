@@ -342,7 +342,7 @@ const Home = () => {
             rel="noopener noreferrer"
             className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-[#A1E9A5] to-green-400 text-black font-bold text-lg shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
           >
-            View Brochure (PDF)
+            View Brochure
           </a>
         </div>
       </div>
@@ -391,10 +391,14 @@ const Home = () => {
               <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-purple-400/30 shadow-lg shadow-purple-400/10 hover:shadow-purple-400/20 transition-all duration-300">
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Ready to Build?</h3>
                 <div className="mb-4 sm:mb-6">
-                  <DevfolioApplyButton hackathonSlug="hackbuild" />
+                  {/* <DevfolioApplyButton hackathonSlug="hackbuild" /> */}
+                  {/* <DevfolioApplyButton hackathonSlug="hackbuild">
+                    </DevfolioApplyButton> */}
+                  <DevfolioApplyButton/>
+
                 </div>
                 <p className="text-xs sm:text-sm text-gray-400">
-                  Applications are starting soon
+                  Applications are started!!
                 </p>
               </div>
 
