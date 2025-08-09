@@ -423,7 +423,7 @@ const Home = () => {
               For more details about HackBuild, download the hackathon brochure below.
             </p>
             <a
-              href="/HackBuild-Brochure.pdf"
+              href="/Hackbuild-Brochure.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-[#A1E9A5] to-green-400 text-black font-bold text-lg shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
