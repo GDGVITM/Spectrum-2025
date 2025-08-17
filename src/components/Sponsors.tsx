@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import devfolioLogo from '../assets/sponsors/devfolio.png';
-import polygonLogo from '../assets/sponsors/polygon.png';
 import ethIndiaLogo from '../assets/sponsors/eth.png';
 import gfgLogo from '../assets/sponsors/gfg.png';
 import topclubLogo from '../assets/sponsors/topclub.png';
@@ -201,7 +200,6 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
           data-section="gold"
         >
           <div className="flex flex-wrap justify-center gap-12 lg:gap-16">
-            <SponsorLogo src={polygonLogo} alt="Polygon" name="Polygon" size="medium" href="https://polygon.technology" />
             <SponsorLogo src={ethIndiaLogo} alt="ETHIndia Logo" name="ETHIndia" size="medium" href="https://ethindia.co" />
           </div>
         </div>
