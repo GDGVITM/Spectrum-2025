@@ -41,7 +41,7 @@ const minecraftTimeline = [
 		icon: Shield,
 		title: "HackBuild – Hackathon",
 		date: "12th to 23rd August 2025",
-		venue: "On-campus",
+		venue: "Hybrid",
 		description:
 			"Our major hackathon of the year, focusing on innovative solutions across various domains. This is a hybrid event with round 1 being online and round 2 being on-campus.",
 	},

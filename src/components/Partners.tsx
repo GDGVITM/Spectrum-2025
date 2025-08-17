@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-import partner1Logo from '../assets/partners/gdgcloud.png';
 import partner2Logo from '../assets/partners/csi.png';
 import partner3Logo from '../assets/partners/cesa.png';
 
@@ -112,16 +110,6 @@ const Partners: React.FC<PartnersProps> = ({ sectionId }) => {
           data-section="partners"
         >
           <div className="flex flex-col items-center gap-12">
-            {/* First row: GDG Cloud Mumbai larger */}
-            <div className="flex justify-center w-full">
-              <PartnerLogo
-                src={partner1Logo}
-                alt="GDG Cloud Mumbai"
-                name="GDG Cloud Mumbai"
-                large
-                link="https://gdg.community.dev/gdg-cloud-mumbai/"
-              />
-            </div>
             {/* Second row: other partners */}
             <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
               <PartnerLogo src={partner2Logo} alt="CSI VIT" name="CSI VIT" />
