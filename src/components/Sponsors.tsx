@@ -7,6 +7,8 @@ import topclubLogo from '../assets/sponsors/topclub.png';
 import xyzLogo from '../assets/sponsors/xyz.png';
 import techo from '../assets/sponsors/Techiolaza.png';
 import elite from '../assets/sponsors/elite.png';
+import vision from '../assets/sponsors/VisionX.png';
+import vidya from '../assets/sponsors/VidyarthiMitra.png';
 
 interface SponsorsProps {
   sectionId: string;
@@ -94,7 +96,16 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
         className="flex flex-col items-center group cursor-pointer"
         aria-label={name}
       >
-        <div className={`${sizeClasses[size]} flex items-center justify-center p-4 transition-all duration-500 hover:scale-110`}>
+        <div
+          className={`
+            ${sizeClasses[size]}
+            flex items-center justify-center p-4
+            transition-all duration-500 hover:scale-110
+            bg-gradient-to-br from-gray-900/80 to-gray-800/80
+            border border-[#A1E9A5]/20 rounded-2xl
+            shadow-lg hover:shadow-2xl
+          `}
+        >
           <img
             src={src}
             alt={alt}
@@ -208,7 +219,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
 
         {/* Silver Sponsors */}
         <div
-          className={`mb-12 transition-all duration-1000 delay-400 ${
+          className={`mb-20 transition-all duration-1000 delay-400 ${
             visibleSections.has('silver') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
           data-section="silver"
@@ -216,20 +227,36 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
           <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
             <SponsorLogo src={gfgLogo} alt="GeeksforGeeks" name="GeeksforGeeks" size="small" href="https://www.geeksforgeeks.org" />
             <SponsorLogo src={topclubLogo} alt="TopClub" name="TopClub" size="small" href="https://www.topclubfantasy.com/" />
+            <SponsorLogo src={vidya} alt="VidyarthiMitra" name="VidyarthiMitra" size="small" href="https://www.vidyarthimitra.org/" />
             <SponsorLogo src={xyzLogo} alt=".xyz" name=".xyz" size="small" href="https://gen.xyz/" />
           </div>
         </div>
-         <div
-          className={`mb-12 transition-all duration-1000 delay-400 ${
-            visibleSections.has('silver') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+
+        {/* Problem Statement Sponsors */}
+        <div
+          className={`mb-12 transition-all duration-1000 delay-600 ${
+            visibleSections.has('problem') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
-          data-section="silver"
+          data-section="problem"
         >
+          {/* Problem Statement Sponsors Heading */}
+          <div className="text-center mb-12">
+            <h3
+              className="text-2xl sm:text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 font-bold mb-4"
+              style={{ fontFamily: 'Minecraft' }}
+            >
+              PROBLEM STATEMENT SPONSORS
+            </h3>
+            <div className="w-16 h-0.5 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto mb-4 rounded-full" />
+            <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto">
+              Partners providing innovative challenges and real-world problem statements
+            </p>
+          </div>
+
           <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
-            <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
             <SponsorLogo src={techo} alt="Technoloazia" name="Technoloazia Innovations" size="small" href="#" />
             <SponsorLogo src={elite} alt="Elite" name="Elite Forums" size="small" href="#" />
-          </div>
+            <SponsorLogo src={vision} alt="Elite" name="VisionX" size="small" href="#" />
           </div>
         </div>
       </div>
