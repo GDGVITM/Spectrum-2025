@@ -5,6 +5,8 @@ import ethIndiaLogo from '../assets/sponsors/eth.png';
 import gfgLogo from '../assets/sponsors/gfg.png';
 import topclubLogo from '../assets/sponsors/topclub.png';
 import xyzLogo from '../assets/sponsors/xyz.png';
+import techo from '../assets/sponsors/Techiolaza.png';
+import elite from '../assets/sponsors/elite.png';
 
 interface SponsorsProps {
   sectionId: string;
@@ -215,6 +217,19 @@ const Sponsors: React.FC<SponsorsProps> = ({ sectionId }) => {
             <SponsorLogo src={gfgLogo} alt="GeeksforGeeks" name="GeeksforGeeks" size="small" href="https://www.geeksforgeeks.org" />
             <SponsorLogo src={topclubLogo} alt="TopClub" name="TopClub" size="small" href="https://www.topclubfantasy.com/" />
             <SponsorLogo src={xyzLogo} alt=".xyz" name=".xyz" size="small" href="https://gen.xyz/" />
+          </div>
+        </div>
+         <div
+          className={`mb-12 transition-all duration-1000 delay-400 ${
+            visibleSections.has('silver') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+          data-section="silver"
+        >
+          <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
+            <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
+            <SponsorLogo src={techo} alt="Technoloazia" name="Technoloazia Innovations" size="small" href="#" />
+            <SponsorLogo src={elite} alt="Elite" name="Elite Forums" size="small" href="#" />
+          </div>
           </div>
         </div>
       </div>
