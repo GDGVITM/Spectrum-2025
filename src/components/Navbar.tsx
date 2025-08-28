@@ -9,8 +9,7 @@ const navLinks = [
   { label: "ABOUT US", to: "/about" },
   { label: "OUR TEAM", to: "/team" },
   { label: "SPONSORS", to: "#sponsors", isScroll: true },
-  { label: "PARTNERS", to: "#community-partners", isScroll: true },
-  { label: "HACKBUILD", to: "/hackbuild", highlighted: true, hasTerminal: true },
+  { label: "TERMINAL", to: "/terminal", highlighted: true, hasTerminal: true },
 ];
 
 const Navbar: React.FC = () => {
@@ -52,7 +51,7 @@ const Navbar: React.FC = () => {
             <div key={link.label}>
               {link.hasTerminal ? (
                 <a
-                  href="https://hackbuild.gdgvitm.tech/"
+                  href="https://terminal.gdgvitm.tech/"
                   className={`no-underline transition-all duration-300 relative flex items-center gap-2 animate-pulse ${
                     link.highlighted
                       ? "text-green-400 hover:text-green-300 drop-shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:drop-shadow-[0_0_25px_rgba(34,197,94,1)] hover:scale-110"
